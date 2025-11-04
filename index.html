@@ -7,315 +7,552 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <!-- Heebo for all text --><link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
     <style>
         body {
-            font-family: 'Heebo', sans-serif;
-            background-color: #FFF4E5; /* Orange Light */
-            color: #1A1E25; /* Grey Dark */
+            font-family: 'Heebo', sans-serif; /* פונט אחיד */
+            background-color: #FFFFFF; 
+            color: #212121; 
         }
-        .text-heading { color: #1A1E25; }
-        .text-body { color: #1A1E25; }
         
-        .bg-main { background-color: #FFFFFF; } /* White */
-        .bg-secondary { background-color: #FFF4E5; }
+        .text-heading { color: #212121; }
+        .text-body { color: #424242; } 
+        .text-accent { color: #212121; } /* צבע הדגשה אפור כהה */
+        .border-subtle { border-color: #D1D5DB; } /* צבע מסגרת אפור בהיר ועדין */
 
-        .text-accent-pink { color: #DF0F65; } /* Pink Soft */
-        .bg-accent-pink { background-color: #DF0F65; }
-        .hover\:bg-accent-pink-dark:hover { background-color: #CF0156; } /* Pink Dark */
-        .border-accent-pink { border-color: #DF0F65; }
 
-        .text-accent-cyan { color: #59CEC3; } /* Confetti Cyan */
+        
+        .bg-main { background-color: #FFFFFF; } 
+        .bg-secondary { background-color: #F7F3EF; } /* צבע קרם */
 
-        /* Simplified Card Styles */
+        .btn-ghost {
+            background-color: transparent;
+            border: 2px solid #212121;
+            color: #212121;
+            transition: all 0.3s ease;
+        }
+        .btn-ghost:hover {
+            background-color: #212121;
+            color: #FFFFFF;
+        }
+
+        /* [שינוי] עיצוב כפתור וואטסאפ עדין */
+        .btn-whatsapp {
+            background-color: transparent; /* רקע שקוף */
+            color: #25D366; /* טקסט ואייקון ירוקים */
+            border: 2px solid #25D366; /* מסגרת ירוקה */
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem; /* רווח בין האייקון לטקסט */
+        }
+        .btn-whatsapp:hover {
+            background-color: #25D366; /* רקע ירוק במעבר עכבר */
+            color: #FFFFFF; /* טקסט ואייקון לבנים במעבר עכבר */
+        }
+
         .card {
             width: 100%;
-            padding: 5rem 1.5rem; /* Vertical padding for spacing */
+            padding: 5rem 1.5rem; 
+        }
+
+        .top-bg-block {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            /* [תיקון 1] גובה המלבן הקרם */
+            height: 50vh; 
+            background-color: #F7F3EF; /* צבע קרם */
+            z-index: -10;
+        }
+
+        /* [תיקון 2] קלאס עבור הפופאפ */
+        .modal-backdrop {
+            z-index: 9998;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            z-index: 9999;
+            background-color: #FFFFFF;
+            max-width: 400px;
+            text-align: center;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        .modal-hidden {
+            display: none;
         }
     </style>
 </head>
-<body class="bg-secondary">
+<body class="bg-main">
 
-    <div class="container mx-auto px-6">
+    <!-- מלבן רקע עליון --><div class="top-bg-block"></div>
 
-        <!-- Panel 1: Header (Normal Scroll) --><header class="text-center min-h-screen flex flex-col justify-center items-center py-12">
-            <div>
-                <h1 class="text-lg md:text-xl font-medium text-heading leading-relaxed max-w-5xl mx-auto">במיוחד לנשים רגישות וחכמות, שנמאס להן <br> להרגיש במאבק מתמיד עם עצמן.</h1>
+    <div class="container mx-auto px-6 relative"> 
+
+        <!-- Panel 1: Header (Normal Scroll) -->
+        <!-- [תיקון 1] הזזת כל בלוק ה-header מטה -->
+        <header class="text-center flex flex-col items-center py-12" style="padding-top: 15vh; min-height: 80vh;">
+            <div style="margin-top: 25vh;"> <!-- הזזת התוכן להתחיל ב-50vh -->
+                <!-- תמונה ראשית: מרכז התמונה על קו סיום המלבן העליון -->
+                <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/3.jpg" alt="עדי - מאמנת מנטלית" class="mx-auto w-80 h-56 rounded-lg shadow-xl object-cover mb-10" style="object-position: 50% 45%; margin-top: -28vh;"> <!-- מזיז את התמונה כך שחציה העליון מכוסה -->
+                
+                <h1 class="text-lg md:text-xl font-medium text-heading leading-relaxed max-w-5xl mx-auto mt-10">במיוחד לנשים רגישות וחכמות, שנמאס להן <br> להרגיש במאבק מתמיד עם עצמן.</h1>
                 <p class="mt-6 text-xl md:text-2xl text-body max-w-4xl mx-auto">
                     אחרי מעל 400 שעות אימון, (ועשרות מתאמנים) אני יודעת בדיוק איפה אני מביאה את השינוי העמוק ביותר —
                 </p>
-                <h2 class="mt-4 text-3xl md:text-4xl font-extrabold text-heading leading-tight max-w-4xl mx-auto">
-                    איך להפוך מאישה שמותשת ממאבקים פנימיים, ורגילה להצליח רק בעבודה קשה, לאישה שפועלת בקצב הנכון לה, ויודעת שמי שהיא זה בדיוק הכוח שלה.
+                <!-- [תיקון 2] פריסה ל-3 שורות שוות -->
+                <h2 class="mt-4 text-3xl md:text-4xl font-extrabold text-heading leading-tight max-w-xl mx-auto">
+                   אז אני רוצה שתשחררי את מה שחשבת <br> על עצמך, או האמנת שאפשרי בשבילך. <br> כדי שתוכלי לראות אותך באור <br> שעדיין לא ראית.
+                   <br><br>
+                   זה לא שאת לא מסוגלת, את פשוט אף פעם לא ניסית <span class="text-accent">דרך אחרת:</span>
                 </h2>
-                 <a href="#cta" class="mt-10 inline-block bg-accent-pink text-white font-bold text-xl py-4 px-10 rounded-full shadow-lg hover:bg-accent-pink-dark transition-colors duration-300 transform hover:scale-105">
-                    אני רוצה לשים אול אין על עצמי!
-                </a>
+                
+                <!-- [שינוי 3] הפיכת הכפתור לעגול --><div class="inline-block border-2 border-accent text-accent font-bold text-2xl py-3 px-6 rounded-full mt-10">
+                    שמה אול אין על עצמי
+                </div>
+
+                <p class="mt-10 text-xl text-body leading-relaxed">
+                    אנשים שמגשימים את עצמם- הם אלו שמטפחים מערכת יחסים אחת חשובה ועיקרית ביותר, שמעצבת את כל החיים שלהם בחוץ- מערכת היחסים עם עצמם. הם מבינים שהצלחה דורשת מאמץ, אבל הם משקיעים את המאמץ שלהם במקום הנכון. הם אנשים שמבינים שככל שהם יתמקדו בעצמם- ההצלחה שלהם תגדל. לכן, הם לא מנסים לשנות את עצמם, להתאים את עצמם לתבניות. הם יודעים- שהכוח הכי גדול שלהם- הוא להיות מי שהם.
+                </p>
             </div>
         </header>
+    </div>
 
-        <!-- Panel 2: Pain (Normal Scroll) --><section class="py-20 text-center">
-             <div class="max-w-3xl mx-auto">
-                 <h2 class="text-3xl font-semibold text-heading">מרגישה שאת נלחמת אבל לא מצליחה להתקדם?</h2>
-                 <p class="mt-6 text-lg text-body leading-relaxed">
-                    את מרגישה שאת פייטרית, את יודעת להלחם עבור מה שאת רוצה. אבל את לא מגיעה. את יודעת שאת מסוגלת, את לא מתכוונת לוותר, אבל כמה שאת מתאמצת , את תמיד חוזרת לאותו המקום.
+    <!-- Panel 2: Pain (Normal Scroll) --><!-- רקע קרם, full-width --><section class="py-20 text-center bg-secondary">
+            <div class="max-w-3xl mx-auto px-6">
+                <h2 class="text-3xl font-semibold text-heading">מרגישה שאת נלחמת אבל לא מצליחה להתקדם?</h2>
+                <!-- [שינוי 2] הסרת המשפט "את יודעת שאת מסוגלת" --><p class="mt-6 text-lg text-body leading-relaxed">
+                    את מרגישה שאת פייטרית, את יודעת להלחם עבור מה שאת רוצה. אבל את לא מגיעה. את לא מתכוונת לוותר, אבל כמה שאת מתאמצת , את תמיד חוזרת לאותו המקום.
                     <br><br>
                     ובסוף היום כשאת שמה את הראש על הכרית- את עייפה, ואת לא יכולה שלא לתהות- ״אולי אני פשוט לא מספיק טובה. אולי אני פשוט לא עשויה מהחומר הנכון".
                  </p>
-            </div>
+                <!-- ===== תמונה שנייה - 120x100 ===== --><div class="mt-10">
+                    <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/222.PNG" alt="תמונה מעוררת השראה" class="mx-auto w-[30rem] h-[25rem] rounded-lg shadow-xl object-cover">
+                </div>
+                <!-- =============================== --></div>
         </section>
-    </div>
 
-    <!-- Container for previous card sections --><div>
+    <!-- Container for main content cards --><div class="container mx-auto px-6">
         
-        <!-- Section 1: The Other Way --><section class="card bg-secondary text-center">
+        <!-- Section 1: The Other Way -->
+        <section class="card bg-main text-center">
              <div class="max-w-4xl mx-auto relative z-10">
-                <h2 class="text-4xl md:text-5xl font-bold text-heading leading-snug">
-                   אז אני רוצה שתשחררי את מה שחשבת על עצמך... <br> זה לא שאת לא מסוגלת, את פשוט אף פעם לא ניסית <span class="text-accent-pink">דרך אחרת.</span>
+                <!-- [תיקון 2] הקטנת הכותרת ופריסה ל-3 שורות -->
+                <h2 class="text-3xl md:text-4xl font-extrabold text-heading leading-tight max-w-xl mx-auto">
+                   אז אני רוצה שתשחררי את מה שחשבת <br> על עצמך, או האמנת שאפשרי בשבילך. <br> כדי שתוכלי לראות אותך באור <br> שעדיין לא ראית.
+                   <br><br>
+                   זה לא שאת לא מסוגלת, את פשוט אף פעם לא ניסית <span class="text-accent">דרך אחרת:</span>
                 </h2>
-                <p class="mt-6 text-xl text-body">
+                
+                <!-- [שינוי 3] הפיכת הכפתור לעגול --><div class="inline-block border-2 border-accent text-accent font-bold text-2xl py-3 px-6 rounded-full mt-10">
+                    שמה אול אין על עצמי
+                </div>
+
+                <p class="mt-10 text-xl text-body leading-relaxed">
                     אנשים שמגשימים את עצמם- הם אלו שמטפחים מערכת יחסים אחת חשובה ועיקרית ביותר, שמעצבת את כל החיים שלהם בחוץ- מערכת היחסים עם עצמם. הם מבינים שהצלחה דורשת מאמץ, אבל הם משקיעים את המאמץ שלהם במקום הנכון. הם אנשים שמבינים שככל שהם יתמקדו בעצמם- ההצלחה שלהם תגדל. לכן, הם לא מנסים לשנות את עצמם, להתאים את עצמם לתבניות. הם יודעים- שהכוח הכי גדול שלהם- הוא להיות מי שהם.
                 </p>
             </div>
         </section>
-        
-        <!-- Image before testimonials --><div class="text-center py-10">
-            <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/1.jpg" alt="עדי - מאמנת מנטלית" class="mx-auto max-w-6xl w-200 h-200 rounded-lg shadow-lg">
-        </div>
 
-        <!-- Section 2: Testimonials --><section class="card bg-secondary">
-            <div class="max-w-6xl mx-auto text-center w-full relative z-10">
+        <!-- [שינוי] פריסת תמונה + טקסט --><section class="card bg-main text-center">
+            <div class="max-w-4xl mx-auto bg-secondary p-8 rounded-xl shadow-lg">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    
+                    <!-- [שינוי] עמודת טקסט (שמאל) --><div class="text-right">
+                        <!-- [שינוי] הסרת גרשיים --><h2 class="text-3xl font-bold text-heading">שמה אול אין על עצמי</h2>
+                        <h3 class="mt-4 text-xl font-semibold text-accent leading-relaxed">
+                            התהליך שיעזור לך להתקדם ולהצליח מתוך האופי והלב שלך. בדרך שבה את קשובה אליך ולא נלחמת בך. ווינרית במסלול הייחודי שלך.
+                        </h3>
+                        <p class="mt-4 text-lg text-body leading-relaxed">
+                            כשאת מתחילה להשקיע את האנרגיה הזו בעצמך,
+                            את הופכת את המאבק הפנימי, לכוח שמרים אותך קדימה.
+                        </p>
+                        
+                        <!-- [שינוי 5] כפתור וואטסאפ (עם הקישור המעודכן) --><a href="https://wa.link/8ram0d" target="_blank" class="mt-8 btn-whatsapp text-xl py-4 px-10 rounded-full font-bold shadow-lg">
+                            <!-- אייקון וואטסאפ --><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.0-6.556 5.338-11.891 11.893-11.891 3.181.0 6.167 1.24 8.413 3.488 2.245 2.248 3.487 5.235 3.487 8.413.0 6.557-5.338 11.892-11.893 11.892-1.99-.0-3.903-.52-5.607-1.474l-6.163 1.687zM5.47 21.16l1.21.725c1.518.911 3.231 1.411 5.048 1.411 5.219 0 9.466-4.244 9.466-9.463.0-2.528-1.004-4.903-2.782-6.68-1.777-1.778-4.152-2.782-6.68-2.782-5.218 0-9.465 4.244-9.465 9.463.0 1.83.504 3.548 1.408 5.063l.729 1.21-1.879 5.462 5.461-1.877z"/></svg>
+                            <span>עדי, אני מתעניינת בתהליך האימון!</span>
+                        </a>
+
+                        <!-- [שינוי 6] טקסט מתחת לכפתור --><p class="mt-6 text-md text-body">
+                            אני לא כאן כדי להגיד לך מה את יכולה, אני כאן כדי לעזור לך לגלות את זה בעצמך.
+                        </p>
+                    </div>
+                    
+                    <!-- [שינוי] עמודת תמונה (ימין) --><div>
+                        <!-- [תיקון] גודל 430x500px --><img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/15.jpg" alt="שמה אול אין על עצמי" class="w-[26.875rem] h-[31.25rem] mx-auto object-cover rounded-lg shadow-md" style="object-position: 50% 40%;"> <!-- 430px is 26.875rem, 500px is 31.25rem -->
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 2: Testimonials --><section class="card bg-main relative overflow-hidden"> <!-- [שינוי] נוסף overflow-hidden -->
+            
+            <!-- תמונת רקע --><img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/1.jpg" alt="" class="absolute inset-0 w-full h-full object-cover opacity-25">
+
+            <div class="max-w-6xl mx-auto text-center w-full relative"> <!-- [שינוי] הוסר z-10 מיותר -->
                 <h2 class="text-3xl font-semibold text-heading mb-10">מה אמרו מתאמנות שנכנסו לתהליך?</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-main p-6 rounded-xl shadow-lg flex flex-col h-full">
+                <!-- סידור בעמודה אחת במרכז --><div class="grid grid-cols-1 md:grid-cols-1 gap-6 max-w-lg mx-auto">
+                    <!-- כרטיס עדות --><div class="bg-secondary p-6 rounded-xl shadow-lg flex flex-col h-full text-right">
                         <blockquote class="text-md text-body italic flex-grow">"הרגשתי שעברת בכל החורים בלב שלי באימון אחד."</blockquote>
-                        <footer class="mt-4 text-right">
-                            <p class="font-bold text-accent-pink">- מתאמנת אחרי אימון ראשון</p>
+                        <footer class="mt-4">
+                            <p class="font-bold text-accent">- מתאמנת אחרי אימון ראשון</p>
                         </footer>
                     </div>
-                    <div class="bg-main p-6 rounded-xl shadow-lg flex flex-col h-full">
+                    <!-- כרטיס עדות --><div class="bg-secondary p-6 rounded-xl shadow-lg flex flex-col h-full text-right">
                         <blockquote class="text-md text-body italic flex-grow">"מאז המפגש האחרון הייתי קצת בלחץ, אבל מה שכן השתנה, זה שאני לאט מפסיקה לפחד ממנו ומתחילה לדבר איתו ולהבין."</blockquote>
-                        <footer class="mt-4 text-right">
-                            <p class="font-bold text-accent-pink">- מתאמנת שמתמודדת עם חרדות</p>
+                        <footer class="mt-4">
+                            <p class="font-bold text-accent">- מתאמנת שמתמודדת עם חרדות</p>
                         </footer>
                     </div>
-                    <div class="bg-main p-6 rounded-xl shadow-lg flex flex-col h-full">
+                    <!-- כרטיס עדות --><div class="bg-secondary p-6 rounded-xl shadow-lg flex flex-col h-full text-right">
                         <blockquote class="text-md text-body italic flex-grow">"לאט לאט בגלל שאני חומלת על עצמי יותר, הוא(בעלי) מתחיל לחמול עלי גם, וגם אנשים מבחוץ, גם אם אני לא אומרת שום דבר הם יותר רואים אותי ממקודם."</blockquote>
-                        <footer class="mt-4 text-right">
-                            <p class="font-bold text-accent-pink">- מתאמנת נשואה ואימא ל-3</p>
+                        <footer class="mt-4">
+                            <p class="font-bold text-accent">- מתאמנת נשואה ואימא ל-3</p>
                         </footer>
                     </div>
-                    <div class="bg-main p-6 rounded-xl shadow-lg flex flex-col h-full">
-                        <blockquote class="text-md text-body italic flex-grow">"מאז הפגישה שלנו אני ממש בטוב, גם מבחינת ההפרעת אכילה- לא היו לי בולמוסים והקאות כבר כמה ימים. הדברים שדיברנו עליהם ממש נכנסו אליי עמוק. מרגישה ממש שלמה ומסופקת ועם הרבה שליטה בעיקר."</blockquote>
-                        <footer class="mt-4 text-right">
-                            <p class="font-bold text-accent-pink">- מתאמנת שמתמודדת עם הפרעות אכילה</p>
+                    <!-- כרטיס עדות --><div class="bg-secondary p-6 rounded-xl shadow-lg flex flex-col h-full text-right">
+                        <blockquote class="text-md text-body italic flex-grow">"מאז הפגישה שלנו אני ממש בטוב, גם מבחינת ההפרעה- לא היו לי בולמוסים והקאות כבר כמה ימים. הדברים שדיברנו עליהם ממש נכנסו אליי עמוק. מרגישה ממש שלמה ומסופקת ועם הרבה שליטה בעיקר."</blockquote>
+                        <footer class="mt-4">
+                            <p class="font-bold text-accent">- מתאמנת שמתמודדת עם הפרעות אכילה</p>
                         </footer>
                     </div>
                 </div>
             </div>
         </section>
         
-        <!-- Section 3: The Change --><section class="card bg-main">
+        <!-- Section 3: The Change (Grid Layout) --><section class="card bg-main">
             <div class="max-w-6xl mx-auto w-full relative z-10">
                 <h2 class="text-3xl text-center font-semibold text-heading mb-10">השינוי שיקרה לך</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 text-right">
-                    <div>
-                        <h3 class="text-2xl font-bold text-accent-pink mb-4">עם עצמך</h3>
-                        <ul class="space-y-4 text-body">
-                            <li><strong class="font-semibold">שחרור ממאמץ־יתר -</strong> את תלמדי לנהל קצב אחר – שבו את מתקדמת בלי להתפרק בדרך.</li>
-                            <li><strong class="font-semibold">הכוח חוזר לידיים שלך -</strong> פחות ״הדברים קורים לי״ ויותר- ״אני מצליחה לבחור״.</li>
-                            <li><strong class="font-semibold">ביצוע/התקדמות -</strong> פתאום הדברים שהיו קשים לביצוע יהיו הרבה יותר קלים. תתחילי לעשות דברים שנמנעת מלהתחיל.</li>
-                            <li><strong class="font-semibold">אנרגיה חדשה תתפנה -</strong> רגשות שהתנגדת אליהם ולא ידעת איך להכיל- ישתחררו ויפנו מקום לאנרגיה חדשה.</li>
-                            <li><strong class="font-semibold">מדיבור פנימי אויב לאוהב -</strong> קול פנימי מנצח- מחשבות שפעם הטרידו אותך והורידו אותך, יתחלפו במשפטים של עוצמה ואמונה בעצמך.</li>
-                            <li><strong class="font-semibold">יותר שקט פנימי, פחות סטרס וחרדה-</strong> הפחדים ותחושה של לחץ יתחלפו בשמחה על מה שיש לך, ותקווה למה שעוד יגיע.</li>
-                             <li><strong class="font-semibold">ביטחון -</strong> הרגשה שאת מסוגלת. את תפסיקי לנתח ולהציף את עצמך במחשבות ללא פתרון, ותתחילי לסמוך על עצמך ולהאמין שאת תדעי להתמודד עם הכל.</li>
-                        </ul>
+                
+                <!-- Grid for "עם עצמך" --><h3 class="text-2xl font-bold text-accent mb-6 text-center">עם עצמך</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                    
+                    <!-- Bubble 1 --><div class="bg-secondary p-6 rounded-xl shadow-md text-right">
+                        <strong class="font-semibold text-heading block mb-1">שחרור ממאמץ־יתר</strong>
+                        <p class="text-body text-sm leading-relaxed">את תלמדי לנהל קצב אחר – שבו את מתקדמת בלי להתפרק בדרך.</p>
                     </div>
-                    <div>
-                        <h3 class="text-2xl font-bold text-accent-pink mb-4">עם אנשים סביבך</h3>
-                         <ul class="space-y-4 text-body">
-                            <li><strong class="font-semibold">יותר אנשים ירצו בחברתך -</strong> ותרגישי יותר מוערכת, את תדעי את הערך שלך. את תרגישי ראויה.</li>
-                            <li><strong class="font-semibold">יכולת להציב גבולות -</strong> במקום להכנע ליחס שאנשים נותנים לך, את תדעי לבקש את מה שאת צריכה. תשדרי את זה. ואנשים יתחילו לכבד את זה.</li>
-                            <li><strong class="font-semibold">לשים את עצמך במקום הראשון -</strong> לפני תוצאות ולפני אחרים. את תתחילי לשים לב למה את צריכה, ולדאוג לעצמך במקום רק לדרוש מעצמך יותר.</li>
-                        </ul>
+                    <!-- Bubble 2 --><div class="bg-secondary p-6 rounded-xl shadow-md text-right">
+                        <strong class="font-semibold text-heading block mb-1">הכוח חוזר לידיים שלך</strong>
+                        <p class="text-body text-sm leading-relaxed">פחות ״הדברים קורים לי״ ויותר- ״אני מצליחה לבחור״.</p>
+                    </div>
+                    <!-- Bubble 3 --><div class="bg-secondary p-6 rounded-xl shadow-md text-right">
+                        <strong class="font-semibold text-heading block mb-1">ביצוע/התקדמות</strong>
+                        <p class="text-body text-sm leading-relaxed">פתאום הדברים שהיו קשים לביצוע יהיו הרבה יותר קלים. תתחילי לעשות דברים שנמנעת מלהתחיל.</p>
+                    </div>
+                    <!-- Bubble 4 --><div class="bg-secondary p-6 rounded-xl shadow-md text-right">
+                        <strong class="font-semibold text-heading block mb-1">אנרגיה חדשה תתפנה</strong>
+                        <p class="text-body text-sm leading-relaxed">רגשות שהתנגדת אליהם ולא ידעת איך להכיל- ישתחררו ויפנו מקום לאנרגיה חדשה.</p>
+                    </div>
+                    <!-- Bubble 5 --><div class="bg-secondary p-6 rounded-xl shadow-md text-right">
+                        <strong class="font-semibold text-heading block mb-1">מדיבור פנימי אויב לאוהב</strong>
+                        <p class="text-body text-sm leading-relaxed">קול פנימי מנצח- מחשבות שפעם הטרידו אותך והורידו אותך, יתחלפו במשפטים של עוצמה ואמונה בעצמך.</p>
+                    </div>
+                    <!-- Bubble 6 --><div class="bg-secondary p-6 rounded-xl shadow-md text-right">
+                        <strong class="font-semibold text-heading block mb-1">יותר שקט פנימי, פחות סטרס וחרדה</strong>
+                        <p class="text-body text-sm leading-relaxed">הפחדים ותחושה של לחץ יתחלפו בשמחה על מה שיש לך, ותקווה למה שעוד יגיע.</p>
+                    </div>
+                    <!-- Bubble 7 (Centered in the last row) --><div class="bg-secondary p-6 rounded-xl shadow-md text-right md:col-start-2">
+                        <strong class="font-semibold text-heading block mb-1">ביטחון</strong>
+                        <p class="text-body text-sm leading-relaxed">הרגישה שאת מסוגלת. את תפסיקי לנתח ולהציף את עצמך במחשבות ללא פתרון, ותתחילי לסמוך על עצמך ולהאמין שאת תדעי להתמודד עם הכל.</p>
+                    </div>
+                </div>
+
+                <!-- Grid for "עם אנשים סביבך" --><h3 class="text-2xl font-bold text-accent mb-6 text-center">עם אנשים סביבך</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Bubble 1 --><div class="bg-secondary p-6 rounded-xl shadow-md text-right">
+                        <strong class="font-semibold text-heading block mb-1">יותר אנשים ירצו בחברתך</strong>
+                        <p class="text-body text-sm leading-relaxed">ותרגישי יותר מוערכת, את תדעי את הערך שלך. את תרגישי ראויה.</p>
+                    </div>
+                    <!-- Bubble 2 --><div class="bg-secondary p-6 rounded-xl shadow-md text-right">
+                        <strong class="font-semibold text-heading block mb-1">יכולת להציב גבולות</strong>
+                        <p class="text-body text-sm leading-relaxed">במקום להכנע ליחס שאנשים נותנים לך, את תדעי לבקש את מה שאת צריכה. תשדרי את זה. ואנשים יתחילו לכבד את זה.</p>
+                    </div>
+                    <!-- Bubble 3 --><div class="bg-secondary p-6 rounded-xl shadow-md text-right">
+                        <strong class="font-semibold text-heading block mb-1">לשים את עצמך במקום הראשון</strong>
+                        <p class="text-body text-sm leading-relaxed">לפני תוצאות ולפני אחרים. את תתחילי לשים לב למה את צריכה, ולדאוג לעצמך במקום רק לדרוש מעצמך יותר.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section 4: The Process --><section class="card bg-secondary">
-             <div class="max-w-4xl mx-auto text-center w-full relative z-10">
-                <h2 class="text-3xl font-semibold text-heading mb-10">בתכלס, מה הליווי שלי מציע?</h2>
-                <p class="text-xl text-body mb-8">מפגש שבועי זום/פרונטלי של 60 דקות, למשך 3 חודשים, שבו אני אבנה איתך את הבסיס הפנימי, כדי שתצליחי סוף סוף להשתמש בכל הכלים שכבר יש לך.</p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-right">
-                    <div class="bg-main p-6 rounded-xl shadow-md">
-                        <h3 class="text-lg font-bold text-accent-pink">מחזקות הקשבה פנימה</h3>
-                        <p class="mt-2 text-body text-sm">יש מחשבות, זכרונות, כאב ששמרת המון שנים. למרות שהם מכבידים, תפקידם לא להעמיס עלינו, אלא לסמן לנו- אילו צרכים שלנו לא קיבלו מענה. לכן בתהליך אנחנו מכילות ונותנות מקום- שבסוף ישחרר ממך משקל ריגשי גדול.</p>
-                    </div>
-                    <div class="bg-main p-6 rounded-xl shadow-md">
-                        <h3 class="text-lg font-bold text-accent-pink">מגבירות ומעצימות את מי שאת</h3>
-                        <p class="mt-2 text-body text-sm">התכונות שלך, החלומות שלך, העבר שלך- הם ארגז הכלים היחודי שקיבלת בעולם. הכוח הכי גדול שלך נמצא בלהיות מי את. כשאת שמה את הפוקוס על מה שקיים בך- את מתחילה להיות שלווה, כי את מפסיקה לחפש בחוץ, ומתחילה לסמוך עליך.</p>
-                    </div>
-                     <div class="bg-main p-6 rounded-xl shadow-md">
-                        <h3 class="text-lg font-bold text-accent-pink">מייצרות קשר בין הרגשות לגוף</h3>
-                        <p class="mt-2 text-body text-sm">קשר שיחזיר שליטה ויעמיק את העבודה הריגשית שלך. כשאת יודעת לזהות מה מפעיל את הגוף שלך, את בעלת הבית על הרגשות שלך.</p>
-                    </div>
+    </div> <!-- סגירת container ראשי --><!-- Section 4: The Process --><section class="card bg-secondary relative overflow-hidden"> <!-- רקע קרם, full-width --><img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/22.PNG" alt="רקע תהליך" class="absolute inset-0 w-full h-full object-cover opacity-25">
+        <div class="max-w-4xl mx-auto text-center w-full relative px-6 z-10"> <!-- יחסי --><h2 class="text-3xl font-semibold text-heading mb-10">בתכלס, מה הליווי שלי מציע?</h2>
+            
+            <p class="text-xl text-body mb-8 leading-relaxed">מפגש שבועי זום/פרונטלי של 60 דקות, למשך 3 חודשים, שבו אני אבנה איתך את הבסיס הפנימי, כדי שתצליחי סוף סוף להשתמש בכל הכלים שכבר יש לך.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-right">
+                <!-- [תיקון] רקע שקוף לגמרי --><div class="bg-transparent p-6 rounded-xl shadow-md">
+                    <h3 class="text-lg font-bold text-accent">מחזקות הקשבה פנימה</h3>
+                    <p class="mt-2 text-body text-sm leading-relaxed">יש מחשבות, זכרונות, כאב ששמרת המון שנים. למרות שהם מכבידים, תפקידם לא להעמיס עלינו, אלא לסמן לנו- אילו צרכים שלנו לא קיבלו מענה. לכן בתהליך אנחנו מכילות ונותנות מקום- שבסוף ישחרר ממך משקל ריגשי גדול.</p>
                 </div>
-                <p class="mt-8 text-xl text-body font-semibold">
-                    ואז נבנית אישה שיודעת מה היא צריכה, שיש לה מקום. אותה אישה שבזמן אמת- בוחרת זוגיות, אנשים, חיים- שמתאימים לה בדיוק.
-                </p>
+                <!-- [תיקון] רקע שקוף לגמרי --><div class="bg-transparent p-6 rounded-xl shadow-md">
+                    <h3 class="text-lg font-bold text-accent">מגבירות ומעצימות את מי שאת</h3>
+                    <p class="mt-2 text-body text-sm leading-relaxed">התכונות שלך, החלומות שלך, העבר שלך- הם ארגז הכלים היחודי שקיבלת בעולם. הכוח הכי גדול שלך נמצא בלהיות מי את. כשאת שמה את הפוקוס על מה שקיים בך- את מתחילה להיות שלווה, כי את מפסיקה לחפש בחוץ, ומתחילה לסמוך עליך.</p>
+                </div>
+                 <!-- [תיקון] רקע שקוף לגמרי --><div class="bg-transparent p-6 rounded-xl shadow-md">
+                    <h3 class="text-lg font-bold text-accent">מייצרות קשר בין הרגשות לגוף</h3>
+                    <p class="mt-2 text-body text-sm leading-relaxed">קשר שיחזיר שליטה ויעמיק את העבודה הריגשית שלך. כשאת יודעת לזהות מה מפעיל את הגוף שלך, את בעלת הבית על הרגשות שלך.</p>
+                </div>
             </div>
-        </section>
+            <p class="mt-8 text-xl text-body font-semibold leading-relaxed">
+                ואז נבנית אישה שיודעת מה היא צריכה, שיש לה מקום. אותה אישה שבזמן אמת- בוחרת זוגיות, אנשים, חיים- שמתאימים לה בדיוק.
+            </p>
+        </div>
+    </section>
 
-        <!-- Section 5: Call to Action --><section id="cta" class="card text-center bg-secondary">
+    <div class="container mx-auto px-6"> <!-- פתיחת container מחדש --><!-- Section 5: Call to Action --><section id="cta" class="card text-center bg-main">
             <div>
                 <h2 class="text-4xl font-bold text-heading">איך אני אדע שהתהליך מתאים לי?</h2>
-                <p class="mt-4 text-xl text-body max-w-2xl mx-auto">
+                <p class="mt-4 text-xl text-body max-w-2xl mx-auto leading-relaxed">
                     במשך המון שנים אני בעצמי סחבתי קשיים ריגשיים עצומים והפרעות אכילה שהתישו אותי ולא ידעתי עד כמה עמוקה הבעיה שלי.
                     היום אני יודעת שלא צריך לחכות שנשבר כדי לבקש עזרה. יש מי שיושיט לנו את היד הרבה לפני. בכל זמן שעובר ההרגלים והמחשבות שלנו על עצמינו מתקבעים. וככל שאנחנו מצליחים לטפל מוקדם יותר ולצבור פחות תסכולים- הדרך למעלה מתקצרת.
                 </p>
-                <a href="#contact" class="mt-8 inline-block bg-accent-pink text-white font-bold text-xl py-4 px-10 rounded-full shadow-lg hover:bg-accent-pink-dark transition-colors duration-300 transform hover:scale-105">
-                    לשליחת הודעה
+                <!-- עיצוב כפתור --><a href="https://wa.link/8ram0d" target="_blank" class="mt-8 btn-whatsapp text-xl py-4 px-10 rounded-full font-bold shadow-lg">
+                    <!-- אייקון וואטסאפ --><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.0-6.556 5.338-11.891 11.893-11.891 3.181.0 6.167 1.24 8.413 3.488 2.245 2.248 3.487 5.235 3.487 8.413.0 6.557-5.338 11.892-11.893 11.892-1.99-.0-3.903-.52-5.607-1.474l-6.163 1.687zM5.47 21.16l1.21.725c1.518.911 3.231 1.411 5.048 1.411 5.219 0 9.466-4.244 9.466-9.463.0-2.528-1.004-4.903-2.782-6.68-1.777-1.778-4.152-2.782-6.68-2.782-5.218 0-9.465 4.244-9.465 9.463.0 1.83.504 3.548 1.408 5.063l.729 1.21-1.879 5.462 5.461-1.877z"/></svg>
+                    <span>לשליחת הודעה</span>
                 </a>
             </div>
         </section>
         
-        <!-- Section 6: Cliches --><section class="card bg-main text-center">
-             <div class="max-w-5xl mx-auto w-full relative z-10">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <div class="bg-secondary p-8 rounded-2xl">
-                        <h3 class="text-2xl font-bold text-heading mb-4">קלישאות שלא תשמעי בליווי שלי</h3>
-                        <ul class="space-y-2 text-body text-right">
-                            <li class="flex items-center"><span class="text-red-500 text-2xl ml-3">✗</span>יש ספר הוראות שאת צריכה להתנהל דרכו</li>
-                            <li class="flex items-center"><span class="text-red-500 text-2xl ml-3">✗</span>פשוט תפסיקי לפחד</li>
-                            <li class="flex items-center"><span class="text-red-500 text-2xl ml-3">✗</span>"תאהבי את עצמך, תרגעי, תאמיני – ואז תצליחי.”</li>
-                            <li class="flex items-center"><span class="text-red-500 text-2xl ml-3">✗</span>אם את לא מצליחה את צריכה לעבוד קשה יותר</li>
-                            <li class="flex items-center"><span class="text-red-500 text-2xl ml-3">✗</span>את צריכה להתרחק מאנשים שלא חושבים כמוך או רוצים את מה שאת רוצה.</li>
-                        </ul>
-                    </div>
-                    <div class="bg-secondary p-8 rounded-2xl">
-                        <h3 class="text-2xl font-bold text-heading mb-4">מה כן תשמעי בליווי שלי</h3>
-                         <ul class="space-y-2 text-body text-right">
-                            <li class="flex items-center"><span class="text-green-500 text-2xl ml-3">✓</span>הפחד לא נעלם אבל אני מצליחה להתמודד ולהאמין בי</li>
-                            <li class="flex items-center"><span class="text-green-500 text-2xl ml-3">✓</span>כשפחד ולחץ מגיעים אני יודעת לתת להם מקום והם לא משתלטים</li>
-                            <li class="flex items-center"><span class="text-green-500 text-2xl ml-3">✓</span>יש קצב מאוזן בין להלחם ללהתרסק- ואנחנו יוצרות את האיזון.</li>
-                            <li class="flex items-center"><span class="text-green-500 text-2xl ml-3">✓</span>האנרגיה שלך הרבה יותר חשובה מהשעות שבהן תעבדי. כשהדרך מתאימה לך גם דברים מורכבים יהיו קלים.</li>
-                            <li class="flex items-center"><span class="text-green-500 text-2xl ml-3">✓</span>זה לא או התוצאה או את. את תגשימי את עצמך בדרך שמכבדת את הצרכים שלך.</li>
-                            <li class="flex items-center"><span class="text-green-500 text-2xl ml-3">✓</span>את יודעת הכי טוב מה נכון בשבילך.</li>
-                        </ul>
-                    </div>
+    </div> <!-- סגירת container --><!-- Section 6: Cliches --><section class="card bg-secondary text-center"> <!-- רקע קרם --><div class="max-w-5xl mx-auto w-full relative z-10 px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="bg-main p-8 rounded-2xl shadow-md">
+                    <h3 class="text-2xl font-bold text-heading mb-4">קלישאות שלא תשמעי בליווי שלי</h3>
+                    <ul class="space-y-2 text-body text-right leading-relaxed">
+                        <li class="flex items-center"><span class="text-red-500 text-2xl ml-3">✗</span>יש ספר הוראות שאת צריכה להתנהל דרכו</li>
+                        <li class="flex items-center"><span class="text-red-500 text-2xl ml-3">✗</span>פשוט תפסיקי לפחד</li>
+                        <li class="flex items-center"><span class="text-red-500 text-2xl ml-3">✗</span>"תאהבי את עצמך, תרגעי, תאמיני – ואז תצליחי.”</li>
+                        <li class="flex items-center"><span class="text-red-500 text-2xl ml-3">✗</span>אם את לא מצליחה את צריכה לעבוד קשה יותר</li>
+                        <li class="flex items-center"><span class="text-red-500 text-2xl ml-3">✗</span>את צריכה להתרחק מאנשים שלא חושבים כמוך או רוצים את מה שאת רוצה.</li>
+                    </ul>
                 </div>
-             </div>
-        </section>
+                <div class="bg-main p-8 rounded-2xl shadow-md">
+                    <h3 class="text-2xl font-bold text-heading mb-4">מה כן תשמעי בליווי שלי</h3>
+                     <ul class="space-y-2 text-body text-right leading-relaxed">
+                        <li class="flex items-center"><span class="text-green-500 text-2xl ml-3">✓</span>הפחד לא נעלם אבל אני מצליחה להתמודד ולהאמין בי</li>
+                        <li class="flex items-center"><span class="text-green-500 text-2xl ml-3">✓</span>כשפחד ולחץ מגיעים אני יודעת לתת להם מקום והם לא משתלטים</li>
+                        <li class="flex items-center"><span class="text-green-500 text-2xl ml-3">✓</span>יש קצב מאוזן בין להלחם ללהתרסק- ואנחנו יוצרות את האיזון.</li>
+                        <li class="flex items-center"><span class="text-green-500 text-2xl ml-3">✓</span>האנרגיה שלך הרבה יותר חשובה מהשעות שבהן תעבדי. כשהדרך מתאימה לך גם דברים מורכבים יהיו קלים.</li>
+                        <li class="flex items-center"><span class="text-green-500 text-2xl ml-3">✓</span>זה לא או התוצאה או את. את תגשימי את עצמך בדרך שמכבדת את הצרכים שלך.</li>
+                        <li class="flex items-center"><span class="text-green-500 text-2xl ml-3">✓</span>את יודעת הכי טוב מה נכון בשבילך.</li>
+                    </ul>
+                </div>
+            </div>
+         </div>
+    </section>
 
-        <!-- Section 7: More Testimonials --><section class="card bg-secondary">
+    <div class="container mx-auto px-6"> <!-- פתיחת container --><!-- Section 7: More Testimonials --><section class="card bg-main">
             <div class="max-w-6xl mx-auto text-center w-full relative z-10">
                 <h2 class="text-3xl font-semibold text-heading mb-10">מתאמנים ומתאמנות ששמו אול אין על עצמם:</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="bg-main p-6 rounded-xl shadow-lg text-right"><blockquote class="text-md text-body italic">"עשית לי ממש סדר, יש משמעות מעבר לדברים."</blockquote></div>
-                    <div class="bg-main p-6 rounded-xl shadow-lg text-right"><blockquote class="text-md text-body italic">"הרבה יותר אנשים מתחילים איתי, לעומת פעם שבכלל לא היו מתחילים איתי."</blockquote></div>
-                    <div class="bg-main p-6 rounded-xl shadow-lg text-right"><blockquote class="text-md text-body italic">"אני אף פעם לא הרגשתי ככה בתוך תהליך יש לי ימים טובים יותר וטובים פחות אבל אני מרגישה שאני במקום הנכון. אני מווסתת יותר, אני הולכת עם מה שהולך לי בפנים. זה שלמדתי לשים תשומת לב לנשימה שלי זה שינה לי הכל. אני אחרת."</blockquote></div>
-                    <div class="bg-main p-6 rounded-xl shadow-lg text-right"><blockquote class="text-md text-body italic">"אני יודעת לעצור לופ של מחשבה רעה. זן פנימי שאני יכולה להתחבר אליו ואני לא אאבד שליטה. לא יכול להיות לי התקף חרדה כמו פעם. לא האמנתי שאני אגיע לזה. מפחד לעבוד ולהדריך- התחלתי לעבוד וקליל וכייפי לי. התקדמתי ביחסי אנוש. נכנסתי לעבוד אצל מישהי טובת לב, שלא מחפשת אותי או מנסה להזיק לי. היא נותנת לי הרבה עבודה. אני העדיפה אותי על עובדת ותיקה שלה. אני לא מתרגשת אפילו קצת משעמם לי."</blockquote></div>
-                    <div class="bg-main p-6 rounded-xl shadow-lg text-right"><blockquote class="text-md text-body italic">"בוקר טוב עדי, רציתי לשתף שהיה לי אימון מעולה אתמול. הרגשתי שאני נפתחת יותר מתחברת פנימה ומרגישה עמוק וחזק יותר ונותנת לעצמי להרגיש ולומדת לא להדחיק . זה עדיין קורה מן הסתם אבל זה קרה פחות והרגשתי פתוחה ובזרימה באימון והבנתי דברים מאוד מעניינים וטובים עלי שיכולים לעזור לי שאני אדע על עצמי והבנתי שאני יכולה להרגיש יותר ולשתף יותר איתך ועם קרובים אחרים. תודה ממש אין עלייך והנוכחות שלך והאנרגיה שלך טובה ואני שמחה שבחרתי לעשות איתך את הטיפול וגם על אימונים זה לא גרף ישר ולא כל אימון יהיה וואו ומטורף אבל אחריו יבוא אימון שיהיה פריצת דרך בשבילנו זה גם תובנה כזה שנפלה לי לא לצפות מצד שני שכל אימון יהיה וואו אחד גדול. כי אימון זה משהו שהוא כיף לי וגם קשה אבל כאילו לא לצפות שזה ישנה לי את החיים כי זה לא תמיד ההרגשה פעם זה הצפה פעם זה שמחה וזה כל פעם יכול להביא איתו דברים שונים."</blockquote></div>
-                    <div class="bg-main p-6 rounded-xl shadow-lg text-right"><blockquote class="text-md text-body italic">"אני רוצה לשתף אותך שהתקדמתי ואני בקשר עם בחור ויצאנו אתמול. מרגישה תחושות מאוד טובות. התהליך שאת עושה איתי עוזר לי לפרק דברים בצורה הכי טובה ונכונה לי. מודה לך ולהשם על הדרך."</blockquote></div>
-                     <div class="bg-main p-6 rounded-xl shadow-lg text-right md:col-span-2 lg:col-span-3"><blockquote class="text-md text-body italic">"כל פעם אחרי שאני באה ממך יש לי תחושה של נקיות כזאתי. הנקיות הזו נותנת לי ממש אנרגיה. כאילו הוצאתי רעל מהגוף, ועכשיו יש לי עוד כמה מקורות פנויים לעשות דברים שהראש פחות אליהם יותר. מודה שלקח לי זמן שממש הרגשתי את האנרגיות האלה. בהתחלה באתי אלייך אני חושבת עם חושך. אבל ממש, שלא היה לי מימי. היום אני פשוט רואה שגם המקומות הנמוכים שאני מגיעה אליהם- אני מגיעה אליהם בהרבה יותר אסופה. ואני ממש מרגישה שזה מהשיחות איתך, הם איכשהו גורמות לי להכיר את עצמי יותר לעומק, ולהוריד את המפלס של הכעס שצברתי עם השנים, כי לא ידעתי איך לענות לאנשים האלו שהתנהגו אליי ככה, לא ידעתי איך להתמודד, וזה נשאר לי בבטן. והדבר היחידי שיכלתי לעשות זה להוציא את זה על האנשים הקרובים אליי בטונים שמראים איפה אני עומדת. וכמובן שאני לא רוצה להשאר ככה. אני מצפה להמשך הדרך שיש לנו ביחד."</blockquote>
+                    <div class="bg-secondary p-6 rounded-xl shadow-lg text-right"><blockquote class="text-md text-body italic leading-relaxed">"עשית לי ממש סדר, יש משמעות מעבר לדברים."</blockquote></div>
+                    <div class="bg-secondary p-6 rounded-xl shadow-lg text-right"><blockquote class="text-md text-body italic leading-relaxed">"הרבה יותר אנשים מתחילים איתי, לעומת פעם שבכלל לא היו מתחילים איתי."</blockquote></div>
+                    <div class="bg-secondary p-6 rounded-xl shadow-lg text-right"><blockquote class="text-md text-body italic leading-relaxed">"אני אף פעם לא הרגשתי ככה בתוך תהליך יש לי ימים טובים יותר וטובים פחות אבל אני מרגישה שאני במקום הנכון. אני מווסתת יותר, אני הולכת עם מה שהולך לי בפנים. זה שלמדתי לשים תשומת לב לנשימה שלי זה שינה לי הכל. אני אחרת."</blockquote></div>
+                    <div class="bg-secondary p-6 rounded-xl shadow-lg text-right"><blockquote class="text-md text-body italic leading-relaxed">"מאז הפגישה שלנו אני ממש בטוב, גם מבחינת ההפרעת אכילה- לא היו לי בולמוסים והקאות כבר כמה ימים. הדברים שדיברנו עליהם ממש נכנסו אליי עמוק. מרגישה ממש שלמה ומסופקת ועם הרבה שליטה בעיקר."</div>
+                    <!-- [שינוי] קיצור העדות הארוכה --><div class="bg-secondary p-6 rounded-xl shadow-lg text-right"><blockquote class="text-md text-body italic leading-relaxed">"בוקר טוב עדי 🥰 רציתי לשתף שהיה לי אימון מעולה אתמול. הרגשתי שאני נפתחת יותר מתחברת פנימה ומרגישה עמוק וחזק יותר ונותנת לעצמי להרגיש ולומדת לא להדחיק . הבנתי שאני יכולה להרגיש יותר ולשתף יותר איתך ועם קרובים אחרים. תודה ממש אין עלייך. הנוכחות שלך והאנרגיה שלך טובה ואני שמחה שבחרתי לעשות איתך את הטיפול ❤️🥰 הבנתי גם על אימונים שזה משהו שהוא כיף לי וגם קשה. פעם זה הצפה פעם זה שמחה וזה כל פעם יכול להביא איתו דברים שונים. "</div>
+                    <div class="bg-secondary p-6 rounded-xl shadow-lg text-right"><blockquote class="text-md text-body italic leading-relaxed">"אני רוצה לשתף אותך שהתקדמתי ואני בקשר עם בחור ויצאנו אתמול. מרגישה תחושות מאוד טובה. התהליך שאת עושה איתי עוזר לי לפרק דברים בצורה הכי טובה ונכונה לי. מודה לך ולהשם על הדרך."</div>
+                     <div class="bg-secondary p-6 rounded-xl shadow-lg text-right md:col-span-2 lg:col-span-3"><blockquote class="text-md text-body italic leading-relaxed">"כל פעם אחרי שאני באה ממך יש לי תחושה של נקיות כזאתי. הנקיות הזו נותנת לי ממש אנרגיה. כאילו הוצאתי רעל מהגוף, ועכשיו יש לי עוד כמה מקורות פנויים לעשות דברים שהראש פחות אליהם יותר. מודה שלקח לי זמן שממש הרגשתי את האנרגיות האלה. בהתחלה באתי אלייך אני חושבת עם חושך. אבל ממש, שלא היה לי מימי. היום אני פשוט רואה שגם המקומות הנמוכים שאני מגיעה אליהם- אני מגיעה אליהם בהרבה יותר אסופה. ואני ממש מרגישה שזה מהשיחות איתך, הם איכשהו גורמות לי להכיר את עצמי יותר לעומק, ולהוריד את המפלס של הכעס שצברתי עם השנים, כי לא ידעתי איך לענות לאנשים האלו שהתנהגו אליי ככה, לא ידעתי איך להתמודד, וזה נשאר לי בבטן. והדבר היחידי שיכלתי לעשות זה להוציא את זה על האנשים הקרובים אליי בטונים שמראים איפה אני עומדת. וכמכן שאני לא רוצה להשאר ככה. אני מצפה להמשך הדרך שיש לנו ביחד."</blockquote>
                 </div>
             </div>
         </section>
 
-        <!-- Section 8: Guarantee --><section class="card bg-main text-center">
-            <div class="max-w-3xl mx-auto">
-                <div class="flex justify-center items-center gap-4 mb-6">
-                    <h2 class="text-4xl font-bold text-heading">אני נותנת לך אחריות מלאה.</h2>
-                    <div class="flex items-center justify-center w-16 h-16 rounded-full border-4 border-accent-pink text-accent-pink shrink-0">
-                        <div class="text-center leading-tight">
-                            <span class="block text-xl font-bold">100%</span>
-                            <span class="block text-xs font-semibold">אחריות</span>
-                        </div>
+    </div> <!-- סגירת container -->
+
+   <div class="container mx-auto px-6">
+        <!-- Section 8: Guarantee (Moved to the bottom) --><section class="card bg-secondary text-center"> <!-- רקע קרם --><div class="max-w-3xl mx-auto px-6">
+            <div class="flex justify-center items-center gap-4 mb-6">
+                <h2 class="text-4xl font-bold text-heading">אני נותנת לך אחריות מלאה.</h2>
+                <div class="flex items-center justify-center w-16 h-16 rounded-full border-4 border-accent text-accent shrink-0">
+                    <div class="text-center leading-tight">
+                        <span class="block text-xl font-bold">100%</span>
+                        <span class="block text-xs font-semibold">אחריות</span>
                     </div>
                 </div>
-                <p class="mt-6 text-lg text-body leading-relaxed">
-                    אם מכל סיבה שהיא תרגישי שהליווי שלי הוא לא בשבילך, תוכלי לעצור אחרי 4 מפגשים ולקבל החזר כספי עבור כל יתרת המפגשים.
-                </p>
-                <p class="mt-4 text-lg text-body leading-relaxed">
-                    אני כאן כי אני יודעת שיש לי מה לתת. ואני דוגלת לייצר תהליכים משמעותיים שבהם החיים של מתאמנים שלי משתנים, והם מרגישים שעשו את הבחירה הכי מדהימה שהם יכלו לעשות עבור עצמם.
-                </p>
             </div>
-        </section>
+            <p class="mt-6 text-lg text-body leading-relaxed">
+                אם מכל סיבה שהיא תרגישי שהליווי שלי הוא לא בשבילך, תוכלי לעצור אחרי 4 מפגשים ולקבל החזר כספי עבור כל יתרת המפגשים.
+            </p>
+            <p class="mt-4 text-lg text-body leading-relaxed">
+                אני כאן כי אני יודעת שיש לי מה לתת. ואני דוגלת לייצר תהליכים משמעותיים שבהם החיים של מתאמנים שלי משתנים, והם מרגישים שעשו את הבחירה הכי מדהימה שהם יכלו לעשות עבור עצמם.
+            </p>
+        </div>
+        <!-- תמונה חדשה 16.jpg --><div class="mt-12 text-center">
+            <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/16.jpg" alt="אחריות מלאה" class="w-[26.875rem] h-[31.25rem] mx-auto object-cover rounded-lg shadow-xl">
+        </div>
+    </section>
 
-    </div>
-    
-   <div class="container mx-auto px-6">
         <!-- Footer: Personal Story --><footer class="card bg-main">
-            <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 items-center relative z-10">
-                <div class="md:col-span-1 flex justify-center">
-                    <img src="https://placehold.co/200x200/1A1E25/FFF4E5?text=אני" alt="עדי" class="w-48 h-48 rounded-full object-cover">
-                </div>
-                <div class="md:col-span-2 text-right">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center md:text-right">
                     <h2 class="text-3xl font-semibold text-heading">הסיפור האישי שלי</h2>
                     <h3 class="text-xl text-body mt-2">עם פחדים ומאבקים פנימיים</h3>
+                </div>
+
+                <!-- פריסת טקסט ראשון (לבד) -->
+                <div class="mt-10 max-w-4xl mx-auto text-right">
                     <p class="mt-4 text-md text-body leading-relaxed">
                         הבית שלי היה בית עם הרבה אהבה, וגם הרבה מתח. 
                         <br>
                         הורים שעובדים מאוד קשה, ריבים על מי ישלם כל הוצאה. כסף לא היה דבר שמגיע בקלות בילדות שלי. וכך גם ההרגשה שלא יהיה לי על מי להשען. ושאני שווה פחות מאחרים.
-                        <br><br>
+                    </p>
+                </div>
+
+                <!-- [שינוי 4] מיקום תמונה 7.jpeg (אחרי הפסקה השנייה) -->
+                <div class="mt-10 max-w-4xl mx-auto text-right">
+                    <p class="mt-4 text-md text-body leading-relaxed">
                         הייתי ילדה מאוד חסרת ביטחון והרבה פעמים מאוד עצובה. היו לי המון פחדים- שהחיים גדולים עלי וקשים מידיי. שאני לא אוכל להתמודד. כששיתפתי, אמרו לי- "תפסיקי לחשוב" "את חושבת יותר מידיי" "את מתוסבכת". אבל לא ידעתי איך אפשר לחשוב פחות. או אחרת. למעשה, ככל ששמעתי את זה יותר, ככה הרגשתי שמשהו בי דפוק.
-                        <br><br>
+                    </p>
+                </div>
+                
+                <!-- [שינוי 4] תמונה 7.jpeg ממוקמת כאן (מתחת לפסקה השנייה) -->
+                <div class="mt-8 flex justify-center">
+                    <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/7.jpeg" alt="תמונת ילדות" class="w-full max-w-lg h-auto object-cover rounded-lg shadow-md">
+                </div>
+                
+                <!-- [שינוי 5] מיקום תמונה 111.JPG (מעל הפסקה הבאה) -->
+                <div class="mt-10 max-w-4xl mx-auto text-right">
+                    <p class="mt-4 text-md text-body leading-relaxed">
                         בגיל 17- פיתחתי הפרעות אכילה. רציתי לשנות, אז החלטתי להלחם. 
                         <br>
                         ירדתי במשקל 10 קילו, תוך 7 חודשים. הרעבתי את עצמי. הייתי במלחמה 24/7- להוכיח שאני מספיק.
                         <br><br>
                         עם השנים, ההרעבה הפכה לבולמוסי אכילה לא נשלטים. פיזית- אכלתי עד כאב, בעוד שנפשית- לא הצלחתי להפסיק. 
-                        <br>
-                        חוסר הביטחון, המחשבות הקשות, והפחד מהחיים יתגברו. עליתי 15 קילו. אבל דבר אחד לא ישתנה- אני תמיד במלחמה. להיות אחרת, להרגיש טוב יותר. אבל אני רק הולכת אחורה. 
-                        <br>
-                        כל המאמצים שלי להיות יותר- מורידים אותי למטה. 
-                        <br>
-                        אתם יכולים לתאר לעצמכם את כמות התסכולים, הידיעה שאני לא מספיק. המלחמה האין סופית, המתישה, בדחפים והיצרים שלי. ואז- התבוסה. בכל יום מחדש.
-                        <br><br>
-                        עד שנרשמתי לקורס אימון מנטלי. גיליתי שפה שונה לחלוטין מזו שדיברתי בה עם עצמי. כזו שנותנת כוח, מחזקת, במקום להוריד אותך למטה. לרגע אחד, הצלחתי לראות ולהתייחס לעצמי כמו שלא התייחסתי מעולם. וזה קרה בשיחת אימון של 10 דקות בלבד. 
-                        <br>
-                        מקום להלחם- התמסרתי. במקום לשנוא- רק אהבתי. את עצמי. פעם ראשונה- שהפסקתי להילחם. וזה הרגע- שחוויתי אושר אמיתי, וכוח, בפעם הראשונה. שקט שלא הכרתי כמותו.
-                        <br><br>
-                        וזה היה לי ברור, בדיוק באותו הרגע, שאני חייבת שלעוד אנשים שמרגישים כמוני- יהיה את הגישה לידע הזה. תיהיה הזדמנות לקבל את אותו הדבר.
-                        <br><br>
-                        אני יודעת מה זה להרגיש בודדה. להשבר כל פעם יותר בלי יכולת לקום.
-                        <br>
-                        אני יודעת מה זה לפחד לאבד את מי שאת.
-                        <br>
-                        אני יודעת מה זה לחלום, ולראות את המציאות הזו מתרחקת לך מהעיניים.
-                        <br>
-                        אני זוכרת את הרגעים שרק רציתי שקט בראש
-                        <br><br>
-                        אבל אני יודעת גם מה זה להתאהב בחיים בחזרה.
-                        <br>
-                        להצליח לאכול או לרדת במשקל בלי להתאמץ ובלי להלחם
-                        <br>
-                        להיות בזוגיות יציבה, ולהתחתן.
-                        <br>
-                        אני יודעת מה זה להגשים חלומות שלא חשבתי בשנים מסוימות שעוד אזכה להגשים.
-                        <br>
-                        אני יודעת מה זה לעשות את השטויות שראיתי אותי אז עושה רק בסרטונים
-                        <br><br>
-                        הריפוי שלי הגיע מלתת אהבה- לילדה הקטנה שהייתי, שהרגישה לא מספיק.
-                        <br>
-                        הוא הגיע עם ההתמסרות לרגשות שלי, במקום להלחם בהם.
-                        <br>
-                        אני לא חושבת היום פחות, אני חושבת אחרת.
-                        <br>
-                        לא סגרתי את הלב שלי והפכתי לפחות רגישה, למדתי להעריך את הלב שלי, והגיע בעלי, שיודע לראות את הלב הענק שלי ולהחזיר לי אהבה פי שניים.
-                        <br>
-                        במקום לשנות אותי, התחלתי לאהוב אותי.
-                        <br><br>
-                        למדתי שהרגע שבו מפסיקים להלחם, הוא הרגע שבו מתחילים להצליח
-                        <br>
-                        ושהכוח הכי גדול שלי - תמיד היה, תמיד יהיה- במי שהייתי, במי שאני, ובמה שנמצא בידיים שלי.
                     </p>
                 </div>
+
+                <!-- [שינוי 5] תמונה 111.JPG ממוקמת כאן (מעל הפסקה הרביעית) -->
+                <div class="mt-8 flex justify-center">
+                    <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/111.JPG" alt="תמונת המאבק" class="w-full max-w-lg h-auto object-cover rounded-lg shadow-md">
+                </div>
+
+                <!-- [שינוי 6] מיקום תמונה 131.JPG (לצד הפסקאות האחרונות) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mt-10 max-w-5xl mx-auto">
+                    <!-- עמודת טקסט (ימין) -->
+                    <div class="md:col-span-1 text-right md:order-last">
+                        <p class="mt-4 text-md text-body leading-relaxed">
+                            חוסר הביטחון, המחשבות הקשות, והפחד מהחיים יתגברו. עליתי 15 קילו. אבל דבר אחד לא ישתנה- אני תמיד במלחמה. להיות אחרת, להרגיש טוב יותר. אבל אני רק הולכת אחורה. 
+                            <br>
+                            כל המאמצים שלי להיות יותר- מורידים אותי למטה. 
+                            <br>
+                            אתם יכולים לתאר לעצמכם את כמות התסכולים, הידיעה שאני לא מספיק. המלחמה האין סופית, המתישה, בדחפים והיצרים שלי. ואז- התבוסה. בכל יום מחדש.
+                            <br><br>
+                            עד שנרשמתי לקורס אימון מנטלי. גיליתי שפה שונה לחלוטין מזו שדיברתי בה עם עצמי. כזו שנותנת כוח, מחזקת, במקום להוריד אותך למטה. לרגע אחד, הצלחתי לראות ולהתייחס לעצמי כמו שלא התייחסתי מעולם. וזה קרה בשיחת אימון של 10 דקות בלבד. 
+                            <br>
+                            מקום להלחם- התמסרתי. במקום לשנוא- רק אהבתי. את עצמי. פעם ראשונה- שהפסקתי להילחם. וזה הרגע- שחוויתי אושר אמיתי, וכוח, בפעם הראשונה. שקט שלא הכרתי כמותו.
+                            <br><br>
+                            וזה היה לי ברור, בדיוק באותו הרגע, שאני חייבת שלעוד אנשים שמרגישים כמוני- יהיה את הגישה לידע הזה. תיהיה הזדמנות לקבל את אותו הדבר.
+                            <br><br>
+                            אני יודעת מה זה להרגיש בודדה. להשבר כל פעם יותר בלי יכולת לקום.
+                            <br>
+                            אני יודעת מה זה לפחד לאבד את מי שאת.
+                            <br>
+                            אני יודעת מה זה לחלום, ולראות את המציאות הזו מתרחקת לך מהעיניים.
+                            <br>
+                            אני זוכרת את הרגעים שרק רציתי שקט בראש
+                            <br><br>
+                            אבל אני יודעת גם מה זה להתאהב בחיים בחזרה.
+                            <br>
+                            להצליח לאכול או לרדת במשקל בלי להתאמץ ובלי להלחם
+                            <br>
+                            להיות בזוגיות יציבה, ולהתחתן.
+                            <br>
+                            אני יודעת מה זה להגשים חלומות שלא חשבתי בשנים מסוימות שעוד אזכה להגשים.
+                            <br>
+                            אני יודעת מה זה לעשות את השטויות שראיתי אותי אז עושה רק בסרטונים
+                            <br><br>
+                            הריפוי שלי הגיע מלתת אהבה- לילדה הקטנה שהייתי, שהרגישה לא מספיק.
+                            <br>
+                            הוא הגיע עם ההתמסרות לרגשות שלי, במקום להלחם בהם.
+                            <br>
+                            אני לא חושבת היום פחות, אני חושבת אחרת.
+                            <br>
+                            לא סגרתי את הלב שלי והפכתי לפחות רגישה, למדתי להעריך את הלב שלי, והגיע בעלי, שיודע לראות את הלב הענק שלי ולהחזיר לי אהבה פי שניים.
+                            <br>
+                            במקום לשנות אותי, התחלתי לאהוב אותי.
+                            <br><br>
+                            למדתי שהרגע שבו מפסיקים להלחם, הוא הרגע שבו מתחילים להצליח
+                            <br>
+                            ושהכוח הכי גדול שלי - תמיד היה, תמיד יהיה- במי שהייתי, במי שאני, ובמה שנמצא בידיים שלי.
+                        </p>
+                    </div>
+                    <!-- עמודת תמונה (שמאל) --><div class="md:col-span-1 flex justify-start md:order-first">
+                        <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/131.JPG" alt="תמונת התבוסה" class="w-full h-auto object-cover rounded-lg shadow-md">
+                    </div>
+                </div>
+
+                <!-- תמונת פרופיל עגולה בסוף הסיפור --><div class="mt-10 flex justify-center">
+                    <img src="https://placehold.co/200x200/F7F3EF/212121?text=אני" alt="עדי" class="w-48 h-48 rounded-full object-cover shadow-lg">
+                </div>
+
             </div>
         </footer>
     </div>
 
+    <!-- Modal HTML and JS -->
+    <div id="coupon-modal" class="modal-backdrop">
+        <div class="modal-content">
+            <h3 class="text-2xl font-bold text-heading">רגע לפני שאת עוזבת!</h3>
+            <p class="mt-4 text-lg text-body">
+                יש לך הזדמנות אחרונה לקבל קוד הנחה מיוחד לתהליך האימון.
+            </p>
+            <p class="text-sm text-gray-500 mt-2">
+                *ההנחה זמינה רק עכשיו.
+            </p>
+            <div id="coupon-code-display" class="mt-6 p-3 bg-secondary rounded-lg border-2 border-dashed border-accent font-extrabold text-2xl text-accent cursor-pointer select-none">
+                לחצי לחשיפת הקוד!
+            </div>
+            <a id="coupon-cta-button" href="https://wa.link/8ram0d" target="_blank" class="mt-6 btn-whatsapp text-xl py-3 px-6 rounded-full font-bold shadow-lg w-full justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.0-6.556 5.338-11.891 11.893-11.891 3.181.0 6.167 1.24 8.413 3.488 2.245 2.248 3.487 5.235 3.487 8.413.0 6.557-5.338 11.892-11.893 11.892-1.99-.0-3.903-.52-5.607-1.474l-6.163 1.687zM5.47 21.16l1.21.725c1.518.911 3.231 1.411 5.048 1.411 5.219 0 9.466-4.244 9.466-9.463.0-2.528-1.004-4.903-2.782-6.68-1.777-1.778-4.152-2.782-6.68-2.782-5.218 0-9.465 4.244-9.465 9.463.0 1.83.504 3.548 1.408 5.063l.729 1.21-1.879 5.462 5.461-1.877z"/></svg>
+                <span>שליחה בוואטסאפ וקבלת ההנחה!</span>
+            </a>
+            <button onclick="document.getElementById('coupon-modal').style.display='none'" class="mt-3 text-sm text-body/70 hover:text-accent">סגור</button>
+        </div>
+    </div>
+
+    <script>
+        function showCouponModal() {
+            const modal = document.getElementById('coupon-modal');
+            if (modal.classList.contains('modal-hidden')) return; // אם כבר נסגר ידנית
+            modal.style.display = 'flex';
+        }
+
+        document.getElementById('coupon-code-display').onclick = function() {
+            const display = document.getElementById('coupon-code-display');
+            display.innerText = 'קוד הקופון: ALLIN';
+            display.style.backgroundColor = '#25D366';
+            display.style.color = '#FFFFFF';
+            display.style.borderColor = '#1DAE54';
+        };
+
+        // הפעלת הפופאפ מיד עם טעינת הדף (כפי שביקשת)
+        window.onload = function() {
+            showCouponModal();
+        };
+
+        // מניעת הופעה חוזרת אם נסגר ידנית
+        document.getElementById('coupon-modal').onclick = function(e) {
+            if (e.target === this) {
+                this.classList.add('modal-hidden');
+                this.style.display = 'none';
+            }
+        };
+
+        document.getElementById('coupon-cta-button').onclick = function() {
+            document.getElementById('coupon-modal').classList.add('modal-hidden');
+            document.getElementById('coupon-modal').style.display = 'none';
+        };
+    </script>
 </body>
 </html>
-
-
