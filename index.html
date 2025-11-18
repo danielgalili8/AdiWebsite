@@ -128,74 +128,6 @@
     .top-bg-block{
       position:absolute; top:0; left:0; right:0; 
       height:50vh; background-color:#F7F3EF; z-index:-10;
-    }
-
-    /* Image size fixes - ensuring consistent sizing across hosting environments */
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-    
-    /* Story images specific sizing */
-    .story-image {
-      width: 17.46875rem !important;
-      height: 20.3125rem !important;
-      object-fit: cover !important;
-      border-radius: 0.5rem !important;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
-    }
-    
-    /* FAQ section image */
-    img[alt="שאלות נוספות"] {
-      width: 18rem !important;
-      height: 18rem !important;
-      object-fit: cover !important;
-      border-radius: 9999px !important;
-    }
-    
-    /* Main images specific sizing */
-    img[alt="תמונה מעוררת השראה"] {
-      width: 30rem !important;
-      height: 25rem !important;
-      object-fit: cover !important;
-    }
-    
-    img[alt="שמה אול אין על עצמי"] {
-      width: 26.875rem !important;
-      height: 28rem !important;
-      object-fit: cover !important;
-    }
-    
-    img[alt="איך אני אדע שהתהליך מתאים לי"] {
-      width: 26.875rem !important;
-      height: 29rem !important;
-      object-fit: cover !important;
-    }
-    
-    img[alt="אחריות מלאה"] {
-      width: 26.875rem !important;
-      height: 31.25rem !important;
-      object-fit: cover !important;
-    }
-    
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .story-image,
-      img[alt="תמונה מעוררת השראה"],
-      img[alt="שמה אול אין על עצמי"],
-      img[alt="איך אני אדע שהתהליך מתאים לי"],
-      img[alt="אחריות מלאה"] {
-        width: 100% !important;
-        max-width: 20rem !important;
-        height: auto !important;
-        aspect-ratio: 4/5 !important;
-      }
-      
-      img[alt="שאלות נוספות"] {
-        width: 16rem !important;
-        height: 16rem !important;
-      }
     }    /* פופאפ - בהערות
     .modal-backdrop{
       z-index:9998; position:fixed; top:0; left:0; width:100%; height:100%;
@@ -534,7 +466,7 @@
             </p>
           </div>
           <div class="md:col-span-1 flex justify-start md:order-first reveal-element" data-delay="300">
-            <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/7.jpeg" alt="תמונת ילדות" class="story-image mx-auto"/>
+            <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/7.jpeg" alt="תמונת ילדות" class="w-[17.46875rem] h-[20.3125rem] mx-auto object-cover rounded-lg shadow-md"/>
           </div>
         </div>
 
@@ -550,7 +482,7 @@
             </p>
           </div>
           <div class="md:col-span-1 flex justify-start md:order-first reveal-element" data-delay="500">
-            <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/111.JPG" alt="תמונת המאבק" class="story-image mx-auto"/>
+            <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/111.JPG" alt="תמונת המאבק" class="w-[17.46875rem] h-[20.3125rem] mx-auto object-cover rounded-lg shadow-md"/>
           </div>
         </div>
 
@@ -570,7 +502,7 @@
             </div>
           </div>
           <div class="md:col-span-1 flex justify-start md:order-first reveal-element" data-delay="1400">
-            <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/131.JPG" alt="תמונת התבוסה" class="story-image mx-auto"/>
+            <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/131.JPG" alt="תמונת התבוסה" class="w-[17.46875rem] h-[20.3125rem] mx-auto object-cover rounded-lg shadow-md"/>
           </div>
         </div>
 
