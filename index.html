@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>לשים אול אין על עצמי | אימון מנטלי</title>
 
-  <!-- GTM -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -47,7 +46,7 @@
     .btn-whatsapp{
       background-color:transparent;
       color:#25D366;
-      border:2px solid currentColor; /* מסגרת בצבע הטקסט (ירוק) */
+      border:2px solid currentColor;
       transition:all .3s ease;
       display:inline-flex;
       align-items:center;
@@ -56,7 +55,7 @@
     .btn-whatsapp:hover{
       background-color:#25D366;
       color:#FFFFFF;
-      border-color:#25D366; /* נשאר ירוק גם בהובר */
+      border-color:#25D366;
     }
 
     /* כפתור וואטסאפ קבוע */
@@ -130,14 +129,12 @@
       height:50vh; background-color:#F7F3EF; z-index:-10;
     }
 
-    /* Image size fixes - ensuring consistent sizing across hosting environments */
     img {
       max-width: 100%;
       height: auto;
       display: block;
     }
     
-    /* Story images specific sizing */
     .story-image {
       width: 17.46875rem !important;
       height: 20.3125rem !important;
@@ -146,7 +143,6 @@
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
     }
     
-    /* FAQ section image */
     img[alt="שאלות נוספות"] {
       width: 18rem !important;
       height: 18rem !important;
@@ -154,7 +150,6 @@
       border-radius: 9999px !important;
     }
     
-    /* Main images specific sizing */
     img[alt="תמונה מעוררת השראה"] {
       width: 30rem !important;
       height: 25rem !important;
@@ -179,7 +174,6 @@
       object-fit: cover !important;
     }
     
-    /* Responsive adjustments */
     @media (max-width: 768px) {
       .story-image,
       img[alt="תמונה מעוררת השראה"],
@@ -196,18 +190,70 @@
         width: 16rem !important;
         height: 16rem !important;
       }
-    }    /* פופאפ - בהערות
-    .modal-backdrop{
-      z-index:9998; position:fixed; top:0; left:0; width:100%; height:100%;
-      background-color:rgba(0,0,0,.6); display:flex; justify-content:center; align-items:center;
     }
-    .modal-content{
-      z-index:9999; background-color:#FFFFFF; max-width:400px; text-align:center;
-      padding:2rem; border-radius:1rem; box-shadow:0 10px 25px rgba(0,0,0,.5); position:relative;
+
+    /* סטיילים לקרוסלת הפידבקים */
+    .testimonials-container {
+      will-change: transform;
+      display: flex;
     }
-    .modal-hidden{display:none;}
-    .close-btn{position:absolute; top:.5rem; right:.5rem; font-size:1.5rem; cursor:pointer; color:#212121; line-height:1; padding:.5rem;}
-    */
+    
+    .testimonial-slide {
+      transition: opacity 0.3s ease-in-out;
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+    
+    #prev-testimonial, #next-testimonial {
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    
+    #prev-testimonial:hover, #next-testimonial:hover {
+      background-color: rgba(255, 255, 255, 0.95);
+      transform: translateY(-50%) scale(1.1);
+    }
+    
+    .indicator-dot {
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    
+    .indicator-dot:hover {
+      transform: scale(1.2);
+    }
+    
+    @media (max-width: 768px) {
+      #prev-testimonial, #next-testimonial {
+        display: none;
+      }
+      
+      .indicator-dot {
+        width: 12px;
+        height: 12px;
+      }
+      
+      .testimonial-slide .bg-white {
+        padding: 1.5rem;
+        min-height: 350px;
+      }
+      
+      .testimonial-slide p {
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+    }
+    
+    .testimonials-container {
+      cursor: grab;
+    }
+    
+    .testimonials-container:active {
+      cursor: grabbing;
+    }
   </style>
 </head>
 <body class="bg-main">
@@ -217,7 +263,6 @@
   <div class="container mx-auto px-4 md:px-6 relative">
     <header class="text-center flex flex-col items-center py-12" style="padding-top:15vh; min-height:80vh;">
       <div style="margin-top:25vh;">
-        <!-- תמונה ראשונה על שני רקעים -->
         <div class="relative w-80 h-56 mx-auto mb-10" style="margin-top:-7vh;">
           <img
             src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/3.jpg"
@@ -228,12 +273,10 @@
           <div class="absolute top-0 left-0 w-80 h-28 bg-[#7b6d4e] rounded-t-lg" style="z-index:1;"></div>
         </div>
 
-        <!-- כותרת ראשית על רקע לבן בלבד -->
         <h1 class="text-lg md:text-xl font-bold text-heading leading-relaxed max-w-5xl mx-auto mt-10 reveal-element" data-delay="100">
           <strong>במיוחד לנשים רגישות וחכמות, שנמאס להן <br/> להרגיש במאבק מתמיד עם עצמן.</strong>
         </h1>
 
-        <!-- פסקאות מבוא -->
         <p class="mt-6 text-lg md:text-xl text-body max-w-4xl mx-auto reveal-element" data-delay="200">
           אחרי מעל 400 שעות אימון ועשרות מתאמנים, זיקקתי את התהליך הכי משמעותי שהלקוחות שלי עברו בליווי שלי, ועכשיו אני רוצה להנגיש אותו אלייך —
         </p>
@@ -245,9 +288,7 @@
           (חוזק מתחיל דווקא כשאנחנו מתמסרים להיות מי שאנחנו, לא מתוך ניסיון להשתנות)
         </p>
 
-        <!-- מקום לסרטון יוטיוב -->
         <div class="mt-8 max-w-sm mx-auto reveal-element" data-delay="250">
-          <!-- סרטון יוטיוב מחובר -->
           <div class="relative w-full rounded-lg overflow-hidden shadow-lg" style="aspect-ratio: 9/16; max-height: 600px;">
             <iframe 
               class="absolute top-0 left-0 w-full h-full"
@@ -260,13 +301,12 @@
           </div>
         </div>
 
-        <!-- פסקה שהועברה מהמקום הקודם -->
         <div class="mt-8 max-w-3xl mx-auto">
           <h2 class="text-3xl font-semibold text-heading reveal-element" data-delay="260">את מרגישה שאת נלחמת אבל לא מצליחה להתקדם?</h2>
           <p class="mt-6 text-lg text-body leading-relaxed reveal-element" data-delay="280">
             יש לך המון פוטנציאל, את מציבה לעצמך יעדים, כי את יודעת שאת מסוגלת.<br>
 אף פעם לא התפשרת, ותמיד נתת את כל כולך כדי להגיע רחוק.<br>
-אבל משום מה, כמה שאת לא מתאמצת, זה לא עובד.<br>
+אבל משום מה – ככל שאת מתאמצת יותר, את מצליחה פחות.<br>
 ולמרות שאת מנסה שוב ושוב- את תמיד חוזרת לאותו המקום.<br>
 רק שעם כל ניסיון, את יותר מתוסכלת, יותר מבולבלת. ואת לא מבינה מה את מפספסת.
           </p>
@@ -276,56 +316,47 @@
         </div>
 
 
-        <div class="mt-16"> <!-- רווח גדול יותר לפני הכותרת והפסקה -->
+        <div class="mt-16">
           <h2 class="text-3xl font-semibold text-heading reveal-element" data-delay="300">
             אז אני רוצה להציע לך דבר אחד שעדיין לא ניסית קודם-<br>
             לשים אול אין על עצמך
           </h2>
           <p class="mt-6 text-lg text-body leading-relaxed reveal-element" data-delay="320">
-            למרות שאת תעשי הכל, ההצלחה שלך לא תגיע במלחמה,<br>
-ולא כשאת הולכת נגד מה שאת צריכה ומרגישה.<br>
-הקשיים שלך אף פעם לא לוקחים אותך אחורה. אבל הניסיון שלך להדוף אותם- דווקא כן.<br>
-אז מה אני מציעה? דיוק המאמץ שאת משקיעה.<br>
-במקום לנסות להשקיע בעוד עצה ששמעת אצל אחרים, ועוד דחיפה קדימה-<br>
-אנחנו נתחיל לעשות עבודה מבפנים.
+            למרות שאת תעשי הכל, ההצלחה שלך לא תגיע כשאת הולכת נגד מה שאת צריכה ומרגישה.<br>
+במקום להוסיף מאמץ, אנחנו נחליף את המלחמה, בהקשבה.<br>
+ואת תצאי לאותה הדרך- כשאת בטוחה ורגועה.<br>
+כשהצרכים שלך מתמלאים, והרגשות שלך נענים- את תהיי תרגישי מלאה.<br>
+הטבע לא מתאמץ כדי לצמוח, וגם את לא צריכה.
           </p>
         </div>
 
         <a href="https://wa.link/8ram0d" target="_blank" class="main-cta-btn reveal-element" data-delay="400" rel="noopener">
-          אני רוצה לשים אול אין על עצמי!
+          עדי, אני רוצה להפסיק להלחם ולהתחיל להקשיב
         </a>
-
-        <!-- ...existing code... -->
       </div>
     </header>
   </div>
-
-
 
   <div class="container mx-auto px-6">
     <section class="card bg-main text-center">
       <div class="max-w-4xl mx-auto bg-secondary p-8 rounded-xl shadow-lg reveal-element">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div class="text-right">
-            <h2 class="text-3xl font-bold text-heading reveal-element">שמה אול אין על עצמי</h2>
+            <h2 class="text-3xl font-bold text-heading reveal-element">לשים אול אין על עצמי</h2>
             <h3 class="mt-4 text-xl font-semibold text-accent leading-relaxed reveal-element" data-delay="100">
-              התהליך שיעזור לך להתקדם ולהצליח מתוך האופי והלב שלך. בדרך שבה את קשובה אליך ולא נלחמת בך. ווינרית במסלול הייחודי שלך.
+              התהליך שיעזור לך להתקדם ולהצליח כשהאופי והלב שלך מובילים.
             </h3>
             <p class="mt-4 text-lg text-body leading-relaxed reveal-element" data-delay="200">
-              כשאת מתחילה להשקיע את האנרגיה הזו בעצמך,
-              את הופכת את המאבק הפנימי, לכוח שמרים אותך קדימה.
+              כי הקלפים הכי חזקים הם אלו שכבר נמצאים אצלך ביד
             </p>
 
             <a href="https://wa.link/8ram0d" target="_blank" class="mt-8 btn-whatsapp text-lg py-4 px-10 rounded-full font-bold shadow-lg reveal-element" data-delay="300" rel="noopener">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M.057 24ל1.687-6.163C.703 16.033.156 13.988.157 11.891.157 5.335 5.495 0 12.05 0c3.181 0 6.167 1.24 8.413 3.488A11.82 11.82 0 0 1 23.95 11.9c0 6.557-5.338 11.892-11.893 11.892-1.99 0-3.903-.52-5.607-1.474L.057 24זm6.414-3.323c1.518.911 3.231 1.411 5.048 1.411 5.219 0 9.466-4.244 9.466-9.463 0-2.528-1.004-4.903-2.782-6.68-1.777-1.778-4.152-2.782-6.68-2.782-5.218 0-9.465 4.244-9.465 9.463 0 1.83.504 3.548 1.408 5.063ל.729 1.21-1.879 5.462 5.455-1.684זm11.387-5.47c-.074-.123-.272-.198-.57-.347-.297-.149-1.758-.867-2.03-.966-.272-.099-.47-.149-.669.149-.198.297-.768.966-.94 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.173.198-.297.297-.495.099-.198.05-.372-.025-.521-.074-.149-.669-1.611-.916-2.207-.242-.58-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.793.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.71.306 1.264.489 1.696.626.712.226 1.36.195 1.872.118.571-.085 1.758-.718 2.006-1.41.248-.694.248-1.289.173-1.41z"/>
+                <path d="M.057 24l1.687-6.163C.703 16.033.156 13.988.157 11.891.157 5.335 5.495 0 12.05 0c3.181 0 6.167 1.24 8.413 3.488A11.82 11.82 0 0 1 23.95 11.9c0 6.557-5.338 11.892-11.893 11.892-1.99 0-3.903-.52-5.607-1.474L.057 24zm6.414-3.323c1.518.911 3.231 1.411 5.048 1.411 5.219 0 9.466-4.244 9.466-9.463 0-2.528-1.004-4.903-2.782-6.68-1.777-1.778-4.152-2.782-6.68-2.782-5.218 0-9.465 4.244-9.465 9.463 0 1.83.504 3.548 1.408 5.063l.729 1.21-1.879 5.462 5.455-1.684zm11.387-5.47c-.074-.123-.272-.198-.57-.347-.297-.149-1.758-.867-2.03-.966-.272-.099-.47-.149-.669.149-.198.297-.768.966-.94 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.173.198-.297.297-.495.099-.198.05-.372-.025-.521-.074-.149-.669-1.611-.916-2.207-.242-.58-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.793.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.71.306 1.264.489 1.696.626.712.226 1.36.195 1.872.118.571-.085 1.758-.718 2.006-1.41.248-.694.248-1.289.173-1.41z"/>
               </svg>
-              <span>עדי, אני מתעניינת בתהליך האימון!</span>
+              <span>אני רוצה לשים אול אין על עצמי!</span>
             </a>
-
-            <!-- ...existing code... -->
           </div>
-
           <div>
             <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/15.jpg" alt="שמה אול אין על עצמי" class="w-[26.875rem] h-[28rem] mx-auto object-cover rounded-lg shadow-md reveal-element" data-delay="500" style="object-position:50% 40%;" />
           </div>
@@ -362,16 +393,14 @@
     <section class="card bg-main">
       <div class="max-w-6xl mx-auto text-center w-full relative z-10">
         <h2 class="text-3xl font-semibold text-heading mb-10 reveal-element">השינוי שיקרה לך</h2>
-
         <h3 class="text-2xl font-bold text-accent mb-6 text-center reveal-element" data-delay="100">עם עצמך </h3>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           <div class="bg-secondary p-6 rounded-xl shadow-md text-right reveal-element" data-delay="200"><strong class="font-semibold text-heading block mb-1">🌿 שחרור ממאמץ־יתר</strong><p class="text-body text-sm leading-relaxed">את תלמדי לנהל קצב אחר – שבו את מתקדמת בלי להתפרק בדרך.</p></div>
           <div class="bg-secondary p-6 rounded-xl shadow-md text-right reveal-element" data-delay="300"><strong class="font-semibold text-heading block mb-1">💪 הכוח חוזר לידיים שלך</strong><p class="text-body text-sm leading-relaxed">פחות ״הדברים קורים לי״ ויותר- ״אני מצליחה לבחור״.</p></div>
-          <div class="bg-secondary p-6 rounded-xl shadow-md text-right reveal-element" data-delay="400"><strong class="font-semibold text-heading block mb-1">🎯 ביצוע/התקדמות</strong><p class="text-body text-sm leading-relaxed">פתאום הדברים שהיו קשים לביצוע יהיו הרבה יותר קלים. תתחילי לעשות דברים שנמנעת מלהתחיל.</p></div>
+          <div class="bg-secondary p-6 rounded-xl shadow-md text-right reveal-element" data-delay="400"><strong class="font-semibold text-heading block mb-1">🎯 התקדמות מתוך רוגע</strong><p class="text-body text-sm leading-relaxed">פתאום תגלי שהדברים שפעם היו קשים ומתישים הופכים לקלים יותר לביצוע, כי את כבר לא נלחמת בעצמך בדרך אליהם.</p></div>
           <div class="bg-secondary p-6 rounded-xl shadow-md text-right reveal-element" data-delay="500"><strong class="font-semibold text-heading block mb-1">⚡ אנרגיה חדשה תתפנה</strong><p class="text-body text-sm leading-relaxed">רגשות שהתנגדת אליהם ולא ידעת איך להכיל- ישתחררו ויפנו מקום לאנרגיה חדשה.</p></div>
-          <div class="bg-secondary p-6 rounded-xl shadow-md text-right reveal-element" data-delay="600"><strong class="font-semibold text-heading block mb-1">💭 מדיבור פנימי אויב לאוהב</strong><p class="text-body text-sm leading-relaxed">קול פנימי מנצח- מחשבות שפעם הטרידו אותך והורידו אותך, יתחלפו במשפטים של עוצמה ואמונה בעצמך.</p></div>
-          <div class="bg-secondary p-6 rounded-xl shadow-md text-right reveal-element" data-delay="700"><strong class="font-semibold text-heading block mb-1">🧘‍♀️ יותר שקט פנימי, פחות סטרס וחרדה</strong><p class="text-body text-sm leading-relaxed">הפחדים ותחושה של לחץ יתחלפו בשמחה על מה שיש לך, ותקווה למה שעוד יגיע.</p></div>
-          <div class="bg-secondary p-6 rounded-xl shadow-md text-right md:col-start-2 reveal-element" data-delay="800"><strong class="font-semibold text-heading block mb-1">✨ ביטחון</strong><p class="text-body text-sm leading-relaxed">הרגשה שאת מסוגלת. את תפסיקי לנתח ולהציף את עצמך במחשבות ללא פתרון, ותתחילי לסמוך על עצמך ולהאמין שאת תדעי להתמודד עם הכל.</p></div>
+          <div class="bg-secondary p-6 rounded-xl shadow-md text-right reveal-element" data-delay="600"><strong class="font-semibold text-heading block mb-1">💭 שקט בראש</strong><p class="text-body text-sm leading-relaxed">המחשבות שפעם הורידו אותך והתישו אותך, יתחלפו בקול פנימי תומך של עוצמה ואמונה בעצמך</p></div>
+          <div class="bg-secondary p-6 rounded-xl shadow-md text-right reveal-element" data-delay="700"><strong class="font-semibold text-heading block mb-1">✨ ביטחון וערך עצמי</strong><p class="text-body text-sm leading-relaxed">תחושה עמוקה שאת ראויה ובטוחה בדיוק כפי שאת, בלי שהביטחון שלך יהיה תלוי בתוצאות חיצוניות או באישור של אחרים.</p></div>
         </div>
 
         <h3 class="text-2xl font-bold text-accent mb-6 text-center reveal-element" data-delay="900">עם אנשים סביבך </h3>
@@ -384,7 +413,6 @@
     </section>
   </div>
 
-  <!-- בתכלס -->
   <section class="card bg-secondary relative overflow-hidden">
     <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/22.PNG" alt="רקע תהליך" class="absolute inset-0 w-full h-full object-cover opacity-25"/>
     <div class="max-w-4xl mx-auto text-center w-full relative px-6 z-10">
@@ -407,23 +435,22 @@
           <p class="mt-2 text-body text-sm leading-relaxed">קשר שיחזיר שליטה ויעמיק את העבודה הריגשית שלך. כשאת יודעת לזהות אילו רגשות ומחשבות מפעילים את הגוף שלך, את בעלת הבית על התוצאות שיש לך בחיים.</p>
         </div>
       </div>
-      <!-- ...existing code... -->
     </div>
   </section>
 
-  <!-- CTA הוחזר למקום: כאן, מיד אחרי "בתכלס" -->
   <div class="container mx-auto px-6">
     <section id="cta" class="card text-center bg-main">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <div class="text-right">
-          <h2 class="text-4xl font-bold text-heading reveal-element">איך אני אדע שהתהליך מתאים לי?</h2>
+          <h2 class="text-4xl font-bold text-heading reveal-element">עדי, האם זה הזמן הנכון עבורי להתחיל תהליך?</h2>
           <p class="mt-4 text-xl text-body max-w-2xl mx-auto leading-relaxed reveal-element" data-delay="100">
-            במשך המון שנים אני בעצמי סחבתי קשיים ריגשיים עצומים והפרעות אכילה שהתישו אותי ולא ידעתי עד כמה עמוקה הבעיה שלי.
-            היום אני יודעת שלא צריך לחכות שנשבר כדי לבקש עזרה. יש מי שיושיט לנו את היד הרבה לפני. בכל זמן שעובר ההרגלים והמחשבות שלנו על עצמינו מתקבעים. וככל שאנחנו מצליחים לטפל מוקדם יותר ולצבור פחות תסכולים- הדרך למעלה מתקצרת.
+            אני יודעת שאת כנראה מחכה לרגע שבו תרגישי “מוכנה”, או לרגע שבו תצליחי סוף סוף להשתלט על הכל בעצמך.<br>
+אבל בכל יום שאת נלחמת בצרכים וברגשות שלך, זה לא רק הזמן שעובר, זו הנפש שלך שמשלמת את המחיר.<br>
+לי לקח המון שנים עד שפניתי לעזרה ששינתה את חיי, והקשיים שלי הלכו וגברו עד שלא הצלחתי להחזיק בעצמי. היום אני כאן כדי לומר לך שאת לא צריכה להגיע לנקודת השבירה שלך כדי לבקש עזרה, ומגיע לך להיות מאושרת כבר עכשיו.
           </p>
           <a href="https://wa.link/8ram0d" target="_blank" class="mt-8 btn-whatsapp text-xl py-4 px-10 rounded-full font-bold shadow-lg reveal-element" data-delay="200" rel="noopener">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M.057 24l1.687-6.163C.703 16.033.156 13.988.157 11.891.157 5.335 5.495 0 12.05 0c3.181 0 6.167 1.24 8.413 3.488A11.82 11.82 0 0 1 23.95 11.9c0 6.557-5.338 11.892-11.893 11.892-1.99 0-3.903-.52-5.607-1.474L.057 24zm6.414-3.323c1.518.911 3.231 1.411 5.048 1.411 5.219 0 9.466-4.244 9.466-9.463 0-2.528-1.004-4.903-2.782-6.68-1.777-1.778-4.152-2.782-6.68-2.782-5.218 0-9.465 4.244-9.465 9.463 0 1.83.504 3.548 1.408 5.063ל.729 1.21-1.879 5.462 5.455-1.684zm11.387-5.47c-.074-.123-.272-.198-.57-.347-.297-.149-1.758-.867-2.03-.966-.272-.099-.47-.149-.669.149-.198.297-.768.966-.94 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.173.198-.297.297-.495.099-.198.05-.372-.025-.521-.074-.149-.669-1.611-.916-2.207-.242-.58-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.793.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.71.306 1.264.489 1.696.626.712.226 1.36.195 1.872.118.571-.085 1.758-.718 2.006-1.41.248-.694.248-1.289.173-1.41z"/>
+              <path d="M.057 24l1.687-6.163C.703 16.033.156 13.988.157 11.891.157 5.335 5.495 0 12.05 0c3.181 0 6.167 1.24 8.413 3.488A11.82 11.82 0 0 1 23.95 11.9c0 6.557-5.338 11.892-11.893 11.892-1.99 0-3.903-.52-5.607-1.474L.057 24zm6.414-3.323c1.518.911 3.231 1.411 5.048 1.411 5.219 0 9.466-4.244 9.466-9.463 0-2.528-1.004-4.903-2.782-6.68-1.777-1.778-4.152-2.782-6.68-2.782-5.218 0-9.465 4.244-9.465 9.463 0 1.83.504 3.548 1.408 5.063l.729 1.21-1.879 5.462 5.455-1.684zm11.387-5.47c-.074-.123-.272-.198-.57-.347-.297-.149-1.758-.867-2.03-.966-.272-.099-.47-.149-.669.149-.198.297-.768.966-.94 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.173.198-.297.297-.495.099-.198.05-.372-.025-.521-.074-.149-.669-1.611-.916-2.207-.242-.58-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.793.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.71.306 1.264.489 1.696.626.712.226 1.36.195 1.872.118.571-.085 1.758-.718 2.006-1.41.248-.694.248-1.289.173-1.41z"/>
             </svg>
             <span>לשליחת הודעה</span>
           </a>
@@ -436,92 +463,101 @@
     </section>
   </div>
 
-  <!-- מאמנת שמו אול אין על עצמן -->
   <section class="card bg-secondary">
     <div class="max-w-6xl mx-auto text-center w-full relative z-10">
       <h2 class="text-3xl font-semibold text-heading mb-10 reveal-element">מתאמנים ומתאמנות ששמו אול אין על עצמם:</h2>
       
-      <!-- שורה ראשונה - פידבקים קצרים -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-right mb-8">
-        <!-- פידבק 1 - הכי חזק -->
-        <div class="bg-secondary p-6 rounded-xl shadow-lg border border-gray-100 text-right reveal-element" data-delay="200">
-          <p class="text-body text-sm leading-relaxed italic">
-            "כל פעם אחרי שאני באה ממך יש לי תחושה של נקיות כזאתי. הנקיות הזו נותנת לי ממש אנרגיה. כאילו הוצאתי רעל מהגוף, ועכשיו יש לי עוד כמה מקורות פנויים לעשות דברים שהראש פחות אליהם יותר. בהתחלה באתי אלייך אני חושבת עם חושך. אבל ממש, שלא היה לי מימי. היום אני פשוט רואה שגם המקומות הנמוכים שאני מגיעה אליהם- אני מגיעה אליהם בהרבה יותר אסופה. ואני ממש מרגישה שזה מהשיחות איתך, הם איכשהו גורמות לי להכיר את עצמי יותר לעומק, ולהוריד את המפלס של הכעס שצברתי עם השנים. אני מצפה להמשך הדרך שיש לנו ביחד."
-          </p>
-        </div>
-        
-        <!-- פידבק 2 - חזק מאוד -->
-        <div class="bg-secondary p-6 rounded-xl shadow-md reveal-element" data-delay="300">
-          <p class="text-body text-sm leading-relaxed italic">
-            "אני אף פעם לא הרגשתי ככה בתוך תהליך יש לי ימים טובים יותר וטובים פחות אבל אני מרגישה שאני במקום הנכון. אני מווסתת יותר, אני הולכת עם מה שהולך לי בפנים. זה שלמדתי לשים תשומת לב לנשימה שלי זה שינה לי הכל. אני אחרת."
-          </p>
-        </div>
-        
-        <!-- פידבק 3 - טוב -->
-        <div class="bg-secondary p-6 rounded-xl shadow-md reveal-element" data-delay="400">
-          <p class="text-body text-sm leading-relaxed italic">
-            "בוקר טוב עדי 🥰 רציתי לשתף שהיה לי אימון מעולה אתמול. הרגשתי שאני נפתחת יותר מתחברת פנימה ומרגישה עמוק וחזק יותר ונותנת לעצמי להרגיש ולומדת לא להדחיק . הבנתי שאני יכולה להרגיש יותר ולשתף יותר איתך ועם קרובים אחרים. תודה ממש אין עלייך. הנוכחות שלך והאנרגיה שלך טובה ואני שמחה שבחרתי לעשות איתך את הטיפול ❤️🥰"
-          </p>
-        </div>
-      </div>
+      <div class="relative">
+        <div id="testimonials-carousel" class="overflow-hidden rounded-xl">
+          <div class="testimonials-container flex transition-transform duration-500 ease-in-out">
+            
+            <div class="testimonial-slide flex-shrink-0 w-full px-4">
+              <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-right mx-auto max-w-4xl min-h-[400px] flex items-center">
+                <p class="text-body text-lg leading-relaxed italic w-full">
+                  "כל פעם אחרי שאני באה ממך יש לי תחושה של נקיות כזאתי. הנקיות הזו נותנת לי ממש אנרגיה. כאילו הוצאתי רעל מהגוף, ועכשיו יש לי עוד כמה מקורות פנויים לעשות דברים שהראש פחות אליהם יותר. בהתחלה באתי אלייך אני חושבת עם חושך. אבל ממש, שלא היה לי מימי. היום אני פשוט רואה שגם המקומות הנמוכים שאני מגיעה אליהם- אני מגיעה אליהם בהרבה יותר אסופה. ואני ממש מרגישה שזה מהשיחות איתך, הם איכשהו גורמות לי להכיר את עצמי יותר לעומק, ולהוריד את המפלס של הכעס שצברתי עם השנים. אני מצפה להמשך הדרך שיש לנו ביחד."
+                </p>
+              </div>
+            </div>
 
-      <!-- שורה שנייה - פידבקים בינוניים -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-right mb-8">
-        <!-- פידבק 4 - המלצה חזקה -->
-        <div class="bg-secondary p-6 rounded-xl shadow-md reveal-element" data-delay="500">
-          <p class="text-body text-sm leading-relaxed italic">
-            "ממליצה לכל אחד להגיע לאימון! באמת זה יכול לעזור לכל כך הרבה לשבת שעה פעם בשבוע לדבר , לפרוק. לכולנו יש עניין לא פתור והחיים כל כך דינמיים הכול משתנה במהירות. האימון הזה באמת עושה טוב לנפש לעצמי וזה מגיע לי! ממליצה מכל הלב לעשות את הצעד הזה בשביל עצמכם. אני ממש שמחה שהתחלנו את התהליך הזה לא רוצה שייגמר❤️❤️❤️"
-          </p>
-        </div>
-        
-        <!-- פידבק 5 - פשוט -->
-        <div class="bg-secondary p-6 rounded-xl shadow-md reveal-element" data-delay="600">
-          <p class="text-body text-sm leading-relaxed italic">
-            "התהליך שאת עושה איתי עוזר לי לפרק דברים בצורה הכי טובה ונכונה לי. מודה לך ולהשם על הדרך."
-          </p>
-        </div>
-      </div>
+            <div class="testimonial-slide flex-shrink-0 w-full px-4">
+              <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-right mx-auto max-w-4xl min-h-[400px] flex items-center">
+                <p class="text-body text-lg leading-relaxed italic w-full">
+                  "אני אף פעם לא הרגשתי ככה בתוך תהליך יש לי ימים טובים יותר וטובים פחות אבל אני מרגישה שאני במקום הנכון. אני מווסתת יותר, אני הולכת עם מה שהולך לי בפנים. זה שלמדתי לשים תשומת לב לנשימה שלי זה שינה לי הכל. אני אחרת."
+                </p>
+              </div>
+            </div>
 
-      <!-- שורה שלישית - פידבקים ארוכים -->
-      <div class="grid grid-cols-1 md:grid-cols-1 gap-6 text-right mb-8">
-        <!-- פידבק 6 -->
-        <div class="bg-secondary p-6 rounded-xl shadow-md reveal-element" data-delay="700">
-          <p class="text-body text-sm leading-relaxed italic">
-            "הגעתי לאימון כי חוויתי הרבה חוויות מטלטלות בחיי, ורציתי לעשות סדר בנפש ולפרוק את הטראומה, מהרגע שהתחלתי את האימון איתך אני יודעת להתמודד הרבה הרבה יותר טוב עם רגשות שליליים. לא למדתי אף פעם איך להתמודד איתם כשהם באים, וזה הוביל אותי לסערה פנימית , עכשיו אני מתמודדת איתם בהרבה יותר קלות, מה שמקל לי מאוד את החיים, גם מבנה הפנים שלי השתנה לטוב, ממש רואה לפני ואחרי בתמונות שלי, ממש הזוי,"
-          </p>
-        </div>
-      </div>
+            <div class="testimonial-slide flex-shrink-0 w-full px-4">
+              <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-right mx-auto max-w-4xl min-h-[400px] flex items-center">
+                <p class="text-body text-lg leading-relaxed italic w-full">
+                  "בוקר טוב עדי 🥰 רציתי לשתף שהיה לי אימון מעולה אתמול. הרגשתי שאני נפתחת יותר מתחברת פנימה ומרגישה עמוק וחזק יותר ונותנת לעצמי להרגיש ולומדת לא להדחיק . הבנתי שאני יכולה להרגיש יותר ולשתף יותר איתך ועם קרובים אחרים. תודה ממש אין עלייך. הנוכחות שלך והאנרגיה שלך טובה ואני שמחה שבחרתי לעשות איתך את הטיפול ❤️🥰"
+                </p>
+              </div>
+            </div>
 
-      <!-- שורה רביעית - פידבקים ארוכים מאוד -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-right">
-        <!-- פידבק 7 -->
-        <div class="bg-secondary p-6 rounded-xl shadow-md reveal-element" data-delay="900">
-          <p class="text-body text-sm leading-relaxed italic">
-            "באימון אני מצליחה להגיע להרבה יותר בהירות למה אני רוצה, איך אני רוצה, להתחבר יותר לאינטואיציה ולעצמי, שזה ממש עושה לי טוב, ואני מצליחה לזקק יותר את מה יעשה אותי מאושרת, למרות שפעם חשבתי שהאושר הוא בדברים אחרים. וכמובן אני מצליחה לראות את החיים פחות בשחור ולבן ולהחליף מלא אמונות מגבילות באמונות כיפיות וקלילות יותר לחיי🤍כל כך שמחה שאלוקים זמן לי אותך , יש לך הרבה חלק בשקט הנפשי שנכנס לי לאט לאט בתוך הסערה ♥️"
-          </p>
-        </div>
-        
-        <!-- פידבק 9 -->
-        <div class="bg-secondary p-6 rounded-xl shadow-md reveal-element" data-delay="1000">
-          <p class="text-body text-sm leading-relaxed italic">
-            "בחרתי לי את הבן אדם המתאים לי לעבור איתו תהליך כזה, ולראשונה הרגשתי שאני יכולה להיפתח, ולהגיד את כל הדברים המוזרים שלי, והדברים שמביכים אותי, ולקבל לגיטימציה- משהו שהצלחתי לתת לעצמי גם כשלא הייתי בשיחה איתך. למדתי להכיל ולתמוך בעצמי כמו שאני מכילה ומקבלת חברות שלי. הייתי ממליצה לכל מי שרוצה לחיות יותר טוב , להיות מודע למה הוא מרגיש, להתפתח ולהרגיש חופשי יותר ושמח יותר. את השראה בשבילי ומודל לחיקוי וגורמת לי לשאוף גבוה יותר. האימון איתך היחיד שעזר לי ושיפר לי את ההרגשה, נתת לי את הכלים המתאימים לי, אני מעריכה אותך מאוד."
-          </p>
-        </div>
-      </div>
+            <div class="testimonial-slide flex-shrink-0 w-full px-4">
+              <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-right mx-auto max-w-4xl min-h-[400px] flex items-center">
+                <p class="text-body text-lg leading-relaxed italic w-full">
+                  "ממליצה לכל אחד להגיע לאימון! באמת זה יכול לעזור לכל כך הרבה לשבת שעה פעם בשבוע לדבר , לפרוק. לכולנו יש עניין לא פתור והחיים כל כך דינמיים הכול משתנה במהירות. האימון הזה באמת עושה טוב לנפש לעצמי וזה מגיע לי! ממליצה מכל הלב לעשות את הצעד הזה בשביל עצמכם. אני ממש שמחה שהתחלנו את התהליך הזה לא רוצה שייגמר❤️❤️❤️"
+                </p>
+              </div>
+            </div>
 
-      <!-- שורה חמישית - הפידבק הארוך ביותר בנפרד -->
-      <div class="grid grid-cols-1 gap-6 text-right mt-8">
-        <!-- פידבק 10 -->
-        <div class="bg-secondary p-6 rounded-xl shadow-md reveal-element" data-delay="1100">
-          <p class="text-body text-sm leading-relaxed italic">
-            "הייתי בוכה כל יום כבר על כל דבר ללא הפסקה. והבנתי שאני חייבת לעזור לעצמי לצאת מהמצב הזה. איתך למדתי המון על איך לקבל את כל הרגשות האלו שלא רציתי אותם מסביבי, ולהבין שזה באמת דברים טבעיים וזה מה שהופך אותנו לאנושיים. כשאני בלחץ אז הראש שלי מלאאאאא במחשבות שרצות על ספיד, לימדת אותי איך להרגיע את הגוף ולחזור למצב יותר רגוע. ואת זה אני מיישמת עד היום ומעבירה הלאה. אני רואה את עצמי כאילו יצאתי מבור של עצבות וכאב עצום, לאור ותקווה חדשה שהכל אפשרי. פיתחתי יכולות של להתמודד עם מצבי לחץ, ולדעת להציב לעצמי מטרות ריאליות וגם לדעת לתת לעצמי זמן. הייתי ממליצה לכל אחד שמרגיש שהוא צריך מישהו חיצוני שיקשיב ויבין איך לעזור לנפש שלו להיות יותר רגועה ושלווה להגיע לאימון."
-          </p>
+            <div class="testimonial-slide flex-shrink-0 w-full px-4">
+              <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-right mx-auto max-w-4xl min-h-[400px] flex items-center">
+                <p class="text-body text-lg leading-relaxed italic w-full">
+                  "התהליך שאת עושה איתי עוזר לי לפרק דברים בצורה הכי טובה ונכונה לי. מודה לך ולהשם על הדרך."
+                </p>
+              </div>
+            </div>
+
+            <div class="testimonial-slide flex-shrink-0 w-full px-4">
+              <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-right mx-auto max-w-4xl min-h-[400px] flex items-center">
+                <p class="text-body text-lg leading-relaxed italic w-full">
+                  "הגעתי לאימון כי חוויתי הרבה חוויות מטלטלות בחיי, ורציתי לעשות סדר בנפש ולפרוק את הטראומה, מהרגע שהתחלתי את האימון איתך אני יודעת להתמודד הרבה הרבה יותר טוב עם רגשות שליליים. לא למדתי אף פעם איך להתמודד איתם כשהם באים, וזה הוביל אותי לסערה פנימית , עכשיו אני מתמודדת איתם בהרבה יותר קלות, מה שמקל לי מאוד את החיים, גם מבנה הפנים שלי השתנה לטוב, ממש רואה לפני ואחרי בתמונות שלי, ממש הזוי,"
+                </p>
+              </div>
+            </div>
+
+            <div class="testimonial-slide flex-shrink-0 w-full px-4">
+              <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-right mx-auto max-w-4xl min-h-[400px] flex items-center">
+                <p class="text-body text-lg leading-relaxed italic w-full">
+                  "באימון אני מצליחה להגיע להרבה יותר בהירות למה אני רוצה, איך אני רוצה, להתחבר יותר לאינטואיציה ולעצמי, שזה ממש עושה לי טוב, ואני מצליחה לזקק יותר את מה יעשה אותי מאושרת, למרות שפעם חשבתי שהאושר הוא בדברים אחרים. וכמובן אני מצליחה לראות את החיים פחות בשחור ולבן ולהחליף מלא אמונות מגבילות באמונות כיפיות וקלילות יותר לחיי🤍כל כך שמחה שאלוקים זמן לי אותך , יש לך הרבה חלק בשקט הנפשי שנכנס לי לאט לאט בתוך הסערה ♥️"
+                </p>
+              </div>
+            </div>
+
+            <div class="testimonial-slide flex-shrink-0 w-full px-4">
+              <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-right mx-auto max-w-4xl min-h-[400px] flex items-center">
+                <p class="text-body text-lg leading-relaxed italic w-full">
+                  "בחרתי לי את הבן אדם המתאים לי לעבור איתו תהליך כזה, ולראשונה הרגשתי שאני יכולה להיפתח, ולהגיד את כל הדברים המוזרים שלי, והדברים שמביכים אותי, ולקבל לגיטימציה- משהו שהצלחתי לתת לעצמי גם כשלא הייתי בשיחה איתך. למדתי להכיל ולתמוך בעצמי כמו שאני מכילה ומקבלת חברות שלי. הייתי ממליצה לכל מי שרוצה לחיות יותר טוב , להיות מודע למה הוא מרגיש, להתפתח ולהרגיש חופשי יותר ושמח יותר. את השראה בשבילי ומודל לחיקוי וגורמת לי לשאוף גבוה יותר. האימון איתך היחיד שעזר לי ושיפר לי את ההרגשה, נתת לי את הכלים המתאימים לי, אני מעריכה אותך מאוד."
+                </p>
+              </div>
+            </div>
+
+            <div class="testimonial-slide flex-shrink-0 w-full px-4">
+              <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-right mx-auto max-w-4xl min-h-[400px] flex items-center">
+                <p class="text-body text-lg leading-relaxed italic w-full">
+                  "הייתי בוכה כל יום כבר על כל דבר ללא הפסקה. והבנתי שאני חייבת לעזור לעצמי לצאת מהמצב הזה. איתך למדתי המון על איך לקבל את כל הרגשות האלו שלא רציתי אותם מסביבי, ולהבין שזה באמת דברים טבעיים וזה מה שהופך אותנו לאנושיים. כשאני בלחץ אז הראש שלי מלאאאאא במחשבות שרצות על ספיד, לימדת אותי איך להרגיע את הגוף ולחזור למצב יותר רגוע. ואת זה אני מיישמת עד היום ומעבירה הלאה. אני רואה את עצמי כאילו יצאתי מבור של עצבות וכאב עצום, לאור ותקווה חדשה שהכל אפשרי. פיתחתי יכולות של להתמודד עם מצבי לחץ, ולדעת להציב לעצמי מטרות ריאליות וגם לדעת לתת לעצמי זמן. הייתי ממליצה לכל אחד שמרגיש שהוא צריך מישהו חיצוני שיקשיב ויבין איך לעזור לנפש שלו להיות יותר רגועה ושלווה להגיע לאימון."
+                </p>
+              </div>
+            </div>
+
+          </div>
         </div>
+
+        <button id="prev-testimonial" class="absolute left-0 md:left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all z-10">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+        <button id="next-testimonial" class="absolute right-0 md:right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all z-10">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </button>
+
+        <div id="carousel-dots" class="flex justify-center mt-6 space-x-2 space-x-reverse"></div>
       </div>
     </div>
   </section>
 
-  <!-- סיפור אישי -->
   <div class="container mx-auto px-6">
     <footer class="card bg-main">
       <div class="max-w-5xl mx-auto">
@@ -530,11 +566,11 @@
           <h3 class="text-xl text-body mt-2">עם פחדים ומאבקים פנימיים</h3>
         </div>
 
-        <!-- גריד 1: שתי הפסקאות לצד התמונה הראשונה -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mt-10 max-w-5xl mx-auto">
           <div class="md:col-span-1 text-right md:order-last reveal-element" data-delay="200">
             <p class="mt-4 text-md text-body leading-relaxed">
-              הייתי ילדה מאוד חסרת ביטחון והרבה פעמים מאוד עצובה. היו לי המון פחדים- שהחיים גדולים עלי וקשים מידיי. שאני לא אוכל להתמודד. ולא האמנתי אף פעם שאני מספיק טובה או יפה כדי שיאהבו אותי.
+              הייתי ילדה מאוד חסרת ביטחון והרבה פעמים מאוד עצובה. היו לי המון פחדים- שהחיים גדולים עלי וקשים מדי. שאני לא אוכל להתמודד. ולא האמנתי אף פעם שאני מספיק טובה או יפה כדי שיאהבו אותי.<br>
+              בפעמים ששיתפתי את הרגשות שלי אמרו לי- "את חושבת יותר מדי", "את מתוסבכת", "את רגישה מדי". אבל לא ידעתי איך אפשר לחשוב פחות. למעשה, ככל ששמעתי את זה יותר, הרגשתי שמשהו בי דפוק.
             </p>
           </div>
           <div class="md:col-span-1 flex justify-start md:order-first reveal-element" data-delay="300">
@@ -542,7 +578,6 @@
           </div>
         </div>
 
-        <!-- גריד 2: תמונה שנייה + טקסט -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mt-10 max-w-5xl mx-auto">
           <div class="md:col-span-1 text-right md:order-last reveal-element" data-delay="400">
             <p class="mt-4 text-md text-body leading-relaxed">
@@ -558,7 +593,6 @@
           </div>
         </div>
 
-        <!-- גריד 3: תמונה שלישית + הטקסט החדש -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mt-10 max-w-5xl mx-auto">
           <div class="md:col-span-1 text-right md:order-last">
             <div class="reveal-element" data-delay="600">
@@ -578,7 +612,6 @@
           </div>
         </div>
 
-        <!-- החלק החדש - מה שאני יודעת - במרכז -->
         <div class="max-w-5xl mx-auto mt-16 mb-16 px-6">
           <div class="reveal-element" data-delay="600">
             <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8 shadow-lg border border-blue-100">
@@ -589,26 +622,22 @@
                     אני יודעת מה זה לפחד לאבד את מי שאת.<br>
                     אני יודעת מה זה לחלום, ולראות את המציאות הזו מתרחקת לך מהעיניים.
                   </div>
-                  
                   <div class="text-lg text-gray-800 leading-relaxed font-medium">
                     אבל אני יודעת גם מה זה להתאהב בחיים בחזרה.<br>
                     לחזור להיות מי שאת, בלי המלחמה.
                   </div>
-                  
                   <div class="text-lg text-gray-800 leading-relaxed">
                     אני לא חושבת היום פחות, אני חושבת אחרת.<br>
                     לא סגרתי את הלב שלי, לא הפכתי לפחות רגישה,<br>
                     למדתי להעריך את עצמי עם כל מי שאני,<br>
                     והגיע בעלי, אדם שאוהב את הרגישות שבי, ומחזיר אליי רכות כפליים.
                   </div>
-                  
-                <div class="text-lg text-accent font-semibold leading-relaxed border-t border-blue-200 pt-6">
-                  הריפוי שלי הגיע עם ההתמסרות לרגשות שלי, במקום להלחם בהם.<br>
-                  למדתי שהרגע שבו מפסיקים להלחם, הוא הרגע שבו מתחילים לנצח.<br>
-                  ושהכוח הכי גדול שלי - הוא לבחור בעצמי<br>
+                  <div class="text-lg text-accent font-semibold leading-relaxed border-t border-blue-200 pt-6">
+                    הריפוי שלי הגיע עם ההתמסרות לרגשות שלי, במקום להלחם בהם.<br>
+                    למדתי שהרגע שבו מפסיקים להלחם, הוא הרגע שבו מתחילים לנצח.<br>
+                    ושהכוח הכי גדול שלי - הוא לבחור בעצמי<br>
+                  </div>
                 </div>
-                </div>
-                
                 <div class="flex justify-center md:justify-start">
                   <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/16.jpg" alt="אחריות מלאה" class="w-[26.875rem] h-[31.25rem] object-cover rounded-lg shadow-xl reveal-element" data-delay="800"/>
                 </div>
@@ -620,97 +649,85 @@
     </footer>
   </div>
 
-  <!-- סיפור אישי -->
   <section class="card bg-main">
     <div class="max-w-6xl mx-auto text-center w-full relative z-10">
       <h2 class="text-3xl font-semibold text-heading mb-6 reveal-element">שאלות נוספות</h2>
       <div class="max-w-5xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-          <!-- שאלות ותשובות -->
           <div class="text-right space-y-4">
-          <!-- שאלה 1 -->
-          <div class="bg-secondary p-4 rounded-xl shadow-md reveal-element" data-delay="200">
-            <button class="w-full text-right flex justify-between items-center" onclick="toggleAnswer('answer1')">
-              <span class="text-lg font-semibold text-heading">עדי אני מתעניינת בתהליך, איך אנחנו מתקדמות מכאן?</span>
-              <svg id="arrow1" class="w-6 h-6 text-heading transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-              </svg>
-            </button>
-            <div id="answer1" class="hidden mt-4 text-body leading-relaxed">
-              <p class="mb-4">את לוחצת כאן, ושולחת לי הודעה לווצאפ. ומשם אנחנו קובעות זמן לשיחת הכרות.</p>
-              <a href="https://wa.link/8ram0d" target="_blank" class="btn-whatsapp text-lg py-3 px-6 rounded-full font-bold shadow-lg inline-flex items-center gap-2" rel="noopener">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M.057 24l1.687-6.163C.703 16.033.156 13.988.157 11.891.157 5.335 5.495 0 12.05 0c3.181 0 6.167 1.24 8.413 3.488A11.82 11.82 0 0 1 23.95 11.9c0 6.557-5.338 11.892-11.893 11.892-1.99 0-3.903-.52-5.607-1.474L.057 24zm6.414-3.323c1.518.911 3.231 1.411 5.048 1.411 5.219 0 9.466-4.244 9.466-9.463 0-2.528-1.004-4.903-2.782-6.68-1.777-1.778-4.152-2.782-6.68-2.782-5.218 0-9.465 4.244-9.465 9.463 0 1.83.504 3.548 1.408 5.063ל.729 1.21-1.879 5.462 5.455-1.684זm11.387-5.47c-.074-.123-.272-.198-.57-.347-.297-.149-1.758-.867-2.03-.966-.272-.099-.47-.149-.669.149-.198.297-.768.966-.94 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.173.198-.297.297-.495.099-.198.05-.372-.025-.521-.074-.149-.669-1.611-.916-2.207-.242-.58-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.793.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.71.306 1.264.489 1.696.626.712.226 1.36.195 1.872.118.571-.085 1.758-.718 2.006-1.41.248-.694.248-1.289.173-1.41z"/>
+            <div class="bg-secondary p-4 rounded-xl shadow-md reveal-element" data-delay="200">
+              <button class="w-full text-right flex justify-between items-center" onclick="toggleAnswer('answer1')">
+                <span class="text-lg font-semibold text-heading">עדי אני מתעניינת בתהליך, איך אנחנו מתקדמות מכאן?</span>
+                <svg id="arrow1" class="w-6 h-6 text-heading transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                 </svg>
-                <span>שלחי הודעה</span>
-              </a>
+              </button>
+              <div id="answer1" class="hidden mt-4 text-body leading-relaxed">
+                <p class="mb-4">את לוחצת כאן, ושולחת לי הודעה לווצאפ. ומשם אנחנו קובעות זמן לשיחת הכרות.</p>
+                <a href="https://wa.link/8ram0d" target="_blank" class="btn-whatsapp text-lg py-3 px-6 rounded-full font-bold shadow-lg inline-flex items-center gap-2" rel="noopener">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M.057 24l1.687-6.163C.703 16.033.156 13.988.157 11.891.157 5.335 5.495 0 12.05 0c3.181 0 6.167 1.24 8.413 3.488A11.82 11.82 0 0 1 23.95 11.9c0 6.557-5.338 11.892-11.893 11.892-1.99 0-3.903-.52-5.607-1.474L.057 24zm6.414-3.323c1.518.911 3.231 1.411 5.048 1.411 5.219 0 9.466-4.244 9.466-9.463 0-2.528-1.004-4.903-2.782-6.68-1.777-1.778-4.152-2.782-6.68-2.782-5.218 0-9.465 4.244-9.465 9.463 0 1.83.504 3.548 1.408 5.063l.729 1.21-1.879 5.462 5.455-1.684zm11.387-5.47c-.074-.123-.272-.198-.57-.347-.297-.149-1.758-.867-2.03-.966-.272-.099-.47-.149-.669.149-.198.297-.768.966-.94 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.173.198-.297.297-.495.099-.198.05-.372-.025-.521-.074-.149-.669-1.611-.916-2.207-.242-.58-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.793.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.71.306 1.264.489 1.696.626.712.226 1.36.195 1.872.118.571-.085 1.758-.718 2.006-1.41.248-.694.248-1.289.173-1.41z"/>
+                  </svg>
+                  <span>שלחי הודעה</span>
+                </a>
+              </div>
             </div>
-          </div>
-
-          <!-- שאלה 2 -->
-          <div class="bg-secondary p-4 rounded-xl shadow-md reveal-element" data-delay="300">
-            <button class="w-full text-right flex justify-between items-center" onclick="toggleAnswer('answer2')">
-              <span class="text-lg font-semibold text-heading">מהי שיחת הכרות?</span>
-              <svg id="arrow2" class="w-6 h-6 text-heading transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-              </svg>
-            </button>
-            <div id="answer2" class="hidden mt-4 text-body leading-relaxed">
-              <p>השיחה היא שלב הכרות מקדים לתחילת התהליך שלנו. דרך הווצאפ נקבע זמן שמתאים לשתינו לשיחת טלפון ללא עלות של 15-20 דקות שבה אני מתקשרת אליך :)</p>
-              <p class="mt-3">בשיחה תספרי לי מה מביא אותך לתהליך, נתאם ציפיות, נכיר, נבדוק שהתהליך הוא בשבילך.</p>
-              <p class="mt-3">כדי לכבד את הזמן שלך ושלי, אני פותחת את השיחה הזו רק למי שכבר בשלה להתחייב לתהליך עומק אמיתי, ובעיקר לעצמה. ומוכנה להתחיל לעבוד באמת עבור החלומות והעתיד שלה.</p>
+            <div class="bg-secondary p-4 rounded-xl shadow-md reveal-element" data-delay="300">
+              <button class="w-full text-right flex justify-between items-center" onclick="toggleAnswer('answer2')">
+                <span class="text-lg font-semibold text-heading">מהי שיחת הכרות?</span>
+                <svg id="arrow2" class="w-6 h-6 text-heading transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div id="answer2" class="hidden mt-4 text-body leading-relaxed">
+                <p>השיחה היא שלב הכרות מקדים לתחילת התהליך שלנו. דרך הווצאפ נקבע זמן שמתאים לשתינו לשיחת טלפון ללא עלות של 15-20 דקות שבה אני מתקשרת אליך :)</p>
+                <p class="mt-3">בשיחה תספרי לי מה מביא אותך לתהליך, נתאם ציפיות, נכיר, נבדוק שהתהליך הוא בשבילך.</p>
+                <p class="mt-3">כדי לכבד את הזמן שלך ושלי, אני פותחת את השיחה הזו רק למי שכבר בשלה להתחייב לתהליך עומק אמיתי, ובעיקר לעצמה. ומוכנה להתחיל לעבוד באמת עבור החלומות והעתיד שלה.</p>
+              </div>
             </div>
-          </div>
-
-          <!-- שאלה 3 -->
-          <div class="bg-secondary p-4 rounded-xl shadow-md reveal-element" data-delay="400">
-            <button class="w-full text-right flex justify-between items-center" onclick="toggleAnswer('answer3')">
-              <span class="text-lg font-semibold text-heading">למי האימון לא מתאים?</span>
-              <svg id="arrow3" class="w-6 h-6 text-heading transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-              </svg>
-            </button>
-            <div id="answer3" class="hidden mt-4 text-body leading-relaxed">
-              <p><strong>1-</strong> מי שלא סגורה שמתאים לה להתחייב לעצמה לתהליך ולזמן.</p>
-              <p class="mt-3"><strong>2-</strong> מי שלא יציבה בזמנים, לא מגיעה בזמן או נוהגת לבטל מפגשים ברגע אחרון.</p>
+            <div class="bg-secondary p-4 rounded-xl shadow-md reveal-element" data-delay="400">
+              <button class="w-full text-right flex justify-between items-center" onclick="toggleAnswer('answer3')">
+                <span class="text-lg font-semibold text-heading">למי האימון לא מתאים?</span>
+                <svg id="arrow3" class="w-6 h-6 text-heading transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div id="answer3" class="hidden mt-4 text-body leading-relaxed">
+                <p><strong>1-</strong> מי שלא סגורה שמתאים לה להתחייב לעצמה לתהליך ולזמן.</p>
+                <p class="mt-3"><strong>2-</strong> מי שלא יציבה בזמנים, לא מגיעה בזמן או נוהגת לבטל מפגשים ברגע אחרון.</p>
+              </div>
             </div>
-          </div>
-
-          <!-- שאלה חדשה: האם האימון מתאים גם לגברים? -->
-          <div class="bg-secondary p-4 rounded-xl shadow-md reveal-element" data-delay="500">
-            <button class="w-full text-right flex justify-between items-center" onclick="toggleAnswer('answer4')">
-              <span class="text-lg font-semibold text-heading">האם האימון מתאים גם לגברים?</span>
-              <svg id="arrow4" class="w-6 h-6 text-heading transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-              </svg>
-            </button>
-            <div id="answer4" class="hidden mt-4 text-body leading-relaxed">
-              <p>האימון יכול להתאים גם לגברים שרוצים מרחב פתוח ובטוח ללב ולאמת שלהם.<br>
+            <div class="bg-secondary p-4 rounded-xl shadow-md reveal-element" data-delay="500">
+              <button class="w-full text-right flex justify-between items-center" onclick="toggleAnswer('answer4')">
+                <span class="text-lg font-semibold text-heading">האם האימון מתאים גם לגברים?</span>
+                <svg id="arrow4" class="w-6 h-6 text-heading transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div id="answer4" class="hidden mt-4 text-body leading-relaxed">
+                <p>האימון יכול להתאים גם לגברים שרוצים מרחב פתוח ובטוח ללב ולאמת שלהם.<br>
 יוצא לי לאמן בקליניקה גם גברים, שעוברים שינוי מדהים ומרגישים שסוף סוף רואים את הלב שלהם. הם יודעים איך לדבר את הרגשות שלהם ולהרגיש שלמים ומלאים יותר.</p>
-              <p class="mt-3">אם אתה מרגיש שזה בדיוק מה שאתה מחפש-<br>
+                <p class="mt-3">אם אתה מרגיש שזה בדיוק מה שאתה מחפש-<br>
 אתה מוזמן לשלוח הודעה :)</p>
-              <a href="https://wa.link/8ram0d" target="_blank" class="btn-whatsapp text-lg py-3 px-6 rounded-full font-bold shadow-lg inline-flex items-center gap-2 mt-4" rel="noopener">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M.057 24l1.687-6.163C.703 16.033.156 13.988.157 11.891.157 5.335 5.495 0 12.05 0c3.181 0 6.167 1.24 8.413 3.488A11.82 11.82 0 0 1 23.95 11.9c0 6.557-5.338 11.892-11.893 11.892-1.99 0-3.903-.52-5.607-1.474L.057 24zm6.414-3.323c1.518.911 3.231 1.411 5.048 1.411 5.219 0 9.466-4.244 9.466-9.463 0-2.528-1.004-4.903-2.782-6.68-1.777-1.778-4.152-2.782-6.68-2.782-5.218 0-9.465 4.244-9.465 9.463 0 1.83.504 3.548 1.408 5.063ל.729 1.21-1.879 5.462 5.455-1.684זm11.387-5.47c-.074-.123-.272-.198-.57-.347-.297-.149-1.758-.867-2.03-.966-.272-.099-.47-.149-.669.149-.198.297-.768.966-.94 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.173.198-.297.297-.495.099-.198.05-.372-.025-.521-.074-.149-.669-1.611-.916-2.207-.242-.58-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.793.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.71.306 1.264.489 1.696.626.712.226 1.36.195 1.872.118.571-.085 1.758-.718 2.006-1.41.248-.694.248-1.289.173-1.41z"/>
-                </svg>
-                <span>לקביעת שיחת הכרות</span>
-              </a>
+                <a href="https://wa.link/8ram0d" target="_blank" class="btn-whatsapp text-lg py-3 px-6 rounded-full font-bold shadow-lg inline-flex items-center gap-2 mt-4" rel="noopener">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M.057 24l1.687-6.163C.703 16.033.156 13.988.157 11.891.157 5.335 5.495 0 12.05 0c3.181 0 6.167 1.24 8.413 3.488A11.82 11.82 0 0 1 23.95 11.9c0 6.557-5.338 11.892-11.893 11.892-1.99 0-3.903-.52-5.607-1.474L.057 24zm6.414-3.323c1.518.911 3.231 1.411 5.048 1.411 5.219 0 9.466-4.244 9.466-9.463 0-2.528-1.004-4.903-2.782-6.68-1.777-1.778-4.152-2.782-6.68-2.782-5.218 0-9.465 4.244-9.465 9.463 0 1.83.504 3.548 1.408 5.063l.729 1.21-1.879 5.462 5.455-1.684zm11.387-5.47c-.074-.123-.272-.198-.57-.347-.297-.149-1.758-.867-2.03-.966-.272-.099-.47-.149-.669.149-.198.297-.768.966-.94 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.173.198-.297.297-.495.099-.198.05-.372-.025-.521-.074-.149-.669-1.611-.916-2.207-.242-.58-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.793.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.71.306 1.264.489 1.696.626.712.226 1.36.195 1.872.118.571-.085 1.758-.718 2.006-1.41.248-.694.248-1.289.173-1.41z"/>
+                  </svg>
+                  <span>לקביעת שיחת הכרות</span>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-
-        <!-- תמונה -->
-        <div class="flex justify-center">
-          <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/101.jpeg" alt="שאלות נוספות" class="w-[18rem] h-[18rem] object-cover rounded-full shadow-lg reveal-element" data-delay="500"/>
+          <div class="flex justify-center">
+            <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/101.jpeg" alt="שאלות נוספות" class="w-[18rem] h-[18rem] object-cover rounded-full shadow-lg reveal-element" data-delay="500"/>
+          </div>
         </div>
       </div>
     </section>
 
-  <!-- אחריות מלאה -->
   <section class="bg-secondary py-16">
     <div class="max-w-3xl mx-auto px-6 text-center">
       <h2 class="text-4xl font-bold text-heading reveal-element">אני נותנת לך אחריות מלאה.</h2>
-
       <p class="mt-6 text-lg text-body leading-relaxed max-w-3xl mx-auto reveal-element" data-delay="200">
         אני כאן כי אני יודעת שיש לי מה לתת. אני דוגלת בלייצר תהליכים משמעותיים בהם החיים של מתאמנים שלי משתנים, והם מרגישים שעשו את הבחירה הכי מדהימה עבור עצמם.
       </p>
@@ -720,71 +737,18 @@
     </div>
   </section>
 
-  <!-- פופאפ מתוזמן - בהערות
-  <div id="timed-popup" class="modal-backdrop modal-hidden">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeModal()">&times;</span>
-      <div class="p-2">
-        <h3 class="text-3xl font-extrabold text-heading mb-3">🔥 רגע לפני שאת עוזבת!</h3>
-        <p class="text-lg text-body mb-6">מרגישה שעדיין לא קיבלת החלטה? אני כאן כדי לעזור לך להתחיל צעד קטן.</p>
-
-        <h4 class="text-2xl font-bold text-accent mb-4">קבלי שיחת מיקוד קצרה ללא עלות!</h4>
-
-        <form onsubmit="event.preventDefault(); submitPopupForm();" class="space-y-4 text-right">
-          <input type="text" placeholder="שם מלא" class="w-full p-3 border border-gray-300 rounded-lg text-right" required/>
-          <input type="tel" placeholder="טלפון (וואטסאפ)" class="w-full p-3 border border-gray-300 rounded-lg text-right" required/>
-
-          <button type="submit" class="w-full bg-[#25D366] text-white text-xl font-bold py-3 rounded-full hover:bg-green-700 transition duration-300 shadow-md">
-            אני רוצה שיחת מיקוד קצרה
-          </button>
-          <p class="text-xs text-gray-500 mt-2">הפרטים נשמרים בסודיות מלאה.</p>
-        </form>
-      </div>
-    </div>
-  </div>
-  -->
-
-  <!-- כפתור וואטסאפ קבוע -->
   <a id="sticky-whatsapp-cta" href="https://wa.link/8ram0d" target="_blank" class="btn-whatsapp-fixed md:text-xl" rel="noopener">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M.057 24l1.687-6.163C.703 16.033.156 13.988.157 11.891.157 5.335 5.495 0 12.05 0c3.181 0 6.167 1.24 8.413 3.488A11.82 11.82 0 0 1 23.95 11.9c0 6.557-5.338 11.892-11.893 11.892-1.99 0-3.903-.52-5.607-1.474L.057 24zm6.414-3.323c1.518.911 3.231 1.411 5.048 1.411 5.219 0 9.466-4.244 9.466-9.463 0-2.528-1.004-4.903-2.782-6.68-1.777-1.778-4.152-2.782-6.68-2.782-5.218 0-9.465 4.244-9.465 9.463 0 1.83.504 3.548 1.408 5.063ל.729 1.21-1.879 5.462 5.455-1.684זm11.387-5.47c-.074-.123-.272-.198-.57-.347-.297-.149-1.758-.867-2.03-.966-.272-.099-.47-.149-.669.149-.198.297-.768.966-.94 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.173.198-.297.297-.495.099-.198.05-.372-.025-.521-.074-.149-.669-1.611-.916-2.207-.242-.58-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.793.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.71.306 1.264.489 1.696.626.712.226 1.36.195 1.872.118.571-.085 1.758-.718 2.006-1.41.248-.694.248-1.289.173-1.41z"/>
+      <path d="M.057 24l1.687-6.163C.703 16.033.156 13.988.157 11.891.157 5.335 5.495 0 12.05 0c3.181 0 6.167 1.24 8.413 3.488A11.82 11.82 0 0 1 23.95 11.9c0 6.557-5.338 11.892-11.893 11.892-1.99 0-3.903-.52-5.607-1.474L.057 24zm6.414-3.323c1.518.911 3.231 1.411 5.048 1.411 5.219 0 9.466-4.244 9.466-9.463 0-2.528-1.004-4.903-2.782-6.68-1.777-1.778-4.152-2.782-6.68-2.782-5.218 0-9.465 4.244-9.465 9.463 0 1.83.504 3.548 1.408 5.063l.729 1.21-1.879 5.462 5.455-1.684zm11.387-5.47c-.074-.123-.272-.198-.57-.347-.297-.149-1.758-.867-2.03-.966-.272-.099-.47-.149-.669.149-.198.297-.768.966-.94 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.173.198-.297.297-.495.099-.198.05-.372-.025-.521-.074-.149-.669-1.611-.916-2.207-.242-.58-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.793.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.71.306 1.264.489 1.696.626.712.226 1.36.195 1.872.118.571-.085 1.758-.718 2.006-1.41.248-.694.248-1.289.173-1.41z"/>
     </svg>
     <span>מתעניינת בתהליך? לחצי כאן!</span>
   </a>
 
   <script>
-    // Force scroll to top on page refresh/load
-    window.addEventListener('beforeunload', function() {
-      window.scrollTo(0, 0);
-    });
-    
-    // Also ensure we start at top when page loads
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        window.scrollTo(0, 0);
-      }, 0);
-    });
+    window.addEventListener('beforeunload', function() { window.scrollTo(0, 0); });
+    window.addEventListener('load', function() { setTimeout(function() { window.scrollTo(0, 0); }, 0); });
+    if (history.scrollRestoration) { history.scrollRestoration = 'manual'; }
 
-    // Alternative method using history API
-    if (history.scrollRestoration) {
-      history.scrollRestoration = 'manual';
-    }
-
-    // פופאפ - בהערות
-    /*
-    const popup = document.getElementById('timed-popup');
-    let popupShown = false;
-    function showModal(){ if(!popupShown){ popup.classList.remove('modal-hidden'); popupShown = true; } }
-    function closeModal(){ popup.classList.add('modal-hidden'); }
-    function submitPopupForm(){
-      console.log("Form Submitted! User requested a short focus call.");
-      alert("תודה! הפרטים נשלחו בהצלחה, ניצור קשר בהקדם!");
-      closeModal();
-    }
-    document.addEventListener('DOMContentLoaded', () => { setTimeout(showModal, 40000); });
-    */
-
-    // Sticky CTA
     const cta = document.getElementById('sticky-whatsapp-cta');
     const header = document.querySelector('header');
     const footer = document.querySelector('footer');
@@ -792,47 +756,76 @@
       if(!cta || !header || !footer) return;
       const headerBottom = header.offsetTop + header.offsetHeight;
       const footerTop = footer.offsetTop;
-      const ctaHeight = cta.offsetHeight;
       const scrollY = window.scrollY;
-
-      if (scrollY > headerBottom && scrollY < (footerTop - window.innerHeight + ctaHeight + 100)) {
+      if (scrollY > headerBottom && scrollY < (footerTop - window.innerHeight + 100)) {
         cta.classList.add('is-visible');
       } else {
         cta.classList.remove('is-visible');
       }
     }
     window.addEventListener('scroll', toggleStickyCta);
-    window.addEventListener('load', toggleStickyCta);
-    window.addEventListener('resize', toggleStickyCta);
 
-    // Scroll Reveal
     const revealElements = document.querySelectorAll('.reveal-element');
-    const observerOptions = { root:null, rootMargin:'0px', threshold:0.2 };
-    const observer = new IntersectionObserver((entries, observer) => {
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if(entry.isIntersecting){
           const el = entry.target;
           const delay = parseInt(el.getAttribute('data-delay') || 0);
-          setTimeout(() => { el.classList.add('is-revealed'); observer.unobserve(el); }, delay);
+          setTimeout(() => { el.classList.add('is-revealed'); }, delay);
         }
       });
-    }, observerOptions);
+    }, { threshold: 0.1 });
     revealElements.forEach(el => observer.observe(el));
 
-    // פונקציה לפתיחה וסגירה של שאלות
     function toggleAnswer(answerId) {
       const answer = document.getElementById(answerId);
-      const arrowId = 'arrow' + answerId.slice(-1);
-      const arrow = document.getElementById(arrowId);
-      
-      if (answer.classList.contains('hidden')) {
-        answer.classList.remove('hidden');
-        arrow.style.transform = 'rotate(180deg)';
-      } else {
-        answer.classList.add('hidden');
-        arrow.style.transform = 'rotate(0deg)';
-      }
+      const arrow = document.getElementById('arrow' + answerId.slice(-1));
+      answer.classList.toggle('hidden');
+      arrow.style.transform = answer.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
     }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const carousel = document.getElementById('testimonials-carousel');
+      const container = carousel.querySelector('.testimonials-container');
+      const slides = container.querySelectorAll('.testimonial-slide');
+      const prevBtn = document.getElementById('prev-testimonial');
+      const nextBtn = document.getElementById('next-testimonial');
+      const dotsContainer = document.getElementById('carousel-dots');
+      
+      let currentSlide = 0;
+      const totalSlides = slides.length;
+
+      slides.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.className = `indicator-dot ${i === 0 ? 'bg-black' : 'bg-gray-300'}`;
+        dot.addEventListener('click', () => goToSlide(i));
+        dotsContainer.appendChild(dot);
+      });
+
+      const indicators = dotsContainer.querySelectorAll('.indicator-dot');
+
+      function updateCarousel() {
+        const offset = currentSlide * 100;
+        container.style.transform = `translateX(${offset}%)`;
+        indicators.forEach((dot, index) => {
+          dot.className = `indicator-dot ${index === currentSlide ? 'bg-black' : 'bg-gray-300'}`;
+        });
+      }
+
+      function nextSlide() { currentSlide = (currentSlide + 1) % totalSlides; updateCarousel(); }
+      function prevSlide() { currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; updateCarousel(); }
+      function goToSlide(index) { currentSlide = index; updateCarousel(); }
+
+      prevBtn.addEventListener('click', prevSlide);
+      nextBtn.addEventListener('click', nextSlide);
+
+      let startX = 0;
+      container.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
+      container.addEventListener('touchend', e => {
+        const diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) diff > 0 ? nextSlide() : prevSlide();
+      });
+    });
   </script>
 </body>
 </html>
