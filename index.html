@@ -14,166 +14,273 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&family=Frank+Ruhl+Libre:wght@400;700;900&display=swap" rel="stylesheet"/>
 
   <style>
+    :root {
+      --bg-main: #FDFAF7;
+      --bg-secondary: #F2EBE1;
+      --accent-gold: #C9A882;
+      --accent-taupe: #8B6F5E;
+      --heading: #2C1F14;
+      --body-text: #5C4A3A;
+      --glass-bg: rgba(255, 248, 240, 0.65);
+      --glass-border: rgba(201, 168, 130, 0.28);
+    }
+
     body {
       font-family: 'Heebo', sans-serif;
-      background-color: #FFFFFF;
-      color: #212121;
+      background-color: var(--bg-main);
+      color: var(--heading);
     }
 
-    .text-heading{color:#212121;}
-    .text-body{color:#424242;}
-    .text-accent{color:#212121;}
-    .border-subtle{border-color:#D1D5DB;}
+    /* ——— Color utilities ——— */
+    .text-heading  { color: var(--heading); }
+    .text-body     { color: var(--body-text); }
+    .text-accent   { color: var(--accent-taupe); }
+    .text-gold     { color: var(--accent-gold); }
+    .border-subtle { border-color: var(--glass-border); }
+    .bg-main       { background-color: var(--bg-main); }
+    .bg-secondary  { background-color: var(--bg-secondary); }
 
-    .bg-main{background-color:#FFFFFF;}
-    .bg-secondary{background-color:#F7F3EF;}
-
-    .btn-ghost{
-      background-color:transparent;
-      border:2px solid #212121;
-      color:#212121;
-      transition:all .3s ease;
-    }
-    .btn-ghost:hover{
-      background-color:#212121;
-      color:#FFFFFF;
+    /* ——— Hero animated gradient ——— */
+    @keyframes gradientShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
-    /* כפתור וואטסאפ עם מסגרת ירוקה */
-    .btn-whatsapp{
-      background-color:transparent;
-      color:#25D366;
-      border:2px solid currentColor;
-      transition:all .3s ease;
-      display:inline-flex;
-      align-items:center;
-      gap:.5rem;
-    }
-    .btn-whatsapp:hover{
-      background-color:#25D366;
-      color:#FFFFFF;
-      border-color:#25D366;
+    .hero-section {
+      background: linear-gradient(-45deg, #FDFAF7, #F5EDE0, #EFE0CC, #FAF3EA, #F2EBE1, #F7EDDF);
+      background-size: 500% 500%;
+      animation: gradientShift 18s ease infinite;
+      position: relative;
+      overflow: hidden;
     }
 
-    /* כפתור וואטסאפ קבוע */
-    .btn-whatsapp-fixed{
-      background-color:#25D366;
-      color:#FFFFFF;
-      border:2px solid #25D366;
-      border-radius:9999px;
-      padding:1rem 2rem;
-      font-weight:bold;
-      font-size:1.25rem;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:.5rem;
-      position:fixed;
-      bottom:1.5rem;
-      right:1.5rem;
-      left:1.5rem;
-      z-index:1000;
-      opacity:0;
-      transition:opacity .7s ease-out, transform .7s ease-out;
-      transform:translateY(100%);
-      box-shadow:0 10px 15px rgba(37,211,102,.4);
+    /* ——— Floating particles canvas ——— */
+    #hero-particles {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
     }
-    .btn-whatsapp-fixed.is-visible{
-      opacity:1;
-      transform:translateY(0);
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
     }
-    @media (min-width:768px){
-      .btn-whatsapp-fixed{
-        right:2rem;
-        left:auto;
-        width:auto;
-        max-width:300px;
+
+    /* ——— Parallax image ——— */
+    .parallax-img-wrapper {
+      overflow: hidden;
+      border-radius: 0.75rem;
+      box-shadow: 0 20px 50px rgba(44, 31, 20, 0.18);
+    }
+    .parallax-img-wrapper img {
+      will-change: transform;
+      transition: transform 0.1s linear;
+    }
+
+    /* ——— Glass cards ——— */
+    .glass-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 8px 32px rgba(139, 111, 94, 0.10), 0 2px 8px rgba(139, 111, 94, 0.06);
+    }
+
+    /* ——— Gold gradient buttons ——— */
+    .btn-gold {
+      background: linear-gradient(135deg, var(--accent-gold), var(--accent-taupe));
+      color: #FFFFFF;
+      border: none;
+      box-shadow: 0 6px 20px rgba(139, 111, 94, 0.32);
+      transition: all .3s ease;
+    }
+    .btn-gold:hover {
+      background: linear-gradient(135deg, #D4B896, #9A7E6D);
+      box-shadow: 0 10px 28px rgba(139, 111, 94, 0.48);
+      transform: translateY(-2px);
+      color: #FFFFFF;
+    }
+
+    /* Ghost outline button */
+    .btn-ghost {
+      background-color: transparent;
+      border: 2px solid var(--accent-gold);
+      color: var(--accent-taupe);
+      transition: all .3s ease;
+    }
+    .btn-ghost:hover {
+      background-color: var(--accent-gold);
+      color: #FFFFFF;
+    }
+
+    /* WhatsApp outline button */
+    .btn-whatsapp {
+      background-color: transparent;
+      color: #25D366;
+      border: 2px solid currentColor;
+      transition: all .3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .btn-whatsapp:hover {
+      background-color: #25D366;
+      color: #FFFFFF;
+      border-color: #25D366;
+    }
+
+    /* ——— Sticky WhatsApp CTA + pulse ——— */
+    @keyframes softPulse {
+      0%, 100% { box-shadow: 0 10px 15px rgba(37,211,102,.4), 0 0 0 0 rgba(37,211,102,.35); }
+      50%       { box-shadow: 0 10px 15px rgba(37,211,102,.4), 0 0 0 14px rgba(37,211,102,0); }
+    }
+
+    .btn-whatsapp-fixed {
+      background-color: #25D366;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 9999px;
+      padding: 1rem 2rem;
+      font-weight: bold;
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      left: 1.5rem;
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity .7s ease-out, transform .7s ease-out;
+      transform: translateY(100%);
+    }
+    .btn-whatsapp-fixed.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      animation: softPulse 2.5s infinite;
+    }
+    @media (min-width: 768px) {
+      .btn-whatsapp-fixed {
+        right: 2rem; left: auto;
+        width: auto; max-width: 320px;
       }
     }
 
-    .main-cta-btn{
-      display:inline-block;
-      border:4px solid #212121;
-      color:#212121;
-      font-weight:800;
-      font-size:1.5rem;
-      padding:1rem 3rem;
-      border-radius:9999px;
-      margin-top:2.5rem;
-      box-shadow:0 4px 6px rgba(0,0,0,.1);
-      transition:all .3s ease;
+    /* ——— Main hero CTA ——— */
+    .main-cta-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--accent-gold), var(--accent-taupe));
+      color: #FFFFFF;
+      font-weight: 800;
+      font-size: 1.25rem;
+      padding: 1rem 3rem;
+      border-radius: 9999px;
+      margin-top: 2.5rem;
+      box-shadow: 0 8px 24px rgba(139, 111, 94, 0.38);
+      transition: all .3s ease;
+      border: none;
     }
-    .main-cta-btn:hover{
-      background-color:#212121;
-      color:#FFFFFF;
-      box-shadow:0 10px 15px rgba(0,0,0,.3);
-    }
-
-    .reveal-element{
-      opacity:0;
-      transform:translateY(20px);
-      transition:opacity .7s ease-out, transform .7s ease-out;
-    }
-    .reveal-element.is-revealed{
-      opacity:1;
-      transform:translateY(0);
+    .main-cta-btn:hover {
+      background: linear-gradient(135deg, #D4B896, #9A7E6D);
+      box-shadow: 0 14px 35px rgba(139, 111, 94, 0.52);
+      transform: translateY(-3px);
+      color: #FFFFFF;
     }
 
-    .card{width:100%; padding:6rem 1.5rem;}
-
-    .top-bg-block{
-      position:absolute; top:0; left:0; right:0; 
-      height:50vh; background-color:#F7F3EF; z-index:-10;
+    /* ——— Scroll reveal ——— */
+    .reveal-element {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity .85s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform .85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-element.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    img {
-      max-width: 100%;
-      height: auto;
+    .card { width: 100%; padding: 6rem 1.5rem; }
+
+    /* ——— Section heading accent underline ——— */
+    .section-heading {
+      position: relative;
+      display: inline-block;
+    }
+    .section-heading::after {
+      content: '';
       display: block;
+      width: 56px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-gold), var(--accent-taupe));
+      margin: 0.6rem auto 0;
+      border-radius: 2px;
     }
-    
+
+    /* ——— Wave dividers ——— */
+    .wave-divider {
+      line-height: 0;
+      overflow: hidden;
+      margin-bottom: -1px;
+    }
+    .wave-divider svg { display: block; width: 100%; }
+
+    /* ——— Benefit cards hover lift ——— */
+    .benefit-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .benefit-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 36px rgba(139, 111, 94, 0.16);
+    }
+
+    /* ——— Image sizing ——— */
+    img { max-width: 100%; height: auto; display: block; }
+
     .story-image {
       width: 17.46875rem !important;
       height: 20.3125rem !important;
       object-fit: cover !important;
-      border-radius: 0.5rem !important;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+      border-radius: 1rem !important;
+      box-shadow: 0 20px 40px rgba(44, 31, 20, 0.15) !important;
     }
-    
+
     img[alt="שאלות נוספות"] {
       width: 18rem !important;
       height: 18rem !important;
       object-fit: cover !important;
       border-radius: 9999px !important;
+      box-shadow: 0 12px 30px rgba(139, 111, 94, 0.25) !important;
     }
-    
+
     img[alt="תמונה מעוררת השראה"] {
-      width: 30rem !important;
-      height: 25rem !important;
-      object-fit: cover !important;
+      width: 30rem !important; height: 25rem !important;
+      object-fit: cover !important; border-radius: 1rem !important;
+      box-shadow: 0 16px 40px rgba(44,31,20,0.12) !important;
     }
-    
+
     img[alt="שמה אול אין על עצמי"] {
-      width: 26.875rem !important;
-      height: 28rem !important;
-      object-fit: cover !important;
+      width: 26.875rem !important; height: 28rem !important;
+      object-fit: cover !important; border-radius: 1rem !important;
     }
-    
+
     img[alt="איך אני אדע שהתהליך מתאים לי"] {
-      width: 26.875rem !important;
-      height: 29rem !important;
-      object-fit: cover !important;
+      width: 26.875rem !important; height: 29rem !important;
+      object-fit: cover !important; border-radius: 1rem !important;
     }
-    
+
     img[alt="אחריות מלאה"] {
-      width: 26.875rem !important;
-      height: 31.25rem !important;
-      object-fit: cover !important;
+      width: 26.875rem !important; height: 31.25rem !important;
+      object-fit: cover !important; border-radius: 1rem !important;
     }
-    
+
     @media (max-width: 768px) {
       .story-image,
       img[alt="תמונה מעוררת השראה"],
@@ -184,166 +291,203 @@
         max-width: 20rem !important;
         height: auto !important;
         aspect-ratio: 4/5 !important;
+        border-radius: 0.75rem !important;
       }
-      
       img[alt="שאלות נוספות"] {
-        width: 16rem !important;
-        height: 16rem !important;
+        width: 14rem !important;
+        height: 14rem !important;
       }
     }
 
-    /* סטיילים לקרוסלת הפידבקים */
+    /* ——— Testimonials carousel ——— */
     .testimonials-container {
       will-change: transform;
       display: flex;
+      cursor: grab;
     }
-    
+    .testimonials-container:active { cursor: grabbing; }
+
     .testimonial-slide {
       transition: opacity 0.3s ease-in-out;
       flex: 0 0 100%;
       max-width: 100%;
     }
-    
+
+    /* Shimmer on long testimonial cards */
+    .testimonial-card {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .testimonial-card::after {
+      content: '';
+      position: absolute;
+      top: -50%; left: -75%;
+      width: 50%; height: 200%;
+      background: linear-gradient(
+        to right,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.35) 50%,
+        rgba(255,255,255,0) 100%
+      );
+      transform: skewX(-20deg);
+      transition: left 0.7s ease;
+      pointer-events: none;
+    }
+    .testimonial-card:hover::after { left: 125%; }
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(139, 111, 94, 0.16);
+    }
+
     #prev-testimonial, #next-testimonial {
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
+      background: rgba(253, 250, 247, 0.85);
+      border: 1px solid var(--glass-border);
+      transition: all 0.3s ease;
     }
-    
     #prev-testimonial:hover, #next-testimonial:hover {
-      background-color: rgba(255, 255, 255, 0.95);
+      background: rgba(253, 250, 247, 0.98);
       transform: translateY(-50%) scale(1.1);
     }
-    
+
     .indicator-dot {
       cursor: pointer;
       transition: all 0.3s ease;
-      width: 10px;
-      height: 10px;
+      width: 10px; height: 10px;
       border-radius: 50%;
     }
-    
-    .indicator-dot:hover {
-      transform: scale(1.2);
+    .indicator-dot.active-dot {
+      background-color: var(--accent-gold) !important;
+      transform: scale(1.35);
     }
-    
+    .indicator-dot:not(.active-dot) { background-color: rgba(201,168,130,0.4); }
+    .indicator-dot:hover { transform: scale(1.2); }
+
     @media (max-width: 768px) {
-      #prev-testimonial, #next-testimonial {
-        display: none;
-      }
-      
-      .indicator-dot {
-        width: 12px;
-        height: 12px;
-      }
-      
-      .testimonial-slide .bg-white {
-        padding: 1.5rem;
-        min-height: 350px;
-      }
-      
-      .testimonial-slide p {
-        font-size: 1rem;
-        line-height: 1.6;
-      }
+      #prev-testimonial, #next-testimonial { display: none; }
+      .indicator-dot { width: 12px; height: 12px; }
+      .testimonial-slide .testimonial-card { padding: 1.5rem; min-height: 350px; }
+      .testimonial-slide p { font-size: 1rem; line-height: 1.6; }
     }
-    
-    .testimonials-container {
-      cursor: grab;
-    }
-    
-    .testimonials-container:active {
-      cursor: grabbing;
+
+    /* ——— Personal story closing card ——— */
+    .story-closing-card {
+      background: linear-gradient(135deg, rgba(201,168,130,0.14), rgba(139,111,94,0.07));
+      border: 1px solid rgba(201,168,130,0.3);
+      border-radius: 1.5rem;
     }
   </style>
 </head>
 <body class="bg-main">
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBHDW7XR" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <div class="top-bg-block"></div>
 
-  <div class="container mx-auto px-4 md:px-6 relative">
-    <header class="text-center flex flex-col items-center py-12" style="padding-top:15vh; min-height:80vh;">
-      <div style="margin-top:25vh;">
-        <div class="relative w-80 h-56 mx-auto mb-10" style="margin-top:-7vh;">
-          <img
-            src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/3.jpg"
-            alt="עדי - מאמנת מנטלית"
-            class="absolute top-0 left-0 w-80 h-56 rounded-lg shadow-xl object-cover"
-            style="object-position:50% 45%; z-index:2;"
-          />
-          <div class="absolute top-0 left-0 w-80 h-28 bg-[#7b6d4e] rounded-t-lg" style="z-index:1;"></div>
-        </div>
+  <!-- ═══════════════════════════════
+       HERO SECTION — animated gradient
+  ═══════════════════════════════ -->
+  <section class="hero-section">
+    <canvas id="hero-particles"></canvas>
 
-        <h1 class="text-lg md:text-xl font-bold text-heading leading-relaxed max-w-5xl mx-auto mt-10 reveal-element" data-delay="100">
-          <strong>במיוחד לנשים רגישות וחכמות, שנמאס להן <br/> להרגיש במאבק מתמיד עם עצמן.</strong>
-        </h1>
+    <div class="hero-content container mx-auto px-4 md:px-6">
+      <header class="text-center flex flex-col items-center py-12" style="padding-top:15vh; min-height:80vh;">
+        <div style="margin-top:18vh;">
 
-        <p class="mt-6 text-lg md:text-xl text-body max-w-4xl mx-auto reveal-element" data-delay="200">
-          אחרי מעל 400 שעות אימון ועשרות מתאמנים, זיקקתי את התהליך הכי משמעותי שהלקוחות שלי עברו בליווי שלי, ועכשיו אני רוצה להנגיש אותו אלייך —
-        </p>
-        <p class="mt-2 text-xl md:text-2xl text-body max-w-4xl mx-auto reveal-element" data-delay="220">
-          <strong>איך להפוך מאישה שנאבקת ברגשות ובפחדים שלה,<br>
-לאישה שפועלת בקצב הנכון לה, מרגישה בטוחה בתוך עצמה, ומבינה ששלום פנימי מגיע כשהיא מפסיקה להלחם ומתחילה להקשיב.</strong>
-        </p>
-        <p class="mt-2 text-base md:text-lg text-body max-w-3xl mx-auto italic reveal-element" data-delay="240">
-          (חוזק מתחיל דווקא כשאנחנו מתמסרים להיות מי שאנחנו, לא מתוך ניסיון להשתנות)
-        </p>
-
-        <div class="mt-8 max-w-sm mx-auto reveal-element" data-delay="250">
-          <div class="relative w-full rounded-lg overflow-hidden shadow-lg" style="aspect-ratio: 9/16; max-height: 600px;">
-            <iframe 
-              class="absolute top-0 left-0 w-full h-full"
-              src="https://www.youtube.com/embed/mqiHv_iF6ow" 
-              title="סרטון יוטיוב - ריל"
-              frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-              allowfullscreen>
-            </iframe>
+          <!-- Hero photo with parallax -->
+          <div class="relative w-80 h-56 mx-auto mb-10" style="margin-top:-7vh;">
+            <div class="parallax-img-wrapper absolute top-0 left-0 w-80 h-56" style="z-index:2;">
+              <img
+                src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/3.jpg"
+                alt="עדי - מאמנת מנטלית"
+                class="w-80 h-56 object-cover"
+                id="hero-parallax-img"
+                style="object-position:50% 45%;"
+              />
+            </div>
+            <div class="absolute top-0 left-0 w-80 h-28 rounded-t-lg" style="z-index:1; background: linear-gradient(135deg, #C9A882, #8B6F5E);"></div>
           </div>
-        </div>
 
-        <div class="mt-8 max-w-3xl mx-auto">
-          <h2 class="text-3xl font-semibold text-heading reveal-element" data-delay="260">את מרגישה שאת נלחמת אבל לא מצליחה להתקדם?</h2>
-          <p class="mt-6 text-lg text-body leading-relaxed reveal-element" data-delay="280">
-            יש לך המון פוטנציאל, את מציבה לעצמך יעדים, כי את יודעת שאת מסוגלת.<br>
+          <h1 class="text-lg md:text-xl font-bold text-heading leading-relaxed max-w-5xl mx-auto mt-10 reveal-element" data-delay="100" style="font-family:'Frank Ruhl Libre','Heebo',serif;">
+            <strong>במיוחד לנשים רגישות וחכמות, שנמאס להן <br/> להרגיש במאבק מתמיד עם עצמן.</strong>
+          </h1>
+
+          <p class="mt-6 text-lg md:text-xl text-body max-w-4xl mx-auto reveal-element" data-delay="200">
+            אחרי מעל 400 שעות אימון ועשרות מתאמנים, זיקקתי את התהליך הכי משמעותי שהלקוחות שלי עברו בליווי שלי, ועכשיו אני רוצה להנגיש אותו אלייך —
+          </p>
+          <p class="mt-2 text-xl md:text-2xl text-body max-w-4xl mx-auto reveal-element" data-delay="220">
+            <strong>איך להפוך מאישה שנאבקת ברגשות ובפחדים שלה,<br>
+לאישה שפועלת בקצב הנכון לה, מרגישה בטוחה בתוך עצמה, ומבינה ששלום פנימי מגיע כשהיא מפסיקה להלחם ומתחילה להקשיב.</strong>
+          </p>
+          <p class="mt-2 text-base md:text-lg text-body max-w-3xl mx-auto italic reveal-element" data-delay="240">
+            (חוזק מתחיל דווקא כשאנחנו מתמסרים להיות מי שאנחנו, לא מתוך ניסיון להשתנות)
+          </p>
+
+          <div class="mt-8 max-w-sm mx-auto reveal-element" data-delay="250">
+            <div class="relative w-full rounded-xl overflow-hidden shadow-2xl" style="aspect-ratio: 9/16; max-height: 600px; box-shadow: 0 20px 60px rgba(44,31,20,0.2);">
+              <iframe
+                class="absolute top-0 left-0 w-full h-full"
+                src="https://www.youtube.com/embed/mqiHv_iF6ow"
+                title="סרטון יוטיוב - ריל"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+              </iframe>
+            </div>
+          </div>
+
+          <div class="mt-8 max-w-3xl mx-auto">
+            <h2 class="text-3xl font-semibold text-heading section-heading reveal-element" data-delay="260">את מרגישה שאת נלחמת אבל לא מצליחה להתקדם?</h2>
+            <p class="mt-6 text-lg text-body leading-relaxed reveal-element" data-delay="280">
+              יש לך המון פוטנציאל, את מציבה לעצמך יעדים, כי את יודעת שאת מסוגלת.<br>
 אף פעם לא התפשרת, ותמיד נתת את כל כולך כדי להגיע רחוק.<br>
 אבל משום מה – ככל שאת מתאמצת יותר, את מצליחה פחות.<br>
 ולמרות שאת מנסה שוב ושוב- את תמיד חוזרת לאותו המקום.<br>
 רק שעם כל ניסיון, את יותר מתוסכלת, יותר מבולבלת. ואת לא מבינה מה את מפספסת.
-          </p>
-          <div class="mt-10">
-            <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/222.PNG" alt="תמונה מעוררת השראה" class="mx-auto w-[30rem] h-[25rem] rounded-lg shadow-xl object-cover reveal-element" data-delay="300"/>
+            </p>
+            <div class="mt-10">
+              <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/222.PNG" alt="תמונה מעוררת השראה" class="mx-auto rounded-xl shadow-2xl object-cover reveal-element" data-delay="300"/>
+            </div>
           </div>
-        </div>
 
-
-        <div class="mt-16">
-          <h2 class="text-3xl font-semibold text-heading reveal-element" data-delay="300">
-            אז אני רוצה להציע לך דבר אחד שעדיין לא ניסית קודם-<br>
-            לשים אול אין על עצמך
-          </h2>
-          <p class="mt-6 text-lg text-body leading-relaxed reveal-element" data-delay="320">
-            למרות שאת תעשי הכל, ההצלחה שלך לא תגיע כשאת הולכת נגד מה שאת צריכה ומרגישה.<br>
+          <div class="mt-16">
+            <h2 class="text-3xl font-semibold text-heading section-heading reveal-element" data-delay="300">
+              אז אני רוצה להציע לך דבר אחד שעדיין לא ניסית קודם-<br>
+              לשים אול אין על עצמך
+            </h2>
+            <p class="mt-6 text-lg text-body leading-relaxed reveal-element" data-delay="320">
+              למרות שאת תעשי הכל, ההצלחה שלך לא תגיע כשאת הולכת נגד מה שאת צריכה ומרגישה.<br>
 במקום להוסיף מאמץ, אנחנו נחליף את המלחמה, בהקשבה.<br>
 ואת תצאי לאותה הדרך- כשאת בטוחה ורגועה.<br>
 כשהצרכים שלך מתמלאים, והרגשות שלך נענים- את תהיי תרגישי מלאה.<br>
 הטבע לא מתאמץ כדי לצמוח, וגם את לא צריכה.
-          </p>
-        </div>
+            </p>
+          </div>
 
-        <a href="https://wa.link/8ram0d" target="_blank" class="main-cta-btn reveal-element" data-delay="400" rel="noopener">
-          עדי, אני רוצה להפסיק להלחם ולהתחיל להקשיב
-        </a>
-      </div>
-    </header>
+          <a href="https://wa.link/8ram0d" target="_blank" class="main-cta-btn reveal-element" data-delay="400" rel="noopener">
+            עדי, אני רוצה להפסיק להלחם ולהתחיל להקשיב
+          </a>
+        </div>
+      </header>
+    </div>
+  </section>
+
+  <!-- Wave: hero → white -->
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#FDFAF7"/>
+    </svg>
   </div>
 
+  <!-- ═══════════════════════════════
+       PROGRAM INTRO — glass card
+  ═══════════════════════════════ -->
   <div class="container mx-auto px-6">
     <section class="card bg-main text-center">
-      <div class="max-w-4xl mx-auto bg-secondary p-8 rounded-xl shadow-lg reveal-element">
+      <div class="max-w-4xl mx-auto glass-card p-8 rounded-2xl reveal-element">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div class="text-right">
-            <h2 class="text-3xl font-bold text-heading reveal-element">לשים אול אין על עצמי</h2>
-            <h3 class="mt-4 text-xl font-semibold text-accent leading-relaxed reveal-element" data-delay="100">
+            <h2 class="text-3xl font-bold text-heading section-heading reveal-element">לשים אול אין על עצמי</h2>
+            <h3 class="mt-6 text-xl font-semibold text-accent leading-relaxed reveal-element" data-delay="100">
               התהליך שיעזור לך להתקדם ולהצליח כשהאופי והלב שלך מובילים.
             </h3>
             <p class="mt-4 text-lg text-body leading-relaxed reveal-element" data-delay="200">
@@ -358,79 +502,111 @@
             </a>
           </div>
           <div>
-            <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/15.jpg" alt="שמה אול אין על עצמי" class="w-[26.875rem] h-[28rem] mx-auto object-cover rounded-lg shadow-md reveal-element" data-delay="500" style="object-position:50% 40%;" />
+            <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/15.jpg" alt="שמה אול אין על עצמי" class="mx-auto object-cover reveal-element" data-delay="500" style="object-position:50% 40%;" />
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="card bg-main relative overflow-hidden">
-      <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/1.jpg" alt="" class="absolute inset-0 w-full h-full object-cover opacity-25"/>
-
-      <div class="max-w-6xl mx-auto text-center w-full relative">
-        <h2 class="text-3xl font-semibold text-heading mb-10 reveal-element">מה אמרו מתאמנות שנכנסו לתהליך?</h2>
-        <div class="grid grid-cols-1 md:grid-cols-1 gap-6 max-w-lg mx-auto">
-          <div class="bg-secondary p-6 rounded-xl shadow-lg flex flex-col h-full text-right reveal-element" data-delay="100">
-            <blockquote class="text-md text-body italic flex-grow">"הרגשתי שעברת בכל החורים בלב שלי באימון אחד."</blockquote>
-            <footer class="mt-4"><p class="font-bold text-accent">- מתאמנת אחרי אימון ראשון</p></footer>
-          </div>
-          <div class="bg-secondary p-6 rounded-xl shadow-lg flex flex-col h-full text-right reveal-element" data-delay="200">
-            <blockquote class="text-md text-body italic flex-grow">"מאז המפגש האחרון הייתי קצת בלחץ, אבל מה שכן השתנה, זה שאני לאט מפסיקה לפחד ממנו ומתחילה לדבר איתו ולהבין."</blockquote>
-            <footer class="mt-4"><p class="font-bold text-accent">- מתאמנת שמתמודדת עם חרדות</p></footer>
-          </div>
-          <div class="bg-secondary p-6 rounded-xl shadow-lg flex flex-col h-full text-right reveal-element" data-delay="300">
-            <blockquote class="text-md text-body italic flex-grow">"לאט לאט בגלל שאני חומלת על עצמי יותר, הוא(בעלי) מתחיל לחמול עלי גם, וגם אנשים מבחוץ, גם אם אני לא אומרת שום דבר הם יותר רואים אותי ממקודם."</blockquote>
-            <footer class="mt-4"><p class="font-bold text-accent">- מתאמנת נשואה ואימא ל-3</p></footer>
-          </div>
-          <div class="bg-secondary p-6 rounded-xl shadow-lg text-right reveal-element" data-delay="400">
-            <blockquote class="text-md text-body italic flex-grow">"מאז הפגישה שלנו אני ממש בטוב, גם מבחינת ההפרעה- לא היו לי בולמוסים והקאות כבר כמה ימים. הדברים שדיברנו עליהם ממש נכנסו אליי עמוק. מרגישה ממש שלמה ומסופקת ועם הרבה שליטה בעיקר."</blockquote>
-            <footer class="mt-4"><p class="font-bold text-accent">- מתאמנת שמתמודדת עם הפרעות אכילה</p></footer>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="card bg-main">
-      <div class="max-w-6xl mx-auto text-center w-full relative z-10">
-        <h2 class="text-3xl font-semibold text-heading mb-10 reveal-element">השינוי שיקרה לך</h2>
-        <h3 class="text-2xl font-bold text-accent mb-6 text-center reveal-element" data-delay="100">עם עצמך </h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <div class="bg-secondary p-6 rounded-xl shadow-md text-right reveal-element" data-delay="200"><strong class="font-semibold text-heading block mb-1">🌿 שחרור ממאמץ־יתר</strong><p class="text-body text-sm leading-relaxed">את תלמדי לנהל קצב אחר – שבו את מתקדמת בלי להתפרק בדרך.</p></div>
-          <div class="bg-secondary p-6 rounded-xl shadow-md text-right reveal-element" data-delay="300"><strong class="font-semibold text-heading block mb-1">💪 הכוח חוזר לידיים שלך</strong><p class="text-body text-sm leading-relaxed">פחות ״הדברים קורים לי״ ויותר- ״אני מצליחה לבחור״.</p></div>
-          <div class="bg-secondary p-6 rounded-xl shadow-md text-right reveal-element" data-delay="400"><strong class="font-semibold text-heading block mb-1">🎯 התקדמות מתוך רוגע</strong><p class="text-body text-sm leading-relaxed">פתאום תגלי שהדברים שפעם היו קשים ומתישים הופכים לקלים יותר לביצוע, כי את כבר לא נלחמת בעצמך בדרך אליהם.</p></div>
-          <div class="bg-secondary p-6 rounded-xl shadow-md text-right reveal-element" data-delay="500"><strong class="font-semibold text-heading block mb-1">⚡ אנרגיה חדשה תתפנה</strong><p class="text-body text-sm leading-relaxed">רגשות שהתנגדת אליהם ולא ידעת איך להכיל- ישתחררו ויפנו מקום לאנרגיה חדשה.</p></div>
-          <div class="bg-secondary p-6 rounded-xl shadow-md text-right reveal-element" data-delay="600"><strong class="font-semibold text-heading block mb-1">💭 שקט בראש</strong><p class="text-body text-sm leading-relaxed">המחשבות שפעם הורידו אותך והתישו אותך, יתחלפו בקול פנימי תומך של עוצמה ואמונה בעצמך</p></div>
-          <div class="bg-secondary p-6 rounded-xl shadow-md text-right reveal-element" data-delay="700"><strong class="font-semibold text-heading block mb-1">✨ ביטחון וערך עצמי</strong><p class="text-body text-sm leading-relaxed">תחושה עמוקה שאת ראויה ובטוחה בדיוק כפי שאת, בלי שהביטחון שלך יהיה תלוי בתוצאות חיצוניות או באישור של אחרים.</p></div>
-        </div>
-
-        <h3 class="text-2xl font-bold text-accent mb-6 text-center reveal-element" data-delay="900">עם אנשים סביבך </h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="bg-secondary p-6 rounded-xl shadow-md text-right reveal-element" data-delay="1000"><strong class="font-semibold text-heading block mb-1">👥 יותר אנשים ירצו בחברתך</strong><p class="text-body text-sm leading-relaxed">ותרגישי יותר מוערכת, את תדעי את הערך שלך. את תרגישי ראויה.</p></div>
-          <div class="bg-secondary p-6 rounded-xl shadow-md text-right reveal-element" data-delay="1100"><strong class="font-semibold text-heading block mb-1">🛡️ יכולת להציב גבולות</strong><p class="text-body text-sm leading-relaxed">במקום להכנע ליחס שאנשים נותנים לך, את תדעי לבקש את מה שאת צריכה. תשדרי את זה. ואנשים יתחילו לכבד את זה.</p></div>
-          <div class="bg-secondary p-6 rounded-xl shadow-md text-right reveal-element" data-delay="1200"><strong class="font-semibold text-heading block mb-1">👑 לשים את עצמך במקום הראשון</strong><p class="text-body text-sm leading-relaxed">לפני תוצאות ולפני אחרים. את תתחילי לשים לב למה את צריכה, ולדאוג לעצמך במקום רק לדרוש מעצמך יותר.</p></div>
         </div>
       </div>
     </section>
   </div>
 
+  <!-- Wave: white → cream -->
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,0 C480,60 960,0 1440,50 L1440,60 L0,60 Z" fill="#F2EBE1"/>
+    </svg>
+  </div>
+
+  <!-- ═══════════════════════════════
+       SHORT TESTIMONIALS
+  ═══════════════════════════════ -->
   <section class="card bg-secondary relative overflow-hidden">
-    <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/22.PNG" alt="רקע תהליך" class="absolute inset-0 w-full h-full object-cover opacity-25"/>
+    <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/1.jpg" alt="" class="absolute inset-0 w-full h-full object-cover opacity-10"/>
+
+    <div class="max-w-6xl mx-auto text-center w-full relative">
+      <h2 class="text-3xl font-semibold text-heading section-heading mb-10 reveal-element">מה אמרו מתאמנות שנכנסו לתהליך?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-1 gap-6 max-w-lg mx-auto">
+        <div class="glass-card benefit-card p-6 rounded-2xl flex flex-col h-full text-right reveal-element" data-delay="100">
+          <blockquote class="text-md text-body italic flex-grow">"הרגשתי שעברת בכל החורים בלב שלי באימון אחד."</blockquote>
+          <footer class="mt-4"><p class="font-bold text-accent">- מתאמנת אחרי אימון ראשון</p></footer>
+        </div>
+        <div class="glass-card benefit-card p-6 rounded-2xl flex flex-col h-full text-right reveal-element" data-delay="200">
+          <blockquote class="text-md text-body italic flex-grow">"מאז המפגש האחרון הייתי קצת בלחץ, אבל מה שכן השתנה, זה שאני לאט מפסיקה לפחד ממנו ומתחילה לדבר איתו ולהבין."</blockquote>
+          <footer class="mt-4"><p class="font-bold text-accent">- מתאמנת שמתמודדת עם חרדות</p></footer>
+        </div>
+        <div class="glass-card benefit-card p-6 rounded-2xl flex flex-col h-full text-right reveal-element" data-delay="300">
+          <blockquote class="text-md text-body italic flex-grow">"לאט לאט בגלל שאני חומלת על עצמי יותר, הוא(בעלי) מתחיל לחמול עלי גם, וגם אנשים מבחוץ, גם אם אני לא אומרת שום דבר הם יותר רואים אותי ממקודם."</blockquote>
+          <footer class="mt-4"><p class="font-bold text-accent">- מתאמנת נשואה ואימא ל-3</p></footer>
+        </div>
+        <div class="glass-card benefit-card p-6 rounded-2xl text-right reveal-element" data-delay="400">
+          <blockquote class="text-md text-body italic flex-grow">"מאז הפגישה שלנו אני ממש בטוב, גם מבחינת ההפרעה- לא היו לי בולמוסים והקאות כבר כמה ימים. הדברים שדיברנו עליהם ממש נכנסו אליי עמוק. מרגישה ממש שלמה ומסופקת ועם הרבה שליטה בעיקר."</blockquote>
+          <footer class="mt-4"><p class="font-bold text-accent">- מתאמנת שמתמודדת עם הפרעות אכילה</p></footer>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave: cream → white -->
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,50 C480,0 960,60 1440,10 L1440,60 L0,60 Z" fill="#FDFAF7"/>
+    </svg>
+  </div>
+
+  <!-- ═══════════════════════════════
+       BENEFITS
+  ═══════════════════════════════ -->
+  <div class="container mx-auto px-6">
+    <section class="card bg-main">
+      <div class="max-w-6xl mx-auto text-center w-full relative z-10">
+        <h2 class="text-3xl font-semibold text-heading section-heading mb-10 reveal-element">השינוי שיקרה לך</h2>
+        <h3 class="text-2xl font-bold text-accent mb-6 text-center reveal-element" data-delay="100">עם עצמך </h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <div class="glass-card benefit-card p-6 rounded-2xl text-right reveal-element" data-delay="200"><strong class="font-semibold text-heading block mb-1">🌿 שחרור ממאמץ־יתר</strong><p class="text-body text-sm leading-relaxed">את תלמדי לנהל קצב אחר – שבו את מתקדמת בלי להתפרק בדרך.</p></div>
+          <div class="glass-card benefit-card p-6 rounded-2xl text-right reveal-element" data-delay="300"><strong class="font-semibold text-heading block mb-1">💪 הכוח חוזר לידיים שלך</strong><p class="text-body text-sm leading-relaxed">פחות ״הדברים קורים לי״ ויותר- ״אני מצליחה לבחור״.</p></div>
+          <div class="glass-card benefit-card p-6 rounded-2xl text-right reveal-element" data-delay="400"><strong class="font-semibold text-heading block mb-1">🎯 התקדמות מתוך רוגע</strong><p class="text-body text-sm leading-relaxed">פתאום תגלי שהדברים שפעם היו קשים ומתישים הופכים לקלים יותר לביצוע, כי את כבר לא נלחמת בעצמך בדרך אליהם.</p></div>
+          <div class="glass-card benefit-card p-6 rounded-2xl text-right reveal-element" data-delay="500"><strong class="font-semibold text-heading block mb-1">⚡ אנרגיה חדשה תתפנה</strong><p class="text-body text-sm leading-relaxed">רגשות שהתנגדת אליהם ולא ידעת איך להכיל- ישתחררו ויפנו מקום לאנרגיה חדשה.</p></div>
+          <div class="glass-card benefit-card p-6 rounded-2xl text-right reveal-element" data-delay="600"><strong class="font-semibold text-heading block mb-1">💭 שקט בראש</strong><p class="text-body text-sm leading-relaxed">המחשבות שפעם הורידו אותך והתישו אותך, יתחלפו בקול פנימי תומך של עוצמה ואמונה בעצמך</p></div>
+          <div class="glass-card benefit-card p-6 rounded-2xl text-right reveal-element" data-delay="700"><strong class="font-semibold text-heading block mb-1">✨ ביטחון וערך עצמי</strong><p class="text-body text-sm leading-relaxed">תחושה עמוקה שאת ראויה ובטוחה בדיוק כפי שאת, בלי שהביטחון שלך יהיה תלוי בתוצאות חיצוניות או באישור של אחרים.</p></div>
+        </div>
+
+        <h3 class="text-2xl font-bold text-accent mb-6 text-center reveal-element" data-delay="900">עם אנשים סביבך </h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="glass-card benefit-card p-6 rounded-2xl text-right reveal-element" data-delay="1000"><strong class="font-semibold text-heading block mb-1">👥 יותר אנשים ירצו בחברתך</strong><p class="text-body text-sm leading-relaxed">ותרגישי יותר מוערכת, את תדעי את הערך שלך. את תרגישי ראויה.</p></div>
+          <div class="glass-card benefit-card p-6 rounded-2xl text-right reveal-element" data-delay="1100"><strong class="font-semibold text-heading block mb-1">🛡️ יכולת להציב גבולות</strong><p class="text-body text-sm leading-relaxed">במקום להכנע ליחס שאנשים נותנים לך, את תדעי לבקש את מה שאת צריכה. תשדרי את זה. ואנשים יתחילו לכבד את זה.</p></div>
+          <div class="glass-card benefit-card p-6 rounded-2xl text-right reveal-element" data-delay="1200"><strong class="font-semibold text-heading block mb-1">👑 לשים את עצמך במקום הראשון</strong><p class="text-body text-sm leading-relaxed">לפני תוצאות ולפני אחרים. את תתחילי לשים לב למה את צריכה, ולדאוג לעצמך במקום רק לדרוש מעצמך יותר.</p></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Wave: white → cream -->
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,10 C480,60 960,0 1440,40 L1440,60 L0,60 Z" fill="#F2EBE1"/>
+    </svg>
+  </div>
+
+  <!-- ═══════════════════════════════
+       WHAT THE PROCESS OFFERS
+  ═══════════════════════════════ -->
+  <section class="card bg-secondary relative overflow-hidden">
+    <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/22.PNG" alt="רקע תהליך" class="absolute inset-0 w-full h-full object-cover opacity-10"/>
     <div class="max-w-4xl mx-auto text-center w-full relative px-6 z-10">
-      <h2 class="text-3xl font-semibold text-heading mb-10 reveal-element">בתכלס, מה הליווי שלי מציע?</h2>
+      <h2 class="text-3xl font-semibold text-heading section-heading mb-10 reveal-element">בתכלס, מה הליווי שלי מציע?</h2>
       <p class="text-xl text-body mb-8 leading-relaxed max-w-3xl mx-auto reveal-element" data-delay="100">
         מפגש שבועי זום/פרונטלי של 60 דקות, למשך 3 חודשים, שבו אנחנו נבנה את הבסיס הפנימי שמתאים בדיוק ללב הרגיש שלך, ולמי שאת. <strong>איתו את תצעדי לאותם החלומות בדרך חדשה,<br>
       והפעם? זה יהיה הרבה יותר פשוט.</strong>
       </p>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-right">
-        <div class="bg-transparent p-6 rounded-xl shadow-md reveal-element" data-delay="200">
+        <div class="glass-card benefit-card p-6 rounded-2xl reveal-element" data-delay="200">
           <h3 class="text-lg font-bold text-accent mb-2 flex items-center justify-end"><span class="ml-2 text-xl">🧘‍♀️</span> מחזקות הקשבה פנימה</h3>
           <p class="mt-2 text-body text-sm leading-relaxed">יש מחשבות, זכרונות, כאב ששמרת המון שנים. למרות שהם מכבידים, תפקידם לא להעמיס עלינו, אלא לסמן לנו- אילו צרכים שלנו לא קיבלו מענה. לכן בתהליך אנחנו מכילות ונותנות מקום- שבסוף ישחרר ממך משקל ריגשי גדול.</p>
         </div>
-        <div class="bg-transparent p-6 rounded-xl shadow-md reveal-element" data-delay="300">
+        <div class="glass-card benefit-card p-6 rounded-2xl reveal-element" data-delay="300">
           <h3 class="text-lg font-bold text-accent mb-2 flex items-center justify-end"><span class="ml-2 text-xl">✨</span> מגבירות ומעצימות את מי שאת</h3>
           <p class="mt-2 text-body text-sm leading-relaxed">התכונות שלך, החלומות שלך- הם ארגז הכלים היחודי שקיבלת בעולם. הכוח הכי גדול שלך נמצא בלהיות מי את. כשאת שמה את הפוקוס על מה שקיים בך- את מתחילה להיות שלווה, כי את מפסיקה לחפש בחוץ, ומתחילה לסמוך עליך.</p>
         </div>
-        <div class="bg-transparent p-6 rounded-xl shadow-md reveal-element" data-delay="400">
+        <div class="glass-card benefit-card p-6 rounded-2xl reveal-element" data-delay="400">
           <h3 class="text-lg font-bold text-accent mb-2 flex items-center justify-end"><span class="ml-2 text-xl">🧠</span> מייצרות קשר בין הרגשות לגוף</h3>
           <p class="mt-2 text-body text-sm leading-relaxed">קשר שיחזיר שליטה ויעמיק את העבודה הריגשית שלך. כשאת יודעת לזהות אילו רגשות ומחשבות מפעילים את הגוף שלך, את בעלת הבית על התוצאות שיש לך בחיים.</p>
         </div>
@@ -438,13 +614,23 @@
     </div>
   </section>
 
+  <!-- Wave: cream → white -->
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,40 C360,0 1080,60 1440,20 L1440,60 L0,60 Z" fill="#FDFAF7"/>
+    </svg>
+  </div>
+
+  <!-- ═══════════════════════════════
+       CTA SECTION
+  ═══════════════════════════════ -->
   <div class="container mx-auto px-6">
     <section id="cta" class="card text-center bg-main">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <div class="text-right">
-          <h2 class="text-4xl font-bold text-heading reveal-element">עדי, האם זה הזמן הנכון עבורי להתחיל תהליך?</h2>
+          <h2 class="text-4xl font-bold text-heading section-heading reveal-element">עדי, האם זה הזמן הנכון עבורי להתחיל תהליך?</h2>
           <p class="mt-4 text-xl text-body max-w-2xl mx-auto leading-relaxed reveal-element" data-delay="100">
-            אני יודעת שאת כנראה מחכה לרגע שבו תרגישי “מוכנה”, או לרגע שבו תצליחי סוף סוף להשתלט על הכל בעצמך.<br>
+            אני יודעת שאת כנראה מחכה לרגע שבו תרגישי "מוכנה", או לרגע שבו תצליחי סוף סוף להשתלט על הכל בעצמך.<br>
 אבל בכל יום שאת נלחמת בצרכים וברגשות שלך, זה לא רק הזמן שעובר, זו הנפש שלך שמשלמת את המחיר.<br>
 לי לקח המון שנים עד שפניתי לעזרה ששינתה את חיי, והקשיים שלי הלכו וגברו עד שלא הצלחתי להחזיק בעצמי. היום אני כאן כדי לומר לך שאת לא צריכה להגיע לנקודת השבירה שלך כדי לבקש עזרה, ומגיע לך להיות מאושרת כבר עכשיו.
           </p>
@@ -455,24 +641,34 @@
             <span>לשליחת הודעה</span>
           </a>
         </div>
-        
+
         <div class="flex justify-center md:justify-start">
-          <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/56.jpg" alt="איך אני אדע שהתהליך מתאים לי" class="w-[26.875rem] h-[29rem] object-cover rounded-lg shadow-xl reveal-element" data-delay="300"/>
+          <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/56.jpg" alt="איך אני אדע שהתהליך מתאים לי" class="object-cover reveal-element" data-delay="300"/>
         </div>
       </div>
     </section>
   </div>
 
+  <!-- Wave: white → cream -->
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,20 C480,60 960,0 1440,45 L1440,60 L0,60 Z" fill="#F2EBE1"/>
+    </svg>
+  </div>
+
+  <!-- ═══════════════════════════════
+       LONG TESTIMONIALS CAROUSEL
+  ═══════════════════════════════ -->
   <section class="card bg-secondary">
     <div class="max-w-6xl mx-auto text-center w-full relative z-10">
-      <h2 class="text-3xl font-semibold text-heading mb-10 reveal-element">מתאמנים ומתאמנות ששמו אול אין על עצמם:</h2>
-      
+      <h2 class="text-3xl font-semibold text-heading section-heading mb-10 reveal-element">מתאמנים ומתאמנות ששמו אול אין על עצמם:</h2>
+
       <div class="relative">
-        <div id="testimonials-carousel" class="overflow-hidden rounded-xl">
+        <div id="testimonials-carousel" class="overflow-hidden rounded-2xl">
           <div class="testimonials-container flex transition-transform duration-500 ease-in-out">
-            
+
             <div class="testimonial-slide flex-shrink-0 w-full px-4">
-              <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-right mx-auto max-w-4xl min-h-[400px] flex items-center">
+              <div class="testimonial-card glass-card p-8 rounded-2xl text-right mx-auto max-w-4xl min-h-[400px] flex items-center">
                 <p class="text-body text-lg leading-relaxed italic w-full">
                   "כל פעם אחרי שאני באה ממך יש לי תחושה של נקיות כזאתי. הנקיות הזו נותנת לי ממש אנרגיה. כאילו הוצאתי רעל מהגוף, ועכשיו יש לי עוד כמה מקורות פנויים לעשות דברים שהראש פחות אליהם יותר. בהתחלה באתי אלייך אני חושבת עם חושך. אבל ממש, שלא היה לי מימי. היום אני פשוט רואה שגם המקומות הנמוכים שאני מגיעה אליהם- אני מגיעה אליהם בהרבה יותר אסופה. ואני ממש מרגישה שזה מהשיחות איתך, הם איכשהו גורמות לי להכיר את עצמי יותר לעומק, ולהוריד את המפלס של הכעס שצברתי עם השנים. אני מצפה להמשך הדרך שיש לנו ביחד."
                 </p>
@@ -480,7 +676,7 @@
             </div>
 
             <div class="testimonial-slide flex-shrink-0 w-full px-4">
-              <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-right mx-auto max-w-4xl min-h-[400px] flex items-center">
+              <div class="testimonial-card glass-card p-8 rounded-2xl text-right mx-auto max-w-4xl min-h-[400px] flex items-center">
                 <p class="text-body text-lg leading-relaxed italic w-full">
                   "אני אף פעם לא הרגשתי ככה בתוך תהליך יש לי ימים טובים יותר וטובים פחות אבל אני מרגישה שאני במקום הנכון. אני מווסתת יותר, אני הולכת עם מה שהולך לי בפנים. זה שלמדתי לשים תשומת לב לנשימה שלי זה שינה לי הכל. אני אחרת."
                 </p>
@@ -488,7 +684,7 @@
             </div>
 
             <div class="testimonial-slide flex-shrink-0 w-full px-4">
-              <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-right mx-auto max-w-4xl min-h-[400px] flex items-center">
+              <div class="testimonial-card glass-card p-8 rounded-2xl text-right mx-auto max-w-4xl min-h-[400px] flex items-center">
                 <p class="text-body text-lg leading-relaxed italic w-full">
                   "בוקר טוב עדי 🥰 רציתי לשתף שהיה לי אימון מעולה אתמול. הרגשתי שאני נפתחת יותר מתחברת פנימה ומרגישה עמוק וחזק יותר ונותנת לעצמי להרגיש ולומדת לא להדחיק . הבנתי שאני יכולה להרגיש יותר ולשתף יותר איתך ועם קרובים אחרים. תודה ממש אין עלייך. הנוכחות שלך והאנרגיה שלך טובה ואני שמחה שבחרתי לעשות איתך את הטיפול ❤️🥰"
                 </p>
@@ -496,7 +692,7 @@
             </div>
 
             <div class="testimonial-slide flex-shrink-0 w-full px-4">
-              <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-right mx-auto max-w-4xl min-h-[400px] flex items-center">
+              <div class="testimonial-card glass-card p-8 rounded-2xl text-right mx-auto max-w-4xl min-h-[400px] flex items-center">
                 <p class="text-body text-lg leading-relaxed italic w-full">
                   "ממליצה לכל אחד להגיע לאימון! באמת זה יכול לעזור לכל כך הרבה לשבת שעה פעם בשבוע לדבר , לפרוק. לכולנו יש עניין לא פתור והחיים כל כך דינמיים הכול משתנה במהירות. האימון הזה באמת עושה טוב לנפש לעצמי וזה מגיע לי! ממליצה מכל הלב לעשות את הצעד הזה בשביל עצמכם. אני ממש שמחה שהתחלנו את התהליך הזה לא רוצה שייגמר❤️❤️❤️"
                 </p>
@@ -504,7 +700,7 @@
             </div>
 
             <div class="testimonial-slide flex-shrink-0 w-full px-4">
-              <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-right mx-auto max-w-4xl min-h-[400px] flex items-center">
+              <div class="testimonial-card glass-card p-8 rounded-2xl text-right mx-auto max-w-4xl min-h-[400px] flex items-center">
                 <p class="text-body text-lg leading-relaxed italic w-full">
                   "התהליך שאת עושה איתי עוזר לי לפרק דברים בצורה הכי טובה ונכונה לי. מודה לך ולהשם על הדרך."
                 </p>
@@ -512,7 +708,7 @@
             </div>
 
             <div class="testimonial-slide flex-shrink-0 w-full px-4">
-              <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-right mx-auto max-w-4xl min-h-[400px] flex items-center">
+              <div class="testimonial-card glass-card p-8 rounded-2xl text-right mx-auto max-w-4xl min-h-[400px] flex items-center">
                 <p class="text-body text-lg leading-relaxed italic w-full">
                   "הגעתי לאימון כי חוויתי הרבה חוויות מטלטלות בחיי, ורציתי לעשות סדר בנפש ולפרוק את הטראומה, מהרגע שהתחלתי את האימון איתך אני יודעת להתמודד הרבה הרבה יותר טוב עם רגשות שליליים. לא למדתי אף פעם איך להתמודד איתם כשהם באים, וזה הוביל אותי לסערה פנימית , עכשיו אני מתמודדת איתם בהרבה יותר קלות, מה שמקל לי מאוד את החיים, גם מבנה הפנים שלי השתנה לטוב, ממש רואה לפני ואחרי בתמונות שלי, ממש הזוי,"
                 </p>
@@ -520,7 +716,7 @@
             </div>
 
             <div class="testimonial-slide flex-shrink-0 w-full px-4">
-              <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-right mx-auto max-w-4xl min-h-[400px] flex items-center">
+              <div class="testimonial-card glass-card p-8 rounded-2xl text-right mx-auto max-w-4xl min-h-[400px] flex items-center">
                 <p class="text-body text-lg leading-relaxed italic w-full">
                   "באימון אני מצליחה להגיע להרבה יותר בהירות למה אני רוצה, איך אני רוצה, להתחבר יותר לאינטואיציה ולעצמי, שזה ממש עושה לי טוב, ואני מצליחה לזקק יותר את מה יעשה אותי מאושרת, למרות שפעם חשבתי שהאושר הוא בדברים אחרים. וכמובן אני מצליחה לראות את החיים פחות בשחור ולבן ולהחליף מלא אמונות מגבילות באמונות כיפיות וקלילות יותר לחיי🤍כל כך שמחה שאלוקים זמן לי אותך , יש לך הרבה חלק בשקט הנפשי שנכנס לי לאט לאט בתוך הסערה ♥️"
                 </p>
@@ -528,7 +724,7 @@
             </div>
 
             <div class="testimonial-slide flex-shrink-0 w-full px-4">
-              <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-right mx-auto max-w-4xl min-h-[400px] flex items-center">
+              <div class="testimonial-card glass-card p-8 rounded-2xl text-right mx-auto max-w-4xl min-h-[400px] flex items-center">
                 <p class="text-body text-lg leading-relaxed italic w-full">
                   "בחרתי לי את הבן אדם המתאים לי לעבור איתו תהליך כזה, ולראשונה הרגשתי שאני יכולה להיפתח, ולהגיד את כל הדברים המוזרים שלי, והדברים שמביכים אותי, ולקבל לגיטימציה- משהו שהצלחתי לתת לעצמי גם כשלא הייתי בשיחה איתך. למדתי להכיל ולתמוך בעצמי כמו שאני מכילה ומקבלת חברות שלי. הייתי ממליצה לכל מי שרוצה לחיות יותר טוב , להיות מודע למה הוא מרגיש, להתפתח ולהרגיש חופשי יותר ושמח יותר. את השראה בשבילי ומודל לחיקוי וגורמת לי לשאוף גבוה יותר. האימון איתך היחיד שעזר לי ושיפר לי את ההרגשה, נתת לי את הכלים המתאימים לי, אני מעריכה אותך מאוד."
                 </p>
@@ -536,7 +732,7 @@
             </div>
 
             <div class="testimonial-slide flex-shrink-0 w-full px-4">
-              <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-right mx-auto max-w-4xl min-h-[400px] flex items-center">
+              <div class="testimonial-card glass-card p-8 rounded-2xl text-right mx-auto max-w-4xl min-h-[400px] flex items-center">
                 <p class="text-body text-lg leading-relaxed italic w-full">
                   "הייתי בוכה כל יום כבר על כל דבר ללא הפסקה. והבנתי שאני חייבת לעזור לעצמי לצאת מהמצב הזה. איתך למדתי המון על איך לקבל את כל הרגשות האלו שלא רציתי אותם מסביבי, ולהבין שזה באמת דברים טבעיים וזה מה שהופך אותנו לאנושיים. כשאני בלחץ אז הראש שלי מלאאאאא במחשבות שרצות על ספיד, לימדת אותי איך להרגיע את הגוף ולחזור למצב יותר רגוע. ואת זה אני מיישמת עד היום ומעבירה הלאה. אני רואה את עצמי כאילו יצאתי מבור של עצבות וכאב עצום, לאור ותקווה חדשה שהכל אפשרי. פיתחתי יכולות של להתמודד עם מצבי לחץ, ולדעת להציב לעצמי מטרות ריאליות וגם לדעת לתת לעצמי זמן. הייתי ממליצה לכל אחד שמרגיש שהוא צריך מישהו חיצוני שיקשיב ויבין איך לעזור לנפש שלו להיות יותר רגועה ושלווה להגיע לאימון."
                 </p>
@@ -546,10 +742,10 @@
           </div>
         </div>
 
-        <button id="prev-testimonial" class="absolute left-0 md:left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all z-10">
+        <button id="prev-testimonial" class="absolute left-0 md:left-4 top-1/2 transform -translate-y-1/2 text-gray-700 p-3 rounded-full shadow-lg transition-all z-10">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
         </button>
-        <button id="next-testimonial" class="absolute right-0 md:right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all z-10">
+        <button id="next-testimonial" class="absolute right-0 md:right-4 top-1/2 transform -translate-y-1/2 text-gray-700 p-3 rounded-full shadow-lg transition-all z-10">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
         </button>
 
@@ -558,12 +754,22 @@
     </div>
   </section>
 
+  <!-- Wave: cream → white -->
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,50 C360,10 1080,60 1440,15 L1440,60 L0,60 Z" fill="#FDFAF7"/>
+    </svg>
+  </div>
+
+  <!-- ═══════════════════════════════
+       PERSONAL STORY
+  ═══════════════════════════════ -->
   <div class="container mx-auto px-6">
     <footer class="card bg-main">
       <div class="max-w-5xl mx-auto">
         <div class="text-center reveal-element">
-          <h2 class="text-3xl font-semibold text-heading">הסיפור האישי שלי</h2>
-          <h3 class="text-xl text-body mt-2">עם פחדים ומאבקים פנימיים</h3>
+          <h2 class="text-3xl font-semibold text-heading section-heading">הסיפור האישי שלי</h2>
+          <h3 class="text-xl text-body mt-4">עם פחדים ומאבקים פנימיים</h3>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mt-10 max-w-5xl mx-auto">
@@ -612,34 +818,35 @@
           </div>
         </div>
 
+        <!-- Closing story card -->
         <div class="max-w-5xl mx-auto mt-16 mb-16 px-6">
           <div class="reveal-element" data-delay="600">
-            <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8 shadow-lg border border-blue-100">
+            <div class="story-closing-card p-8 shadow-lg">
               <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div class="space-y-6 text-right">
-                  <div class="text-lg text-gray-800 leading-relaxed">
+                  <div class="text-lg text-body leading-relaxed">
                     אני יודעת מה זה להרגיש בודדה.<br>
                     אני יודעת מה זה לפחד לאבד את מי שאת.<br>
                     אני יודעת מה זה לחלום, ולראות את המציאות הזו מתרחקת לך מהעיניים.
                   </div>
-                  <div class="text-lg text-gray-800 leading-relaxed font-medium">
+                  <div class="text-lg text-body leading-relaxed font-medium">
                     אבל אני יודעת גם מה זה להתאהב בחיים בחזרה.<br>
                     לחזור להיות מי שאת, בלי המלחמה.
                   </div>
-                  <div class="text-lg text-gray-800 leading-relaxed">
+                  <div class="text-lg text-body leading-relaxed">
                     אני לא חושבת היום פחות, אני חושבת אחרת.<br>
                     לא סגרתי את הלב שלי, לא הפכתי לפחות רגישה,<br>
                     למדתי להעריך את עצמי עם כל מי שאני,<br>
                     והגיע בעלי, אדם שאוהב את הרגישות שבי, ומחזיר אליי רכות כפליים.
                   </div>
-                  <div class="text-lg text-accent font-semibold leading-relaxed border-t border-blue-200 pt-6">
+                  <div class="text-lg text-accent font-semibold leading-relaxed border-t pt-6" style="border-color: rgba(201,168,130,0.4);">
                     הריפוי שלי הגיע עם ההתמסרות לרגשות שלי, במקום להלחם בהם.<br>
                     למדתי שהרגע שבו מפסיקים להלחם, הוא הרגע שבו מתחילים לנצח.<br>
                     ושהכוח הכי גדול שלי - הוא לבחור בעצמי<br>
                   </div>
                 </div>
                 <div class="flex justify-center md:justify-start">
-                  <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/16.jpg" alt="אחריות מלאה" class="w-[26.875rem] h-[31.25rem] object-cover rounded-lg shadow-xl reveal-element" data-delay="800"/>
+                  <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/16.jpg" alt="אחריות מלאה" class="object-cover reveal-element" data-delay="800"/>
                 </div>
               </div>
             </div>
@@ -649,16 +856,26 @@
     </footer>
   </div>
 
-  <section class="card bg-main">
+  <!-- Wave: white → cream -->
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,15 C480,60 960,5 1440,50 L1440,60 L0,60 Z" fill="#F2EBE1"/>
+    </svg>
+  </div>
+
+  <!-- ═══════════════════════════════
+       FAQ
+  ═══════════════════════════════ -->
+  <section class="card bg-secondary">
     <div class="max-w-6xl mx-auto text-center w-full relative z-10">
-      <h2 class="text-3xl font-semibold text-heading mb-6 reveal-element">שאלות נוספות</h2>
+      <h2 class="text-3xl font-semibold text-heading section-heading mb-6 reveal-element">שאלות נוספות</h2>
       <div class="max-w-5xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
           <div class="text-right space-y-4">
-            <div class="bg-secondary p-4 rounded-xl shadow-md reveal-element" data-delay="200">
+            <div class="glass-card benefit-card p-4 rounded-2xl reveal-element" data-delay="200">
               <button class="w-full text-right flex justify-between items-center" onclick="toggleAnswer('answer1')">
                 <span class="text-lg font-semibold text-heading">עדי אני מתעניינת בתהליך, איך אנחנו מתקדמות מכאן?</span>
-                <svg id="arrow1" class="w-6 h-6 text-heading transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg id="arrow1" class="w-6 h-6 text-accent transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                 </svg>
               </button>
@@ -672,10 +889,10 @@
                 </a>
               </div>
             </div>
-            <div class="bg-secondary p-4 rounded-xl shadow-md reveal-element" data-delay="300">
+            <div class="glass-card benefit-card p-4 rounded-2xl reveal-element" data-delay="300">
               <button class="w-full text-right flex justify-between items-center" onclick="toggleAnswer('answer2')">
                 <span class="text-lg font-semibold text-heading">מהי שיחת הכרות?</span>
-                <svg id="arrow2" class="w-6 h-6 text-heading transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg id="arrow2" class="w-6 h-6 text-accent transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                 </svg>
               </button>
@@ -685,10 +902,10 @@
                 <p class="mt-3">כדי לכבד את הזמן שלך ושלי, אני פותחת את השיחה הזו רק למי שכבר בשלה להתחייב לתהליך עומק אמיתי, ובעיקר לעצמה. ומוכנה להתחיל לעבוד באמת עבור החלומות והעתיד שלה.</p>
               </div>
             </div>
-            <div class="bg-secondary p-4 rounded-xl shadow-md reveal-element" data-delay="400">
+            <div class="glass-card benefit-card p-4 rounded-2xl reveal-element" data-delay="400">
               <button class="w-full text-right flex justify-between items-center" onclick="toggleAnswer('answer3')">
                 <span class="text-lg font-semibold text-heading">למי האימון לא מתאים?</span>
-                <svg id="arrow3" class="w-6 h-6 text-heading transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg id="arrow3" class="w-6 h-6 text-accent transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                 </svg>
               </button>
@@ -697,10 +914,10 @@
                 <p class="mt-3"><strong>2-</strong> מי שלא יציבה בזמנים, לא מגיעה בזמן או נוהגת לבטל מפגשים ברגע אחרון.</p>
               </div>
             </div>
-            <div class="bg-secondary p-4 rounded-xl shadow-md reveal-element" data-delay="500">
+            <div class="glass-card benefit-card p-4 rounded-2xl reveal-element" data-delay="500">
               <button class="w-full text-right flex justify-between items-center" onclick="toggleAnswer('answer4')">
                 <span class="text-lg font-semibold text-heading">האם האימון מתאים גם לגברים?</span>
-                <svg id="arrow4" class="w-6 h-6 text-heading transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg id="arrow4" class="w-6 h-6 text-accent transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                 </svg>
               </button>
@@ -719,15 +936,26 @@
             </div>
           </div>
           <div class="flex justify-center">
-            <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/101.jpeg" alt="שאלות נוספות" class="w-[18rem] h-[18rem] object-cover rounded-full shadow-lg reveal-element" data-delay="500"/>
+            <img src="https://raw.githubusercontent.com/danielgalili8/AdiWebsite/main/101.jpeg" alt="שאלות נוספות" class="object-cover reveal-element" data-delay="500"/>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-  <section class="bg-secondary py-16">
+  <!-- Wave: cream → cream (guarantee section) -->
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,25 C360,50 1080,0 1440,25 L1440,50 L0,50 Z" fill="#EDE4D7"/>
+    </svg>
+  </div>
+
+  <!-- ═══════════════════════════════
+       GUARANTEE
+  ═══════════════════════════════ -->
+  <section style="background-color: #EDE4D7; padding: 4rem 0;">
     <div class="max-w-3xl mx-auto px-6 text-center">
-      <h2 class="text-4xl font-bold text-heading reveal-element">אני נותנת לך אחריות מלאה.</h2>
+      <h2 class="text-4xl font-bold text-heading section-heading reveal-element">אני נותנת לך אחריות מלאה.</h2>
       <p class="mt-6 text-lg text-body leading-relaxed max-w-3xl mx-auto reveal-element" data-delay="200">
         אני כאן כי אני יודעת שיש לי מה לתת. אני דוגלת בלייצר תהליכים משמעותיים בהם החיים של מתאמנים שלי משתנים, והם מרגישים שעשו את הבחירה הכי מדהימה עבור עצמם.
       </p>
@@ -737,6 +965,9 @@
     </div>
   </section>
 
+  <!-- ═══════════════════════════════
+       STICKY WHATSAPP CTA
+  ═══════════════════════════════ -->
   <a id="sticky-whatsapp-cta" href="https://wa.link/8ram0d" target="_blank" class="btn-whatsapp-fixed md:text-xl" rel="noopener">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
       <path d="M.057 24l1.687-6.163C.703 16.033.156 13.988.157 11.891.157 5.335 5.495 0 12.05 0c3.181 0 6.167 1.24 8.413 3.488A11.82 11.82 0 0 1 23.95 11.9c0 6.557-5.338 11.892-11.893 11.892-1.99 0-3.903-.52-5.607-1.474L.057 24zm6.414-3.323c1.518.911 3.231 1.411 5.048 1.411 5.219 0 9.466-4.244 9.466-9.463 0-2.528-1.004-4.903-2.782-6.68-1.777-1.778-4.152-2.782-6.68-2.782-5.218 0-9.465 4.244-9.465 9.463 0 1.83.504 3.548 1.408 5.063l.729 1.21-1.879 5.462 5.455-1.684zm11.387-5.47c-.074-.123-.272-.198-.57-.347-.297-.149-1.758-.867-2.03-.966-.272-.099-.47-.149-.669.149-.198.297-.768.966-.94 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.173.198-.297.297-.495.099-.198.05-.372-.025-.521-.074-.149-.669-1.611-.916-2.207-.242-.58-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.793.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.71.306 1.264.489 1.696.626.712.226 1.36.195 1.872.118.571-.085 1.758-.718 2.006-1.41.248-.694.248-1.289.173-1.41z"/>
@@ -744,71 +975,138 @@
     <span>מתעניינת בתהליך? לחצי כאן!</span>
   </a>
 
+  <!-- ═══════════════════════════════
+       SCRIPTS
+  ═══════════════════════════════ -->
   <script>
+    /* ——— Scroll reset on load ——— */
     window.addEventListener('beforeunload', function() { window.scrollTo(0, 0); });
     window.addEventListener('load', function() { setTimeout(function() { window.scrollTo(0, 0); }, 0); });
     if (history.scrollRestoration) { history.scrollRestoration = 'manual'; }
 
-    const cta = document.getElementById('sticky-whatsapp-cta');
-    const header = document.querySelector('header');
-    const footer = document.querySelector('footer');
-    function toggleStickyCta(){
-      if(!cta || !header || !footer) return;
-      const headerBottom = header.offsetTop + header.offsetHeight;
-      const footerTop = footer.offsetTop;
-      const scrollY = window.scrollY;
+    /* ——— Hero particles ——— */
+    (function() {
+      const canvas = document.getElementById('hero-particles');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      function resize() {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize, { passive: true });
+
+      const particles = [];
+      for (let i = 0; i < 30; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: Math.random() * 3.5 + 0.8,
+          speed: Math.random() * 0.4 + 0.15,
+          opacity: Math.random() * 0.35 + 0.08,
+          drift: (Math.random() - 0.5) * 0.25,
+        });
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(function(p) {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(201, 168, 130, ' + p.opacity + ')';
+          ctx.fill();
+          p.y -= p.speed;
+          p.x += p.drift;
+          p.opacity += (Math.random() - 0.5) * 0.015;
+          p.opacity = Math.max(0.04, Math.min(0.45, p.opacity));
+          if (p.y < -10) { p.y = canvas.height + 10; p.x = Math.random() * canvas.width; }
+          if (p.x < -10) p.x = canvas.width + 10;
+          if (p.x > canvas.width + 10) p.x = -10;
+        });
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+
+    /* ——— Parallax hero image ——— */
+    (function() {
+      var img = document.getElementById('hero-parallax-img');
+      if (!img) return;
+      window.addEventListener('scroll', function() {
+        var scrollY = window.scrollY;
+        var wrapper = img.parentElement;
+        var rect = wrapper.getBoundingClientRect();
+        if (rect.bottom > 0 && rect.top < window.innerHeight) {
+          img.style.transform = 'translateY(' + (scrollY * 0.12) + 'px)';
+        }
+      }, { passive: true });
+    })();
+
+    /* ——— Sticky WhatsApp CTA ——— */
+    var cta = document.getElementById('sticky-whatsapp-cta');
+    var header = document.querySelector('header');
+    var footer = document.querySelector('footer');
+    function toggleStickyCta() {
+      if (!cta || !header || !footer) return;
+      var headerBottom = header.offsetTop + header.offsetHeight;
+      var footerTop = footer.offsetTop;
+      var scrollY = window.scrollY;
       if (scrollY > headerBottom && scrollY < (footerTop - window.innerHeight + 100)) {
         cta.classList.add('is-visible');
       } else {
         cta.classList.remove('is-visible');
       }
     }
-    window.addEventListener('scroll', toggleStickyCta);
+    window.addEventListener('scroll', toggleStickyCta, { passive: true });
 
-    const revealElements = document.querySelectorAll('.reveal-element');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          const el = entry.target;
-          const delay = parseInt(el.getAttribute('data-delay') || 0);
-          setTimeout(() => { el.classList.add('is-revealed'); }, delay);
+    /* ——— Scroll reveal ——— */
+    var revealElements = document.querySelectorAll('.reveal-element');
+    var revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          var delay = parseInt(el.getAttribute('data-delay') || 0);
+          setTimeout(function() { el.classList.add('is-revealed'); }, delay);
         }
       });
-    }, { threshold: 0.1 });
-    revealElements.forEach(el => observer.observe(el));
+    }, { threshold: 0.08 });
+    revealElements.forEach(function(el) { revealObserver.observe(el); });
 
+    /* ——— FAQ accordion ——— */
     function toggleAnswer(answerId) {
-      const answer = document.getElementById(answerId);
-      const arrow = document.getElementById('arrow' + answerId.slice(-1));
+      var answer = document.getElementById(answerId);
+      var arrow = document.getElementById('arrow' + answerId.slice(-1));
       answer.classList.toggle('hidden');
       arrow.style.transform = answer.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
     }
 
+    /* ——— Testimonials carousel ——— */
     document.addEventListener('DOMContentLoaded', function() {
-      const carousel = document.getElementById('testimonials-carousel');
-      const container = carousel.querySelector('.testimonials-container');
-      const slides = container.querySelectorAll('.testimonial-slide');
-      const prevBtn = document.getElementById('prev-testimonial');
-      const nextBtn = document.getElementById('next-testimonial');
-      const dotsContainer = document.getElementById('carousel-dots');
-      
-      let currentSlide = 0;
-      const totalSlides = slides.length;
+      var carousel = document.getElementById('testimonials-carousel');
+      var container = carousel.querySelector('.testimonials-container');
+      var slides = container.querySelectorAll('.testimonial-slide');
+      var prevBtn = document.getElementById('prev-testimonial');
+      var nextBtn = document.getElementById('next-testimonial');
+      var dotsContainer = document.getElementById('carousel-dots');
 
-      slides.forEach((_, i) => {
-        const dot = document.createElement('div');
-        dot.className = `indicator-dot ${i === 0 ? 'bg-black' : 'bg-gray-300'}`;
-        dot.addEventListener('click', () => goToSlide(i));
+      var currentSlide = 0;
+      var totalSlides = slides.length;
+
+      slides.forEach(function(_, i) {
+        var dot = document.createElement('div');
+        dot.className = 'indicator-dot' + (i === 0 ? ' active-dot' : '');
+        dot.addEventListener('click', function() { goToSlide(i); });
         dotsContainer.appendChild(dot);
       });
 
-      const indicators = dotsContainer.querySelectorAll('.indicator-dot');
+      var indicators = dotsContainer.querySelectorAll('.indicator-dot');
 
       function updateCarousel() {
-        const offset = currentSlide * 100;
-        container.style.transform = `translateX(${offset}%)`;
-        indicators.forEach((dot, index) => {
-          dot.className = `indicator-dot ${index === currentSlide ? 'bg-black' : 'bg-gray-300'}`;
+        var offset = currentSlide * 100;
+        container.style.transform = 'translateX(' + offset + '%)';
+        indicators.forEach(function(dot, index) {
+          dot.classList.toggle('active-dot', index === currentSlide);
         });
       }
 
@@ -819,10 +1117,10 @@
       prevBtn.addEventListener('click', prevSlide);
       nextBtn.addEventListener('click', nextSlide);
 
-      let startX = 0;
-      container.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
-      container.addEventListener('touchend', e => {
-        const diff = startX - e.changedTouches[0].clientX;
+      var startX = 0;
+      container.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
+      container.addEventListener('touchend', function(e) {
+        var diff = startX - e.changedTouches[0].clientX;
         if (Math.abs(diff) > 50) diff > 0 ? nextSlide() : prevSlide();
       });
     });
